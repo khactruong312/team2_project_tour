@@ -21,5 +21,5 @@ $user = \App\Auth::user();
 <?php if (!empty($error)): ?><div style="color:red"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
 <?php echo $content ?? ''; ?>
 </main>
-<footer><hr><small>Student demo base - extend for production (hash passwords,)</small></footer>
+<footer><hr><small>Student demo base - extend for production (hash )</small></footer>
 </body></html>

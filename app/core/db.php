@@ -1,14 +1,14 @@
 <?php
-class Database {
-    protected $pdo;
-
-    public function __construct() {
-        try {
-            $this->pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->pdo->exec("SET NAMES utf8");
-        } catch (PDOException $e) {
-            die("Lỗi kết nối CSDL: " . $e->getMessage());
-        }
+namespace App\Core;
+use PDO;
+class DB {
+    private static $pdo;
+    public static function init($cfg){
+        $dsn = "mysql:host={$cfg['host']};dbname={$cfg['db']};charset=utf8mb4";
+        self::$pdo = new PDO($dsn, $cfg['user'], $cfg['pass'], [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]);
     }
+    public static function pdo(){ return self::$pdo; }
 }

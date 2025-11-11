@@ -1,6 +1,6 @@
 <?php
 
-define('BASE_URL',          'http://localhost/DuAn1/Base1/');
+define('BASE_URL',          'http://project_dulich.test/');
 
 define('PATH_ROOT',         __DIR__ . '/../');
 

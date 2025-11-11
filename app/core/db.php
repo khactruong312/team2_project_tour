@@ -1,6 +1,7 @@
 <?php
 namespace App\Core;
 use PDO;
+
 class DB {
     private static $pdo;
     public static function init($cfg){

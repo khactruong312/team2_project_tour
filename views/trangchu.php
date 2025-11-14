@@ -1,3 +1,6 @@
+<?php
+    require_once 'layout/header.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

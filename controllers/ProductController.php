@@ -13,6 +13,12 @@ class ProductController
     {
         require_once './views/trangchu.php';
     }
+    public function Login(){
+        require_once './views/login/login.php';
+    }
+    public function Register(){
+        require_once './views/login/register.php';
+    }
     
     
     

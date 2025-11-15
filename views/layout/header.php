@@ -96,8 +96,8 @@
             </div>
             <div>
                 <div class="login d-flex m-2 ">
-                    <a class="text-dark" href="#"><i class="bi bi-person-circle"></i>Đăng ký</a>/
-                    <a class="text-dark" href="#">Đăng nhập</a>
+                    <a class="text-dark" href="?act=register"><i class="bi bi-person-circle"></i>Đăng ký</a>/
+                    <a class="text-dark" href="?act=login">Đăng nhập</a>
                 </div>
             </div>
         </div>

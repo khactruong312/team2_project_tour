@@ -9,7 +9,7 @@
 
 <body>
     <div class="banner">
-        <img src="/uploads/imgproduct/banner_3.jpg" alt="Travel Logo" class="banner-img w-100 h-auto">
+        <img src="uploads/imgproduct/banner_3.jpg" alt="Travel Logo" class="banner-img w-100 h-auto">
     </div>
     <div class="container my-5 position-relative">
     <h2 class="text-center mb-4 fw-bold">Điểm du lịch phổ biến</h2>
@@ -153,3 +153,4 @@
 
 
 </html>
+<?php require_once 'layout/footer.php'; ?>

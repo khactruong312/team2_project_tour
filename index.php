@@ -18,6 +18,8 @@ $act = $_GET['act'] ?? '/';
 match ($act) {
     // Trang chủ
     '/'=>(new ProductController())->Home(),
+    'login' => (new ProductController())->Login(),
+    'register' => (new ProductController())->Register(),
     // Mặc định
     default => (new ProductController())->Home(),
 };

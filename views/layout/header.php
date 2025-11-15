@@ -106,7 +106,7 @@
         <div class="nav-main d-flex justify-content-between align-items-center">
 
             <div>
-                <img src="/uploads/imgproduct/logo-cong-ty-du-lich-SPencil-Agency-10.png" alt="Travel Logo"
+                <img src="uploads/imgproduct/logo-cong-ty-du-lich-SPencil-Agency-10.png" alt="Travel Logo"
                     class="logo-img">
             </div>
 

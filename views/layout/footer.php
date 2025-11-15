@@ -27,6 +27,7 @@
             list-style: none;
             padding: 0;
             margin: 20px
+            
         }
         .footer-custom ul li {
             margin-bottom: 8px;
@@ -88,6 +89,9 @@
         .copyright-text {
             color: #777;
         }
+        .h{
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -97,7 +101,7 @@
         <div class="row pb-4">
             
             <div class="col-6 col-md-3">
-                <h6>VỀ TRAVEL</h6>
+                <h6 class="h">VỀ TRAVEL</h6>
                 <ul class="list-unstyled">
                     <li><a href="#">Về Công ty</a></li>
                     <li><a href="#">Liên hệ</a></li>
@@ -111,7 +115,7 @@
             </div>
 
             <div class="col-6 col-md-3">
-                <h6>THÔNG TIN CẦN BIẾT</h6>
+                <h6 class="h">THÔNG TIN CẦN BIẾT</h6>
                 <ul class="list-unstyled">
                     <li><a href="#">Điều khoản sử dụng</a></li>
                     <li><a href="#">Chính sách bảo mật</a></li>
@@ -120,7 +124,7 @@
             </div>
 
             <div class="col-6 col-md-3 mt-4 mt-md-0">
-                <h6>THÔNG TIN HỮU ÍCH</h6>
+                <h6 class="h">THÔNG TIN HỮU ÍCH</h6>
                 <ul class="list-unstyled">
                     <li><a href="#">Hướng dẫn đặt tour</a></li>
                     <li><a href="#">Hình thức thanh toán</a></li>
@@ -129,7 +133,7 @@
             </div>
 
             <div class="col-6 col-md-3 mt-4 mt-md-0">
-                <h6>ĐƯỢC CHỨNG NHẬN</h6>
+                
                                 <img src="placeholder_bct.png" alt="Đã đăng ký Bộ Công Thương" class="certified-logo d-none"> 
 
 

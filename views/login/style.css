@@ -1,0 +1,104 @@
+.main-wrapper {
+    /* Thiết lập hình nền */
+    background: url('https://picsum.photos/1920/1080?random=1') no-repeat center center fixed;
+    /* Hoặc dùng hình trong thư mục của bạn: background: url('your-background-image.jpg') no-repeat center center fixed; */
+    background-size: cover;
+    
+    /* Căn giữa tuyệt đối form trên toàn màn hình */
+    display: flex;
+    flex-direction: column; /* Sắp xếp tiêu đề, form, footer theo chiều dọc */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Chiều cao tối thiểu bằng chiều cao viewport */
+    padding: 20px;
+    
+    /* Thiết lập lớp phủ (overlay) mờ nhẹ để chữ nổi bật hơn */
+    position: relative;
+    z-index: 1; /* Đảm bảo lớp phủ nằm dưới nội dung */
+}
+
+
+/* Kích thước form */
+.login-form-container {
+    width: 90%;
+    max-width: 350px; /* Giới hạn chiều rộng form */
+    z-index: 2; /* Đảm bảo form nằm trên lớp phủ */
+}
+
+/* Tiêu đề form ở trên cùng */
+.form-title {
+    font-size: 3rem;
+    font-weight: 300; /* Font nhẹ hơn để trông thanh lịch */
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Tạo hiệu ứng nổi bật cho chữ trắng */
+}
+
+/* Header Tab (LOG IN) */
+.login-header {
+    background-color: #3498db !important; /* Màu xanh dương trong ảnh */
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Nút Submit */
+.submit-btn {
+    background-color: #e74c3c !important; /* Màu đỏ trong ảnh */
+    border-color: #e74c3c !important;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Tùy chỉnh màu sắc icons mạng xã hội */
+.social-icon.facebook {
+    color: #3b5998;
+    border-color: #3b5998;
+}
+.social-icon.twitter {
+    color: #00aced;
+    border-color: #00aced;
+}
+.social-icon.google {
+    color: #dd4b39;
+    border-color: #dd4b39;
+}
+.social-icon:hover {
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.social-icon.facebook:hover { background-color: #3b5998; }
+.social-icon.twitter:hover { background-color: #00aced; }
+.social-icon.google:hover { background-color: #dd4b39; }
+
+
+/* Footer bản quyền */
+.form-footer {
+    position: fixed; /* Giữ ở cuối màn hình */
+    bottom: 20px;
+    font-size: 0.8rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    width: 100%;
+}
+
+#h1{
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    
+}

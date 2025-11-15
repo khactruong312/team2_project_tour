@@ -1,5 +1,6 @@
 <?php
     require_once 'layout/header.php';
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,3 +13,5 @@
     <h1>đây là trang chủ</h1>
 </body>
 </html>
+
+<?php require_once 'layout/footer.php'; ?>

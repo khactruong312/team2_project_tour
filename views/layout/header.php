@@ -7,6 +7,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <style>
         * {
             margin: 0;
@@ -47,12 +48,9 @@
         }
 
         .container {
-            display: flex;
+            padding-bottom: 20px;
         }
 
-        .container img {
-            width: 25%;
-        }
 
         .nav-main {
             padding: 15px 0;
@@ -97,9 +95,9 @@
                 </select>
             </div>
             <div>
-                <div class="login d-flex">
-                    <a href="#"><i class="bi bi-person-circle"></i>Đăng ký</a>/
-                    <a href="#">Đăng nhập</a>
+                <div class="login d-flex m-2 ">
+                    <a class="text-dark" href="#"><i class="bi bi-person-circle"></i>Đăng ký</a>/
+                    <a class="text-dark" href="#">Đăng nhập</a>
                 </div>
             </div>
         </div>

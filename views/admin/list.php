@@ -1,3 +1,8 @@
+<?php if (isset($_SESSION['success'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['success']; unset($_SESSION['success']); ?>
+    </div>
+<?php endif; ?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -86,7 +91,7 @@
                 <i class="fas fa-plane-departure text-info"></i> Quản Lý Tour
             </div>
             <div class="list-group list-group-flush">
-                <a href="/" class="list-group-item list-group-item-action active">
+                <a href="/" class="list-group-item list-group-item-action ">
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
                 <a href="index.php?act=tour-list" class="list-group-item list-group-item-action active">
@@ -172,7 +177,7 @@
                                 <td><?= $tour['tour_id'] ?></td>
                                 <td><?= $tour['name'] ?></td>
                                 <td><?= $tour['type'] ?></td>
-                                <td><?= number_format($tour['price']) ?>đ</td>
+                                <td><?= number_format($tour['price'] ?? 0) ?>đđ</td>
                                 <td><?= $tour['duration_days'] ?> ngày</td>
 
                                 <td>

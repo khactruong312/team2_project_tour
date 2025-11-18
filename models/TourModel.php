@@ -24,37 +24,25 @@ class TourModel
         return $stmt->fetch();
     }
 
-    public function create($data)
-    {
-        $sql = "INSERT INTO tours (name, type, price, duration_days, description)
-                VALUES (?, ?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
-        return $stmt->execute([
-            $data['name'],
-            $data['type'],
-            $data['price'],
-            $data['duration_days'],
-            $data['description']
-        ]);
-    }
+    public function create($name, $type, $price, $duration)
+{
+    $sql = "INSERT INTO tours (name, type, price, duration_days) VALUES (?, ?, ?, ?)";
+    $stmt = $this->conn->prepare($sql);
+    return $stmt->execute([$name, $type, $price, $duration]);
+}
 
-    public function update($id, $data)
-    {
-        $sql = "UPDATE tours 
-                SET name = ?, type = ?, price = ?, duration_days = ?, description = ?
-                WHERE tour_id = ?";
 
-        $stmt = $this->conn->prepare($sql);
+    public function update($id, $name, $type, $price, $duration)
+{
+    $sql = "UPDATE tours 
+            SET name = ?, type = ?, price = ?, duration_days = ?
+            WHERE tour_id = ?";
 
-        return $stmt->execute([
-            $data['name'],
-            $data['type'],
-            $data['price'],
-            $data['duration_days'],
-            $data['description'],
-            $id
-        ]);
-    }
+    $stmt = $this->conn->prepare($sql);
+
+    return $stmt->execute([$name, $type, $price, $duration, $id]);
+}
+
 
     public function delete($id)
     {

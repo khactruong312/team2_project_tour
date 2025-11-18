@@ -20,39 +20,78 @@ class TourController
         require_once './views/admin/list.php';
     }
 
-      public function create()
+    public function create()
     {
         require_once './views/admin/create.php';
     }
 
-    // Login
+
     public function store()
     {
-        $this->tourModel->create($_POST);
-        header("Location: index.php?mod=tour&act=list");
+        $name = $_POST['name'];
+        $type = $_POST['type'];
+        $price = $_POST['price'];
+        $duration = $_POST['duration '];
+        $result = $this->tourModel->create($name, $type, $price, $duration);
+
+        if ($result) {
+            $_SESSION['success'] = "Thêm tour thành công!";
+        } else {
+            $_SESSION['error'] = "Thêm tour thất bại!";
+        }
+        header("Location: index.php?act=tour-list");
+        exit;
     }
 
     // Register
-     public function edit()
+    public function edit()
     {
         $id = $_GET['id'];
+
+        if (!$id) {
+            $_SESSION['error'] = 'không tìm thấy id';
+            header("Location: index.php?act=tour-list");
+            exit;
+        }
         $tour = $this->tourModel->getById($id);
+        if (!$tour) {
+            $_SESSION['error'] = "Tour không tồn tại!";
+            header("Location: index.php?act=tour-list");
+            exit;
+        }
 
         require_once './views/admin/edit.php';
     }
     public function update()
     {
-        $id = $_POST['id'];
-        $this->tourModel->update($id, $_POST);
 
-        header("Location: index.php?mod=tour&act=list");
+         $id = $_POST['id'];
+    $name = $_POST['name'];
+    $type = $_POST['type'];
+    $price = $_POST['price'];
+    $duration = $_POST['duration_days'];
+        $result =$this->tourModel->update($id,$name,$type, $price, $duration);
+        if ($result) {
+        $_SESSION['success'] = "Cập nhật tour thành công!";
+    } else {
+        $_SESSION['error'] = "Cập nhật thất bại!";
     }
 
-     public function delete()
+        header("Location: index.php?act=tour-list");
+    exit;
+    }
+
+    public function delete()
     {
         $id = $_GET['id'];
-        $this->tourModel->delete($id);
+        $result = $this->tourModel->delete($id);
 
-        header("Location: index.php?mod=tour&act=list");
+        if ($result) {
+            $_SESSION['success'] = "Xóa tour thành công!";
+        } else {
+            $_SESSION['error'] = "Xóa tour thất bại!";
+        }
+
+        header("Location: index.php?act=tour-list");
     }
 }

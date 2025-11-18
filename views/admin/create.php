@@ -36,7 +36,7 @@
     <div class="form-container">
         <h2>✨ Thêm Tour Mới</h2>
 
-        <form action="index.php?mod=tour&act=store" method="POST">
+        <form action="index.php?act=tour-store" method="POST">
 
             <div class="mb-3">
                 <label for="tourName" class="form-label">Tên tour:</label>
@@ -45,7 +45,7 @@
 
             <div class="mb-3">
                 <label for="tourType" class="form-label">Loại tour:</label>
-                <select name="type" id="tourType" class="form-select">
+                <select  name="type" id="tourType" class="form-select">
                     <option value="Trong nước">Trong nước 🇻🇳</option>
                     <option value="Quốc tế">Quốc tế 🌍</option>
                     <option value="Theo yêu cầu">Theo yêu cầu 💡</option>

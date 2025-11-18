@@ -6,6 +6,8 @@
     <title>Dashboard Quản Trị Tour</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     
     <style>
         body {
@@ -78,7 +80,7 @@
             <a href="#" class="list-group-item list-group-item-action active">
                 <i class="fas fa-tachometer-alt me-2"></i> Dashboard
             </a>
-            <a href="index.php?act=tour-list" class="list-group-item list-group-item-action active">
+            <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
                 <i class="fas fa-list me-2"></i> Danh sách tour
             </a>
             <a href="#" class="list-group-item list-group-item-action">
@@ -121,7 +123,7 @@
                             <a class="dropdown-item" href="#">Hồ sơ</a>
                             <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-1"></i> Đăng xuất</a>
+                            <a class="dropdown-item text-danger" href="./view/login/login.php"><i class="fas fa-sign-out-alt me-1"></i> Đăng xuất</a>
                         </div>
                     </li>
                 </ul>

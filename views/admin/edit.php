@@ -38,7 +38,7 @@
     <div class="form-container">
         <h2>✏️ Chỉnh Sửa Thông Tin Tour</h2>
 
-        <form action="index.php?mod=tour&act=update" method="POST">
+        <form action="index.php?act=tour-update" method="POST">
             <input type="hidden" name="id" value="<?= $tour['tour_id'] ?>">
 
             <div class="mb-3">

@@ -59,12 +59,25 @@
 
             <div class="mb-3">
                 <label for="tourDuration" class="form-label">Thời lượng (Ngày):</label>
-                <input type="number" name="duration_days" id="tourDuration" class="form-control" min="1" placeholder="Số ngày du lịch, ví dụ: 3">
+                <input type="number" name="duration" id="tourDuration" class="form-control" min="1" placeholder="Số ngày du lịch, ví dụ: 3">
             </div>
 
             <div class="mb-4">
                 <label for="tourDescription" class="form-label">Mô tả chi tiết:</label>
                 <textarea name="description" id="tourDescription" class="form-control" rows="4" placeholder="Mô tả các điểm nổi bật, lịch trình tóm tắt của tour..."></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="tourDescription" class="form-label">Trạng thái:</label>
+                <select  name="status" id="status" class="form-select">
+                    <option value="Chưa khởi hành">Active</option>
+                    <option value="Đang khởi hành">Inactive</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="tourDescription" class="form-label">Thời gian:</label>
+                <input type="date" name="created_at" id="tourDescription" class="form-control" rows="4" placeholder="Thời gian tour..."></input>
             </div>
             
             <div class="d-grid gap-2">

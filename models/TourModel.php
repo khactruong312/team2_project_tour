@@ -31,23 +31,37 @@ class TourModel
         return $stmt->fetch();
     }
 
-    public function create($name, $type, $price, $duration)
+    public function create($name, $type, $price, $duration, $description, $status,$created_at)
 {
-    $sql = "INSERT INTO tours (name, type, price, duration_days) VALUES (?, ?, ?, ?)";
+    $validStatus = ['active', 'Inactive'];
+
+    if (!in_array($status, $validStatus)) {
+        $status = 'active';
+    }
+
+    $created_at = date('Y-m-d H:i:s');
+
+    $sql = "INSERT INTO tours (name, type, price, duration_days, description, status , created_at) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $this->conn->prepare($sql);
-    return $stmt->execute([$name, $type, $price, $duration]);
+    return $stmt->execute([$name, $type, $price, $duration,$description,$status,$created_at]);
 }
 
 
-    public function update($id, $name, $type, $price, $duration)
+    public function update($id, $name, $type, $price, $duration,$description, $status,$created_at)
 {
+    $validStatus = ['Active', 'Inactive']; 
+    if (!in_array($status, $validStatus)) {
+        
+        $status = 'Inactive'; 
+    }
+    $created_at = date('Y-m-d H:i:s');
     $sql = "UPDATE tours 
-            SET name = ?, type = ?, price = ?, duration_days = ?
+            SET name = ?, type = ?, price = ?, duration_days = ?, description = ?, status = ?, created_at=?
             WHERE tour_id = ?";
 
     $stmt = $this->conn->prepare($sql);
 
-    return $stmt->execute([$name, $type, $price, $duration, $id]);
+    return $stmt->execute([$name, $type, $price, $duration , $description, $status,$created_at, $id]);
 }
 
 

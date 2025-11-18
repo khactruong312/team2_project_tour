@@ -33,8 +33,11 @@ class TourController
         $name = $_POST['name'];
         $type = $_POST['type'];
         $price = $_POST['price'];
-        $duration = $_POST['duration '];
-        $result = $this->tourModel->create($name, $type, $price, $duration);
+        $duration = $_POST['duration'];
+        $description =$_POST['description'];
+        $status =$_POST['status'];
+        $created_at =$_POST['created_at'];
+        $result = $this->tourModel->create($name, $type, $price, $duration, $description, $status, $created_at);
 
         if ($result) {
             $_SESSION['success'] = "Thêm tour thành công!";
@@ -72,7 +75,10 @@ class TourController
     $type = $_POST['type'];
     $price = $_POST['price'];
     $duration = $_POST['duration_days'];
-        $result =$this->tourModel->update($id,$name,$type, $price, $duration);
+    $description =$_POST['description'];
+        $status =$_POST['status'];
+        $created_at =$_POST['created_at'];
+        $result =$this->tourModel->update($id,$name,$type, $price, $duration,$description, $status, $created_at);
         if ($result) {
         $_SESSION['success'] = "Cập nhật tour thành công!";
     } else {

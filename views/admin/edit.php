@@ -72,9 +72,21 @@
 
             <div class="mb-4">
                 <label for="tourDescription" class="form-label">Mô tả chi tiết:</label>
-                <textarea name="description" id="tourDescription" class="form-control" rows="4" placeholder="Mô tả các điểm nổi bật, lịch trình tóm tắt của tour..."><?= $tour['description'] ?></textarea>
+                <textarea name="description" id="tourDescription" class="form-control" value="<?= $tour['description'] ?>" rows="4" placeholder="Mô tả các điểm nổi bật, lịch trình tóm tắt của tour..."><?= $tour['description'] ?></textarea>
             </div>
-            
+            <div class="mb-4">
+                <label for="tourDescription" class="form-label">Trạng thái:</label>
+                <select  name="status" id="status" class="form-select">
+                    <option value="Chưa khởi hành"<?= $tour['status']=='Active'?'selected':'' ?>>Active</option>
+                    <option value="Đang khởi hành"<?= $tour['status']=='Inactive'?'selected':'' ?>>Inactive</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="tourDescription" class="form-label">Thời gian:</label>
+                <input type="date" name="created_at" id="tourDescription" value="<?= $tour['created_at']?>" class="form-control" rows="4" placeholder="Thời gian tour..."><?= $tour['created_at']?></input>
+            </div>
+
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary btn-lg">🔄 Cập Nhật Thông Tin</button>
             </div>

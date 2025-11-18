@@ -167,6 +167,10 @@
                             <th>Loại</th>
                             <th>Giá</th>
                             <th>Thời lượng</th>
+                            <th>Mô tả</th>
+                            <th>Trạng thái</th>
+                            <th>Thời gian</th>
+
                             <th style="width: 150px;">Thao tác</th>
                         </tr>
                     </thead>
@@ -179,6 +183,20 @@
                                 <td><?= $tour['type'] ?></td>
                                 <td><?= number_format($tour['price'] ?? 0) ?>đđ</td>
                                 <td><?= $tour['duration_days'] ?> ngày</td>
+                                <td><?= $tour['description'] ?></td>
+                                <td><?php
+                                       $status = $tour['status'];
+                                       $badgeClass = "bg-secondary";
+
+                                       if($status=='Active'){
+                                        $badgeClass ="bg-danger";
+                                       }elseif ($status=='Inactive'){
+                                            $badgeClass ="bg-success";
+                                       }
+
+                                       echo "<span class='badge $badgeClass px-3 py-2'>$status</span>";
+                                 ?></td>
+                                 <td><?= $tour['created_at'] ?></td>
 
                                 <td>
                                     <a class="btn btn-sm btn-warning"

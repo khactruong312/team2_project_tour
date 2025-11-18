@@ -1,156 +1,191 @@
-<?php
-
-
-    require_once 'layout/header.php';
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Quản Trị Tour</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
+    <style>
+        body {
+            background-color: #f8f9fa; /* Nền nhẹ nhàng */
+        }
+        /* Chiều rộng sidebar cố định và nền tối */
+        #sidebar-wrapper {
+            min-height: 100vh;
+            margin-left: -15rem; /* Ẩn sidebar ban đầu */
+            transition: margin .25s ease-out;
+            background-color: #343a40; /* Màu nền tối */
+            color: #ffffff;
+            position: fixed;
+            z-index: 1030; /* Đặt trên nội dung */
+        }
+        /* Hiển thị sidebar khi menu active */
+        #page-content-wrapper {
+            width: 100%;
+            padding-left: 0;
+            transition: padding-left .25s ease-out;
+        }
+        #wrapper.toggled #sidebar-wrapper {
+            margin-left: 0;
+        }
+        #wrapper.toggled #page-content-wrapper {
+            padding-left: 15rem;
+        }
+        /* Liên kết trong sidebar */
+        .sidebar-heading {
+            padding: 0.875rem 1.25rem;
+            font-size: 1.2rem;
+            color: #f8f9fa;
+        }
+        .list-group-item {
+            background-color: transparent;
+            color: #adb5bd;
+            border: none;
+            padding: 1rem 1.25rem;
+        }
+        .list-group-item:hover, .list-group-item.active {
+            background-color: #495057; /* Hover */
+            color: #ffffff;
+        }
 
-?>
-
-
+        @media (min-width: 768px) {
+            #sidebar-wrapper {
+                margin-left: 0;
+            }
+            #page-content-wrapper {
+                padding-left: 15rem;
+            }
+            #wrapper.toggled #sidebar-wrapper {
+                margin-left: -15rem;
+            }
+            #wrapper.toggled #page-content-wrapper {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
 <body>
-    <div class="banner">
-        <img src="uploads/imgproduct/banner_3.jpg" alt="Travel Logo" class="banner-img w-100 h-auto">
-    </div>
-    <div class="container my-5 position-relative">
-    <h2 class="text-center mb-4 fw-bold">Điểm du lịch phổ biến</h2>
 
-    <div id="destinationCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-
-            <!-- Slide 1 -->
-            <div class="carousel-item active">
-                <div class="row g-4">
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card text-white destination-card">
-                            <img src="./uploads/imgproduct/album-anh-ve-ha-noi-01.webp" class="card-img" alt="Hà Nội">
-                            <div class="card-img-overlay d-flex flex-column justify-content-end p-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Hà Nội</h5>
-                                    <span class="badge rounded-pill">10 Tour</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card text-white destination-card">
-                            <img src="./uploads/imgproduct/album-anh-ve-ha-noi-01.webp" class="card-img" alt="Hà Nội">
-                            <div class="card-img-overlay d-flex flex-column justify-content-end p-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>HCM</h5>
-                                    <span class="badge rounded-pill">6 Tour</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card text-white destination-card">
-                            <img src="./uploads/imgproduct/album-anh-ve-ha-noi-01.webp" class="card-img" alt="Hà Nội">
-                            <div class="card-img-overlay d-flex flex-column justify-content-end p-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Đà Nẵng</h5>
-                                    <span class="badge rounded-pill">8 Tour</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card text-white destination-card">
-                            <img src="./uploads/imgproduct/album-anh-ve-ha-noi-01.webp" class="card-img" alt="Hà Nội">
-                            <div class="card-img-overlay d-flex flex-column justify-content-end p-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Nha Trang</h5>
-                                    <span class="badge rounded-pill">4 Tour</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="text-center mt-4">
-        <a href="#" class="btn btn-custom-yellow">
-            Xem tất cả <i class="fas fa-arrow-right ms-1"></i>
-        </a>
-    </div>
-</div>
-
-<div class="container my-5">
+<div class="d-flex" id="wrapper">
     
-    <div class="d-flex justify-content-between align-items-end mb-4">
-        <h2 class="fw-bold mb-0">Khám phá thế giới cùng Travel Việt Nam</h2>
-        <a href="#" class="text-primary text-decoration-none fw-bold">
-            Xem tất cả →
-        </a>
+    <div class="bg-dark border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom border-secondary">
+            <i class="fas fa-plane-departure text-info"></i> Quản Lý Tour
+        </div>
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action active">
+                <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+            </a>
+            <a href="index.php?act=tour-list" class="list-group-item list-group-item-action active">
+                <i class="fas fa-tachometer-alt me-2"></i> Danh sách tour
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <i class="fas fa-road me-2"></i> Quản lý Tour
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <i class="fas fa-users me-2"></i> Quản lý Khách hàng
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <i class="fas fa-clipboard-list me-2"></i> Đơn hàng
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <i class="fas fa-chart-line me-2"></i> Thống kê
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <i class="fas fa-cog me-2"></i> Cài đặt Chung
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <i class="fas fa-info-circle me-2"></i> Về Chúng Tôi (Sửa)
+            </a>
+        </div>
     </div>
+    <div id="page-content-wrapper">
 
-    <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+            <button class="btn btn-outline-secondary ms-3" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
 
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 travel-card shadow-sm">
-                <div class="card-image-wrapper position-relative">
-                    <img src="./uploads/imgproduct/album-anh-ve-ha-noi-01.webp" class="card-img-top card-img-custom" alt="Cây dừa">
-                    
-                    <span class="favorite-badge position-absolute">
-                        <i class="fas fa-heart"></i> 25
-                    </span>
-                </div>
-                
-                <div class="card-body">
-                    <p class="card-category text-muted mb-1">ĐIỂM ĐẾN</p>
-                    <h5 class="card-title fw-bold">Hướng dẫn du lịch Wild Boar Eco Farm ở Quảng Bình</h5>
-                    <p class="card-text text-muted small-text">Quảng Bình không chỉ có động Phong Nha nổi tiếng mà còn có Wild Boar Eco Farm - một nông trại xanh mát cho bạn trải nghiệm cuộc sống dân dã nữa đó...</p>
-                    <a href="#" class="view-detail-link mt-2 fw-bold">XEM CHI TIẾT →</a>
-                </div>
+            <div class="collapse navbar-collapse me-3">
+                <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><i class="fas fa-bell me-1"></i> Thông báo <span class="badge bg-danger">4</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i> Admin Name
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Hồ sơ</a>
+                            <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-1"></i> Đăng xuất</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </nav>
+        <div class="container-fluid p-4">
+            <h1 class="mt-4 mb-4 text-secondary">Dashboard Tổng Quan</h1>
 
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 travel-card shadow-sm">
-                <div class="card-image-wrapper position-relative">
-                    <img src="./uploads/imgproduct/album-anh-ve-ha-noi-01.webp" class="card-img-top card-img-custom" alt="Núi sương mù">
-                    <span class="favorite-badge position-absolute">
-                        <i class="fas fa-heart"></i> 2
-                    </span>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card bg-primary text-white shadow">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <i class="fas fa-road fa-2x"></i>
+                                </div>
+                                <div class="col">
+                                    <div class="text-uppercase fw-bold">Tổng số Tour</div>
+                                    <div class="h5 mb-0">150</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p class="card-category text-muted mb-1">ĐIỂM ĐẾN</p>
-                    <h5 class="card-title fw-bold">Hướng dẫn du lịch Wild Boar Eco Farm ở Quảng Bình</h5>
-                    <p class="card-text text-muted small-text">Quảng Bình không chỉ có động Phong Nha nổi tiếng mà còn có Wild Boar Eco Farm - một nông trại xanh mát cho bạn trải nghiệm cuộc sống dân dã nữa đó...</p>
-                    <a href="#" class="view-detail-link mt-2 fw-bold">XEM CHI TIẾT →</a>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card bg-success text-white shadow">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x"></i>
+                                </div>
+                                <div class="col">
+                                    <div class="text-uppercase fw-bold">Doanh thu (Tháng)</div>
+                                    <div class="h5 mb-0">500 Triệu</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 travel-card shadow-sm">
-                <div class="card-image-wrapper position-relative">
-                    <img src="./uploads/imgproduct/album-anh-ve-ha-noi-01.webp" class="card-img-top card-img-custom" alt="Cô gái ở hồ">
-                    <span class="favorite-badge position-absolute">
-                        <i class="fas fa-heart"></i> 33
-                    </span>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card bg-warning text-dark shadow">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x"></i>
+                                </div>
+                                <div class="col">
+                                    <div class="text-uppercase fw-bold">Khách hàng mới</div>
+                                    <div class="h5 mb-0">245</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p class="card-category text-muted mb-1">ĐIỂM ĐẾN</p>
-                    <h5 class="card-title fw-bold">Hướng dẫn du lịch Wild Boar Eco Farm ở Quảng Bình</h5>
-                    <p class="card-text text-muted small-text">Quảng Bình không chỉ có động Phong Nha nổi tiếng mà còn có Wild Boar Eco Farm - một nông trại xanh mát cho bạn trải nghiệm cuộc sống dân dã nữa đó...</p>
-                    <a href="#" class="view-detail-link mt-2 fw-bold">XEM CHI TIẾT →</a>
-                </div>
-            </div>
-        </div>
 
-    </div>
-</div>
-
-</body>
-
-
-</html>
-<?php require_once 'layout/footer.php'; ?>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card bg-danger text-white shadow">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+<script>
+        // Toggle Sidebar
+        document.getElementById("menu-toggle").onclick = function() {
+            document.getElementById("wrapper").classList.toggle("toggled");
+        };
+    </script>

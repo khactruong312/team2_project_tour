@@ -1,25 +1,41 @@
 <?php 
-// Require toàn bộ các file khai báo môi trường, thực thi,...(không require view)
-
 // Require file Common
-require_once './commons/env.php'; // Khai báo biến môi trường
-require_once './commons/function.php'; // Hàm hỗ trợ
+require_once './commons/env.php';
+require_once './commons/function.php';
 
-// Require toàn bộ file Controllers
-require_once './controllers/ProductController.php';
-// Require toàn bộ file Models
-require_once './models/ProductModel.php';
+// Require Controllers
+require_once './controllers/TourController.php';
+
+// Require Models
+require_once './models/TourModel.php';
+
 // Route
 $act = $_GET['act'] ?? '/';
 
-
-// Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
-
+// Router sử dụng match
 match ($act) {
     // Trang chủ
-    '/'=>(new ProductController())->Home(),
-    'login' => (new ProductController())->Login(),
-    'register' => (new ProductController())->Register(),
+    '/'         => (new TourController())->home(),
+
+    // Trang danh sách tour
+    'tour-list' => (new TourController())->list(),
+
+    // // Chi tiết tour
+    // 'tour-detail' => (new TourController())->detail(),
+
+    // // Login / Register
+    // 'login'     => (new TourController())->login(),
+    // 'register'  => (new TourController())->register(),
+
+    // Admin CRUD TOUR
+    'tour-create' => (new TourController())->create(),
+    'tour-store'  => (new TourController())->store(),
+
+    'tour-edit'   => (new TourController())->edit(),
+    'tour-update' => (new TourController())->update(),
+
+    'tour-delete' => (new TourController())->delete(),
+
     // Mặc định
-    default => (new ProductController())->Home(),
+    default     => (new TourController())->home(),
 };

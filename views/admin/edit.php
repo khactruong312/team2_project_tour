@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chỉnh Sửa Tour</title>
     <link rel="icon" type="image/png" href="./uploads/imgproduct/snapedit_1763494732485.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         .form-container {
@@ -37,7 +38,7 @@
 
 <div class="container">
     <div class="form-container">
-        <h2>✏️ Chỉnh Sửa Thông Tin Tour</h2>
+        <h2><i class="bi bi-pen-fill"></i> Chỉnh Sửa Thông Tin Tour</h2>
 
         <form action="index.php?act=tour-update" method="POST">
             <input type="hidden" name="id" value="<?= $tour['tour_id'] ?>">
@@ -89,7 +90,7 @@
             </div>
 
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary btn-lg">🔄 Cập Nhật Thông Tin</button>
+                <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-pen-fill"></i> Cập Nhật Thông Tin</button>
             </div>
         </form>
     </div>

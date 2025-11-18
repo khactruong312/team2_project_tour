@@ -141,7 +141,7 @@
                                 <a class="dropdown-item" href="#">Hồ sơ</a>
                                 <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-1"></i>
+                                <a class="dropdown-item text-danger" href="index.php?act=tour-login"><i class="fas fa-sign-out-alt me-1"></i>
                                     Đăng xuất</a>
                             </div>
                         </li>
@@ -225,6 +225,7 @@
         };
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="..." crossorigin="anonymous"></script>
 </body>
 
 </html>

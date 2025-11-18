@@ -158,7 +158,7 @@
                                 <a class="dropdown-item" href="#">Hồ sơ</a>
                                 <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="./view/login/login.php"><i
+                                <a class="dropdown-item text-danger" href="index.php?act=tour-login"><i
                                         class="fas fa-sign-out-alt me-1"></i> Đăng xuất</a>
                             </div>
                         </li>
@@ -306,8 +306,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
                 <script>
                     // Toggle Sidebar

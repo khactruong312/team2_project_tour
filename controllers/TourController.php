@@ -34,9 +34,9 @@ class TourController
         $type = $_POST['type'];
         $price = $_POST['price'];
         $duration = $_POST['duration'];
-        $description =$_POST['description'];
-        $status =$_POST['status'];
-        $created_at =$_POST['created_at'];
+        $description = $_POST['description'];
+        $status = $_POST['status'];
+        $created_at = $_POST['created_at'];
         $result = $this->tourModel->create($name, $type, $price, $duration, $description, $status, $created_at);
 
         if ($result) {
@@ -70,23 +70,23 @@ class TourController
     public function update()
     {
 
-         $id = $_POST['id'];
-    $name = $_POST['name'];
-    $type = $_POST['type'];
-    $price = $_POST['price'];
-    $duration = $_POST['duration_days'];
-    $description =$_POST['description'];
-        $status =$_POST['status'];
-        $created_at =$_POST['created_at'];
-        $result =$this->tourModel->update($id,$name,$type, $price, $duration,$description, $status, $created_at);
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $type = $_POST['type'];
+        $price = $_POST['price'];
+        $duration = $_POST['duration_days'];
+        $description = $_POST['description'];
+        $status = $_POST['status'];
+        $created_at = $_POST['created_at'];
+        $result = $this->tourModel->update($id, $name, $type, $price, $duration, $description, $status, $created_at);
         if ($result) {
-        $_SESSION['success'] = "Cập nhật tour thành công!";
-    } else {
-        $_SESSION['error'] = "Cập nhật thất bại!";
-    }
+            $_SESSION['success'] = "Cập nhật tour thành công!";
+        } else {
+            $_SESSION['error'] = "Cập nhật thất bại!";
+        }
 
         header("Location: index.php?act=tour-list");
-    exit;
+        exit;
     }
 
     public function delete()

@@ -68,6 +68,18 @@
             /* Hover */
             color: #ffffff;
         }
+        .chart-container {
+    height: 400px; 
+    position: relative;
+}
+
+.chart-container canvas {
+    height: 100% !important; 
+    width: 100% !important;
+}
+    .shadow{
+        height: 100%;
+    }
 
         @media (min-width: 768px) {
             #sidebar-wrapper {
@@ -222,22 +234,89 @@
                                     <i class="fas fa-chart-bar me-2"></i> Biểu đồ Doanh thu
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="revenueChart" style="max-height: 400px;"></canvas>
+                                    <div class="chart-container">
+                                        <canvas id="revenueChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                        <div class="card shadow">
+                            <div class="card-header-custom p-3">
+                                <i class="fas fa-globe-asia me-2 text-success"></i> Phân loại Tour
+                            </div>
+                            <div class="card-body d-flex justify-content-center">
+                                <canvas id="categoryChart" style="max-height: 350px; max-width: 350px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    
+                </div>
+                
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="card shadow">
+                            <div class="card-header-custom p-3">
+                                <i class="fas fa-history me-2 text-warning"></i> 10 Đơn hàng Gần nhất
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Mã Đơn</th>
+                                                <th>Khách hàng</th>
+                                                <th>Tour Đặt</th>
+                                                <th>Ngày Đặt</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>#00101</td>
+                                                <td>Nguyễn Văn A</td>
+                                                <td>Hạ Long 3N2Đ</td>
+                                                <td>18/11/2025</td>
+                                                <td>15,000,000 VNĐ</td>
+                                                <td><span class="badge bg-warning">Chờ duyệt</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>#00100</td>
+                                                <td>Trần Thị B</td>
+                                                <td>Phú Quốc 4N3Đ</td>
+                                                <td>17/11/2025</td>
+                                                <td>22,500,000 VNĐ</td>
+                                                <td><span class="badge bg-success">Đã thanh toán</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>#00099</td>
+                                                <td>Lê Văn C</td>
+                                                <td>Du Lịch Châu Âu</td>
+                                                <td>17/11/2025</td>
+                                                <td>78,000,000 VNĐ</td>
+                                                <td><span class="badge bg-info">Đang xử lý</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
 
 
-                    <script>
-                        // Toggle Sidebar
-                        document.getElementById("menu-toggle").onclick = function () {
-                            document.getElementById("wrapper").classList.toggle("toggled");
-                        };
-                    </script>
+                <script>
+                    // Toggle Sidebar
+                    document.getElementById("menu-toggle").onclick = function () {
+                        document.getElementById("wrapper").classList.toggle("toggled");
+                    };
+                </script>
 
-                    <script src="./assets/js/main.js"></script>
+                <script src="./assets/js/main.js"></script>
 </body>
 
 </html>

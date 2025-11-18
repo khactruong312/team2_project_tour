@@ -41,4 +41,41 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("menu-toggle").onclick = function() {
         document.getElementById("wrapper").classList.toggle("toggled");
     };
+
+    const categoryChartElement = document.getElementById('categoryChart');
+    if (categoryChartElement) {
+        const dataCategory = {
+            labels: [
+                'Tour Trong nước',
+                'Tour Quốc tế',
+                'Tour Cao cấp'
+            ],
+            datasets: [{
+                label: 'Số Tour',
+                data: [65, 25, 10], 
+                backgroundColor: [
+                    '#198754', 
+                    '#0d6efd', 
+                    '#ffc107'
+                ],
+                hoverOffset: 10
+            }]
+        };
+
+        const configCategory = {
+            type: 'doughnut', 
+            data: dataCategory,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        };
+
+        new Chart(categoryChartElement, configCategory);
+    }
 });

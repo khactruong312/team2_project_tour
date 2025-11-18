@@ -92,6 +92,9 @@
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-pen-fill"></i> Cập Nhật Thông Tin</button>
             </div>
+            <div class="d-grid gap-2 mt-2">
+                <button type="submit" class="btn btn-danger btn-lg"><i class="bi bi-chevron-bar-left"></i> <a class="text-decoration-none text-white" href="index.php?act=tour-list">Hủy</a></button>
+            </div>
         </form>
     </div>
 </div>

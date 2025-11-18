@@ -142,7 +142,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="text-uppercase fw-bold">Tổng số Tour</div>
-                                    <div class="h5 mb-0">150</div>
+                                    <div class="h5 mb-0"><?= $totalTours ?></div>
                                 </div>
                             </div>
                         </div>

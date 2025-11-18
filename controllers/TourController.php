@@ -11,8 +11,10 @@ class TourController
     // Trang chủ
     public function home()
     {
+        $totalTours = $this->tourModel->countTours();
         require_once './views/trangchu.php';
     }
+
 
     public function list()
     {

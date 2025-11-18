@@ -16,6 +16,13 @@ class TourModel
 
     }
 
+    //hàm đếm
+    public function countTours(){
+        $sql = 'SELECT COUNT(*) AS total FROM tours';
+        $stmt = $this->conn->query($sql);
+        return $stmt->fetch()['total'];
+    }
+
     //lấy chi tiết tour
     public function getById($id){
         $sql = "SELECT * FROM tours WHERE tour_id = ?";

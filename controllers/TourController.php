@@ -31,13 +31,14 @@ class TourController
     public function store()
     {
         $name = $_POST['name'];
+        $image= $_POST['image'];
         $type = $_POST['type'];
         $price = $_POST['price'];
         $duration = $_POST['duration'];
         $description = $_POST['description'];
         $status = $_POST['status'];
         $created_at = $_POST['created_at'];
-        $result = $this->tourModel->create($name, $type, $price, $duration, $description, $status, $created_at);
+        $result = $this->tourModel->create($name,$image ,$type, $price, $duration, $description, $status, $created_at);
 
         if ($result) {
             $_SESSION['success'] = "Thêm tour thành công!";
@@ -72,13 +73,14 @@ class TourController
 
         $id = $_POST['id'];
         $name = $_POST['name'];
+        $image= $_POST['image'];
         $type = $_POST['type'];
         $price = $_POST['price'];
         $duration = $_POST['duration_days'];
         $description = $_POST['description'];
         $status = $_POST['status'];
         $created_at = $_POST['created_at'];
-        $result = $this->tourModel->update($id, $name, $type, $price, $duration, $description, $status, $created_at);
+        $result = $this->tourModel->update($id, $name,$image, $type, $price, $duration, $description, $status, $created_at);
         if ($result) {
             $_SESSION['success'] = "Cập nhật tour thành công!";
         } else {

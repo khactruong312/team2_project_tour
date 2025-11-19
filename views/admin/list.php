@@ -163,6 +163,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Tên tour</th>
+                            <th>Ảnh tour</th>
                             <th>Loại</th>
                             <th>Giá</th>
                             <th>Thời lượng</th>
@@ -179,6 +180,7 @@
                             <tr>
                                 <td><?= $tour['tour_id'] ?></td>
                                 <td><?= $tour['name'] ?></td>
+                                <td><img src="./uploads/imgproduct/<?= $tour['image'] ?>" alt="<?= $tour['name'] ?>" style="max-width: 200px; height: auto; margin-bottom: 10px;"></td>
                                 <td><?= $tour['type'] ?></td>
                                 <td><?= number_format($tour['price'] ?? 0) ?>đ</td>
                                 <td><?= $tour['duration_days'] ?> ngày</td>

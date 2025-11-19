@@ -54,6 +54,11 @@
             </div>
 
             <div class="mb-3">
+                <label for="tourName" class="form-label">Ảnh tour:</label>
+                <input type="file" name="image" id="tourName" value="./uploads/imgproduct/<?= $tour['image'] ?>" class="form-control" required placeholder="Nhập ảnh tour du lịch...">
+            </div>
+
+            <div class="mb-3">
                 <label for="tourType" class="form-label">Loại tour:</label>
                 <select name="type" id="tourType" class="form-select">
                     <option value="Trong nước" <?= $tour['type']=='Trong nước'?'selected':'' ?>>Trong nước 🇻🇳</option>

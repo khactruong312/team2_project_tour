@@ -31,7 +31,7 @@ class TourModel
         return $stmt->fetch();
     }
 
-    public function create($name, $type, $price, $duration, $description, $status,$created_at)
+    public function create($name,$image, $type, $price, $duration, $description, $status,$created_at)
 {
     $validStatus = ['active', 'Inactive'];
 
@@ -41,13 +41,13 @@ class TourModel
 
     $created_at = date('Y-m-d H:i:s');
 
-    $sql = "INSERT INTO tours (name, type, price, duration_days, description, status , created_at) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO tours (name,image, type, price, duration_days, description, status , created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $this->conn->prepare($sql);
-    return $stmt->execute([$name, $type, $price, $duration,$description,$status,$created_at]);
+    return $stmt->execute([$name, $image, $type, $price, $duration,$description,$status,$created_at]);
 }
 
 
-    public function update($id, $name, $type, $price, $duration,$description, $status,$created_at)
+    public function update($id, $name, $image, $type, $price, $duration,$description, $status,$created_at)
 {
     $validStatus = ['Active', 'Inactive']; 
     if (!in_array($status, $validStatus)) {
@@ -56,12 +56,12 @@ class TourModel
     }
     $created_at = date('Y-m-d H:i:s');
     $sql = "UPDATE tours 
-            SET name = ?, type = ?, price = ?, duration_days = ?, description = ?, status = ?, created_at=?
+            SET name = ?, image = ?, type = ?, price = ?, duration_days = ?, description = ?, status = ?, created_at=?
             WHERE tour_id = ?";
 
     $stmt = $this->conn->prepare($sql);
 
-    return $stmt->execute([$name, $type, $price, $duration , $description, $status,$created_at, $id]);
+    return $stmt->execute([$name, $image, $type, $price, $duration , $description, $status,$created_at, $id]);
 }
 
 

@@ -180,7 +180,7 @@
                                 <td><?= $tour['tour_id'] ?></td>
                                 <td><?= $tour['name'] ?></td>
                                 <td><?= $tour['type'] ?></td>
-                                <td><?= number_format($tour['price'] ?? 0) ?>đđ</td>
+                                <td><?= number_format($tour['price'] ?? 0) ?>đ</td>
                                 <td><?= $tour['duration_days'] ?> ngày</td>
                                 <td><?= $tour['description'] ?></td>
                                 <td><?php

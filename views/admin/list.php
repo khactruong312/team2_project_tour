@@ -1,7 +1,8 @@
 <?php if (isset($_SESSION['success'])): ?>
-    <div class="alert alert-success">
-        <?= $_SESSION['success']; unset($_SESSION['success']); ?>
+    <div class="alert alert-success auto-hide">
+        <?= $_SESSION['success']; ?>
     </div>
+    <?php unset($_SESSION['success']); ?>
 <?php endif; ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -225,6 +226,17 @@
         document.getElementById("menu-toggle").onclick = function () {
             document.getElementById("wrapper").classList.toggle("toggled");
         };
+
+        setTimeout(function() {
+        const alert = document.querySelector('.auto-hide');
+        if (alert) {
+            alert.style.transition = 'opacity 0.5s';
+            alert.style.opacity = '0';
+
+            setTimeout(() => alert.remove(), 500);
+        }
+    }, 2000); 
+        
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="..." crossorigin="anonymous"></script>

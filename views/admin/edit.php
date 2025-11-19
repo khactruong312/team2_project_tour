@@ -84,8 +84,8 @@
             <div class="mb-4">
                 <label for="tourDescription" class="form-label">Trạng thái:</label>
                 <select  name="status" id="status" class="form-select">
-                    <option value="Chưa khởi hành"<?= $tour['status']=='Active'?'selected':'' ?>>Active</option>
-                    <option value="Đang khởi hành"<?= $tour['status']=='Inactive'?'selected':'' ?>>Inactive</option>
+                    <option value="Active"<?= $tour['status']=='Active'?'selected':'' ?>>Active</option>
+                    <option value="Inactive"<?= $tour['status']=='Inactive'?'selected':'' ?>>Inactive</option>
                 </select>
             </div>
 

@@ -17,7 +17,7 @@ require_once './models/TourModel.php';
 $act = $_GET['act'] ?? '/';
 
 $login    = new LoginController;
-$tour     = new TourController;
+$admin     = new TourController;
 
 match ($act) {
 
@@ -32,22 +32,23 @@ match ($act) {
     /* =============================
      *  TRANG ADMIN SAU LOGIN
      * ============================= */
-    'admin-home' => $tour->adminHome(),
+    'admin-home' => $admin->adminHome(),
 
     /* =============================
      *  TRANG HƯỚNG DẪN VIÊN
      * ============================= */
-    'guide-home' => $tour->guideHome(),
+
+    // 'guide-home' => $admin->guideHome(),
 
     /* =============================
      *  CRUD TOUR (CHỈ ADMIN)
      * ============================= */
-    'tour-list'     => $tour->list(),
-    'tour-create'   => $tour->create(),
-    'tour-store'    => $tour->store(),
-    'tour-edit'     => $tour->edit(),
-    'tour-update'   => $tour->update(),
-    'tour-delete'   => $tour->delete(),
+    'tour-list'     => $admin->list(),
+    'tour-create'   => $admin->create(),
+    'tour-store'    => $admin->store(),
+    'tour-edit'     => $admin->edit(),
+    'tour-update'   => $admin->update(),
+    'tour-delete'   => $admin->delete(),
 
     /* =============================
      * MẶC ĐỊNH

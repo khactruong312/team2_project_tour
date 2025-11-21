@@ -91,7 +91,7 @@
                 <i class="fas fa-plane-departure text-info"></i> Quản Lý Tour
             </div>
             <div class="list-group list-group-flush">
-                <a href="/" class="list-group-item list-group-item-action ">
+                <a href="?act=admin-home" class="list-group-item list-group-item-action ">
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
                 <a href="index.php?act=tour-list" class="list-group-item list-group-item-action active">

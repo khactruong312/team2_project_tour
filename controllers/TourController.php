@@ -7,9 +7,11 @@ class TourController
     {
         $this->tourModel = new TourModel();
     }
+    
+
 
     // Trang chủ
-    public function home()
+    public function adminHome()
     {
         $totalTours = $this->tourModel->countTours();
         require_once './views/trangchu.php';

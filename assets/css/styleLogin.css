@@ -1,6 +1,6 @@
 .main-wrapper {
     /* Thiết lập hình nền */
-    background: url('https://picsum.photos/1920/1080?random=1') no-repeat center center fixed;
+    background: url('../../uploads/imgproduct/anhlogin2.webp') no-repeat center center fixed;
     /* Hoặc dùng hình trong thư mục của bạn: background: url('your-background-image.jpg') no-repeat center center fixed; */
     background-size: cover;
     
@@ -35,9 +35,10 @@
 
 /* Header Tab (LOG IN) */
 .login-header {
-    background-color: #3498db !important; /* Màu xanh dương trong ảnh */
+    background-color: #ffffff !important; /* Màu xanh dương trong ảnh */
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
 }
 
 /* Nút Submit */

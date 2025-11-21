@@ -1,41 +1,56 @@
-<?php 
-// Require file Common
+<?php
+
+// session_start();
+
 require_once './commons/env.php';
 require_once './commons/function.php';
 
-// Require Controllers
+// Controllers
+require_once './controllers/LoginController.php';
 require_once './controllers/TourController.php';
 
-// Require Models
+// Models
+require_once './models/UserModel.php';
 require_once './models/TourModel.php';
 
-// Route
+// ROUTE
 $act = $_GET['act'] ?? '/';
 
-// Router sử dụng match
+$login    = new LoginController;
+$tour     = new TourController;
+
 match ($act) {
-    // Trang chủ
-    '/'         => (new TourController())->home(),
 
-    // Trang danh sách tour
-    'tour-list' => (new TourController())->list(),
+    /* =============================
+     * LOGIN / LOGOUT
+     * ============================= */
+    '/'         => $login->showLogin(),
+    'login'     => $login->showLogin(),
+    'do-login'  => $login->login(),
+    'logout'    => $login->logout(),
 
-    // // Chi tiết tour
-    // 'tour-detail' => (new TourController())->detail(),
+    /* =============================
+     *  TRANG ADMIN SAU LOGIN
+     * ============================= */
+    'admin-home' => $tour->adminHome(),
 
-    // // Login / Register
-    // 'login'     => (new TourController())->login(),
-    // 'register'  => (new TourController())->register(),
+    /* =============================
+     *  TRANG HƯỚNG DẪN VIÊN
+     * ============================= */
+    'guide-home' => $tour->guideHome(),
 
-    // Admin CRUD TOUR
-    'tour-create' => (new TourController())->create(),
-    'tour-store'  => (new TourController())->store(),
+    /* =============================
+     *  CRUD TOUR (CHỈ ADMIN)
+     * ============================= */
+    'tour-list'     => $tour->list(),
+    'tour-create'   => $tour->create(),
+    'tour-store'    => $tour->store(),
+    'tour-edit'     => $tour->edit(),
+    'tour-update'   => $tour->update(),
+    'tour-delete'   => $tour->delete(),
 
-    'tour-edit'   => (new TourController())->edit(),
-    'tour-update' => (new TourController())->update(),
-
-    'tour-delete' => (new TourController())->delete(),
-
-    // Mặc định
-    default     => (new TourController())->home(),
+    /* =============================
+     * MẶC ĐỊNH
+     * ============================= */
+    default => $login->showLogin(),
 };

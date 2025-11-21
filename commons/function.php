@@ -41,3 +41,15 @@ function deleteFile($file){
         unlink($pathDelete); // Hàm unlink dùng để xóa file
     }
 }
+function requireRole($role) {
+    if (!isset($_SESSION['user'])) {
+        header('Location: index.php?act=login');
+        exit;
+    }
+
+    if ($_SESSION['user']['role'] !== $role) {
+        header('Location: index.php?act=no-permission');
+        exit;
+    }
+}
+

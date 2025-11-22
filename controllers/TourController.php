@@ -14,7 +14,7 @@ class TourController
     public function adminHome()
     {
         $totalTours = $this->tourModel->countTours();
-        require_once './views/trangchu.php';
+        require_once './views/admin/trangchu.php';
     }
 
 

@@ -8,16 +8,20 @@ require_once './commons/function.php';
 // Controllers
 require_once './controllers/LoginController.php';
 require_once './controllers/TourController.php';
+require_once './controllers/GuideController.php';
 
 // Models
 require_once './models/UserModel.php';
 require_once './models/TourModel.php';
+require_once './models/GuideModel.php';
 
 // ROUTE
 $act = $_GET['act'] ?? '/';
 
 $login    = new LoginController;
 $admin     = new TourController;
+$guide     = new GuideController;
+
 
 match ($act) {
 
@@ -34,11 +38,7 @@ match ($act) {
      * ============================= */
     'admin-home' => $admin->adminHome(),
 
-    /* =============================
-     *  TRANG HƯỚNG DẪN VIÊN
-     * ============================= */
-
-    // 'guide-home' => $admin->guideHome(),
+    
 
     /* =============================
      *  CRUD TOUR (CHỈ ADMIN)
@@ -49,6 +49,20 @@ match ($act) {
     'tour-edit'     => $admin->edit(),
     'tour-update'   => $admin->update(),
     'tour-delete'   => $admin->delete(),
+
+/* =============================
+     *  TRANG HƯỚNG DẪN VIÊN
+     * ============================= */
+
+    'guide-home' => $guide->guideHome(),
+
+
+
+    /* =============================
+     *  Huong dan vien
+     * ============================= */
+    'guide-list'     => $guide->list(),
+
 
     /* =============================
      * MẶC ĐỊNH

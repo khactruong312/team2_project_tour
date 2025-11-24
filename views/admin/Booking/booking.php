@@ -170,7 +170,7 @@
             <div class="container-fluid p-4">
 
     <h1 class="mt-4 mb-4 text-secondary">
-        <i class="fas fa-route me-2"></i> Quản Lý Tour Của Hướng Dẫn Viên
+        <i class="fas fa-route me-2"></i> Quản Lý Tour
     </h1>
 
     <!-- THỐNG KÊ -->

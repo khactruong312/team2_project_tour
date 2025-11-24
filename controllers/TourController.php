@@ -106,4 +106,11 @@ class TourController
 
         header("Location: index.php?act=tour-list");
     }
+
+    public function bookingList()
+    {
+        require_once './views/admin/Booking/booking.php';
+    }
 }
+
+

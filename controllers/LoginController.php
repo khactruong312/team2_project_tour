@@ -43,6 +43,8 @@ class LoginController {
         }
     }
 
+   
+
     public function logout() {
         // Đảm bảo session_start() được gọi nếu nó chưa được gọi ở nơi khác
         if (session_status() === PHP_SESSION_NONE) {

@@ -9,11 +9,25 @@ require_once './commons/function.php';
 require_once './controllers/LoginController.php';
 require_once './controllers/TourController.php';
 require_once './controllers/GuideController.php';
+require_once './controllers/BookingController.php';
 
 // Models
 require_once './models/UserModel.php';
 require_once './models/TourModel.php';
 require_once './models/GuideModel.php';
+require_once './models/BookingModel.php';
+
+//  $user_role = $_SESSION['role'] ?? null;
+
+// Quyền admin
+//  function isAdmin() {
+//     return ($_SESSION['role'] ?? '') === 'admin';
+// }
+
+// // Quyền hướng dẫn viên
+//  function isGuide() {
+//     return ($_SESSION['role'] ?? '') === 'guide';
+// }
 
 // ROUTE
 $act = $_GET['act'] ?? '/';
@@ -21,9 +35,15 @@ $act = $_GET['act'] ?? '/';
 $login    = new LoginController;
 $admin     = new TourController;
 $guide     = new GuideController;
+$booking   = new BookingController;
+
 
 
 match ($act) {
+    //phân role admin và guide
+    
+
+
 
     /* =============================
      * LOGIN / LOGOUT
@@ -49,7 +69,14 @@ match ($act) {
     'tour-edit'     => $admin->edit(),
     'tour-update'   => $admin->update(),
     'tour-delete'   => $admin->delete(),
+    /*
+     *  QUẢN LÝ BOOKING (CHỈ ADMIN)
+    */
+    'tour-booking'  => $booking->list(),
+    'booking-create' => $booking->create(),
+    // 'booking-store'  => $booking->bookingStore(),
 
+    
 /* =============================
      *  TRANG HƯỚNG DẪN VIÊN
      * ============================= */

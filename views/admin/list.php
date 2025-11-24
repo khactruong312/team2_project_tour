@@ -20,7 +20,7 @@
         }
 
         .sidebar-heading {
-            padding: 0.875rem 1.25rem 20px;
+            padding: 0.875rem 1.25rem;
             font-size: 1.2rem;
             color: #f8f9fa;
         }
@@ -91,13 +91,13 @@
                 <i class="fas fa-plane-departure text-info"></i> Quản Lý Tour
             </div>
             <div class="list-group list-group-flush">
-                <a href="?act=admin-home" class="list-group-item list-group-item-action ">
+                <a href="index.php?act=admin-home" class="list-group-item list-group-item-action ">
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
-                <a href="index.php?act=tour-list" class="list-group-item list-group-item-action active">
+                <a href="#" class="list-group-item list-group-item-action ">
                     <i class="fas fa-list me-2"></i> Danh sách tour
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
                     <i class="fas fa-road me-2"></i> Quản lý Tour
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">

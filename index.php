@@ -1,19 +1,24 @@
 <?php
 
-// session_start();
-
 require_once './commons/env.php';
 require_once './commons/function.php';
 
 // Controllers
 require_once './controllers/LoginController.php';
 require_once './controllers/TourController.php';
+<<<<<<< HEAD
+require_once './controllers/ScheduleController.php';
+=======
 require_once './controllers/GuideController.php';
 require_once './controllers/BookingController.php';
+>>>>>>> 7f09fbac89bb469c8cbf47e6f3d3d7ef8d9fc46c
 
 // Models
 require_once './models/UserModel.php';
 require_once './models/TourModel.php';
+<<<<<<< HEAD
+require_once './models/ScheduleModel.php';
+=======
 require_once './models/GuideModel.php';
 require_once './models/BookingModel.php';
 
@@ -28,16 +33,22 @@ require_once './models/BookingModel.php';
 //  function isGuide() {
 //     return ($_SESSION['role'] ?? '') === 'guide';
 // }
+>>>>>>> 7f09fbac89bb469c8cbf47e6f3d3d7ef8d9fc46c
 
 // ROUTE
 $act = $_GET['act'] ?? '/';
 
 $login    = new LoginController;
+<<<<<<< HEAD
+$admin    = new TourController;
+$schedule = new ScheduleController;
+=======
 $admin     = new TourController;
 $guide     = new GuideController;
 $booking   = new BookingController;
 
 
+>>>>>>> 7f09fbac89bb469c8cbf47e6f3d3d7ef8d9fc46c
 
 match ($act) {
     //phân role admin và guide
@@ -54,14 +65,19 @@ match ($act) {
     'logout'    => $login->logout(),
 
     /* =============================
-     *  TRANG ADMIN SAU LOGIN
+     *  TRANG ADMIN
      * ============================= */
     'admin-home' => $admin->adminHome(),
 
+<<<<<<< HEAD
+    /* =============================
+     *  CRUD TOUR
+=======
     
 
     /* =============================
      *  CRUD TOUR (CHỈ ADMIN)
+>>>>>>> 7f09fbac89bb469c8cbf47e6f3d3d7ef8d9fc46c
      * ============================= */
     'tour-list'     => $admin->list(),
     'tour-create'   => $admin->create(),
@@ -94,7 +110,17 @@ match ($act) {
 
 
     /* =============================
-     * MẶC ĐỊNH
+     *  CRUD LỊCH KHỞI HÀNH TOUR
+     * ============================= */
+    'schedule-list'     => $schedule->index(),
+    'schedule-create'   => $schedule->create(),
+    // 'schedule-store'    => $schedule->store(),
+    'schedule-edit'     => $schedule->edit(),
+    'schedule-update'   => $schedule->update(),
+    'schedule-delete'   => $schedule->delete(),
+
+    /* =============================
+     * DEFAULT
      * ============================= */
     default => $login->showLogin(),
 };

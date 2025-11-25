@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Quản Trị Tour</title>
+    <title>Lịch Khởi Hành</title>
     <link rel="icon" type="image/png" href="./uploads/imgproduct/snapedit_1763494732485.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -20,7 +20,7 @@
         }
 
         .sidebar-heading {
-            padding: 0.875rem 1.25rem;
+            padding: 0.875rem 1.25rem 20px;
             font-size: 1.2rem;
             color: #f8f9fa;
         }
@@ -88,25 +88,20 @@
         <!-- Sidebar -->
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom border-secondary">
-                <i class="fas fa-plane-departure text-info"></i> Quản Lý
+                <i class="fas fa-plane-departure text-info"></i> Quản Lý Tour
             </div>
             <div class="list-group list-group-flush">
-                <a href="index.php?act=admin-home" class="list-group-item list-group-item-action ">
+                <a href="?act=admin-home" class="list-group-item list-group-item-action ">
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
-                <a href="#" class="list-group-item list-group-item-action ">
+                <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
                     <i class="fas fa-list me-2"></i> Danh sách tour
                 </a>
-                <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action">
-
-                <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
+                <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action active">
                     <i class="fas fa-road me-2"></i> Quản lý Tour
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Đơn hàng
@@ -147,7 +142,8 @@
                                 <a class="dropdown-item" href="#">Hồ sơ</a>
                                 <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="index.php?act=tour-login"><i class="fas fa-sign-out-alt me-1"></i>
+                                <a class="dropdown-item text-danger" href="index.php?act=tour-login"><i
+                                        class="fas fa-sign-out-alt me-1"></i>
                                     Đăng xuất</a>
                             </div>
                         </li>
@@ -158,9 +154,9 @@
             <!-- MAIN CONTENT -->
             <div class="container-fluid p-4">
 
-                <h2 class="mt-4 text-secondary">Danh Sách Tour</h2>
+                <h2 class="mt-4 text-secondary">Quản lý Tour</h2>
 
-                <a href="index.php?act=tour-create" class="btn btn-primary mb-3">
+                <a href="index.php?act=schedule-create" class="btn btn-primary mb-3">
                     <i class="fas fa-plus"></i> Thêm Tour
                 </a>
 
@@ -168,51 +164,57 @@
                     <thead class="table-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Tên tour</th>
-                            <th>Ảnh tour</th>
-                            <th>Loại</th>
-                            <th>Giá</th>
-                            <th>Thời lượng</th>
-                            <th>Mô tả</th>
+                            <th>Tour</th>
+                            <th>HDV</th>
+                            <th>Bắt đầu</th>
+                            <th>Kết thúc</th>
+                            <th>Phương tiện</th>
+                            <th>Khách sạn</th>
                             <th>Trạng thái</th>
-                            <th>Thời gian</th>
-
-                            <th style="width: 150px;">Thao tác</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <?php foreach ($tours as $tour): ?>
+                        <?php foreach ($schedules as $sch): ?>
                             <tr>
-                                <td><?= $tour['tour_id'] ?></td>
-                                <td><?= $tour['name'] ?></td>
-                                <td><img src="./uploads/imgproduct/<?= $tour['image'] ?>" alt="<?= $tour['name'] ?>" style="max-width: 200px; height: auto; margin-bottom: 10px;"></td>
-                                <td><?= $tour['type'] ?></td>
-                                <td><?= number_format($tour['price'] ?? 0) ?>đ</td>
-                                <td><?= $tour['duration_days'] ?> ngày</td>
-                                <td><?= $tour['description'] ?></td>
-                                <td><?php
-                                       $status = $tour['status'];
-                                       $badgeClass = "bg-secondary";
+                                <td><?= $sch['schedule_id'] ?></td>
 
-                                       if($status=='Active'){
-                                        $badgeClass ="bg-danger";
-                                       }elseif ($status=='Inactive'){
-                                            $badgeClass ="bg-success";
-                                       }
+                                <td><?= $sch['tour_name'] ?></td>
 
-                                       echo "<span class='badge $badgeClass px-3 py-2'>$status</span>";
-                                 ?></td>
-                                 <td><?= $tour['created_at'] ?></td>
+                                <td><?= $sch['guide_name'] ?? '<span class="text-muted">Chưa phân công</span>' ?></td>
+
+                                <td><?= $sch['start_date'] ?></td>
+                                <td><?= $sch['end_date'] ?></td>
+
+                                <td><?= $sch['vehicle'] ?></td>
+                                <td><?= $sch['hotel'] ?></td>
 
                                 <td>
-                                    <a class="btn btn-sm btn-warning"
-                                        href="index.php?act=tour-edit&id=<?= $tour['tour_id'] ?>">
+                                    <?php
+                                    $status = $sch['status'];
+
+                                    if ($status == 'Hoàn thành') {
+                                        $badge = "bg-success";
+                                    } elseif ($status == 'Đang chạy') {
+                                        $badge = "bg-primary";
+                                    } else {
+                                        $badge = "bg-warning text-dark";
+                                    }
+
+                                    echo "<span class='badge $badge px-3 py-2'>$status</span>";
+                                    ?>
+                                </td>
+
+                                <td>
+                                    <a href="index.php?act=schedule-edit&id=<?= $sch['schedule_id'] ?>"
+                                        class="btn btn-sm btn-warning">
                                         <i class="fas fa-edit"></i> Sửa
                                     </a>
 
-                                    <a onclick="return confirm('Bạn chắc chắn muốn xóa?')" class="btn btn-sm btn-danger"
-                                        href="index.php?act=tour-delete&id=<?= $tour['tour_id'] ?>">
+                                    <a onclick="return confirm('Bạn chắc chắn muốn xóa lịch này?')"
+                                        href="index.php?act=schedule-delete&id=<?= $sch['schedule_id'] ?>"
+                                        class="btn btn-sm btn-danger">
                                         <i class="fas fa-trash"></i> Xóa
                                     </a>
                                 </td>
@@ -232,19 +234,20 @@
             document.getElementById("wrapper").classList.toggle("toggled");
         };
 
-        setTimeout(function() {
-        const alert = document.querySelector('.auto-hide');
-        if (alert) {
-            alert.style.transition = 'opacity 0.5s';
-            alert.style.opacity = '0';
+        setTimeout(function () {
+            const alert = document.querySelector('.auto-hide');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s';
+                alert.style.opacity = '0';
 
-            setTimeout(() => alert.remove(), 500);
-        }
-    }, 2000); 
-        
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 2000);
+
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="..." crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="..."
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

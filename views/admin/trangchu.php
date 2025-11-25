@@ -110,18 +110,17 @@
                 <i class="fas fa-plane-departure text-info"></i> Quản Lý Tour
             </div>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action active">
+                <a href="index.php?act=admin-home" class="list-group-item list-group-item-action active">
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
                 <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
                     <i class="fas fa-list me-2"></i> Danh sách tour
                 </a>
-<<<<<<< HEAD:views/trangchu.php
                 <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action">
-=======
+                     <i class="fas fa-road me-2"></i> Quản lý Tour
+                </a>
                 <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
->>>>>>> 7f09fbac89bb469c8cbf47e6f3d3d7ef8d9fc46c:views/admin/trangchu.php
-                    <i class="fas fa-road me-2"></i> Quản lý Tour
+                    <i class="fas fa-road me-2"></i> Quản lý Booking
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng

@@ -21,7 +21,7 @@
             <select name="guide_id" class="form-select">
                 <option value="">-- Không gán --</option>
                 <?php foreach ($guides as $g): ?>
-                    <option value="<?= $g['guide_id'] ?>"><?= $g['name'] ?></option>
+                    <option value="<?= $g['guide_id'] ?>"><?= $g['full_name'] ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

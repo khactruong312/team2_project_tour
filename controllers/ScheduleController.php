@@ -7,6 +7,7 @@ class ScheduleController
     private $scheduleModel;
     private $tourModel;
     private $guideModel;
+    
 
     public function __construct()
     {
@@ -29,35 +30,49 @@ class ScheduleController
         require_once './views/admin/schedule/create.php';
     }
 
-    public function store()
-    {
-        $tour_id = $_POST['tour_id'];
-        $guide_id = $_POST['guide_id'] ?: null;
-        $start_date = $_POST['start_date'];
-        $end_date = $_POST['end_date'];
-        $vehicle = $_POST['vehicle'];
-        $hotel = $_POST['hotel'];
-        $status = $_POST['status'];
+    // Cần khai báo biến $allowed_status ở đầu lớp ScheduleController hoặc sử dụng hằng số.
+// Ví dụ: private $allowed_status = ['Chưa khởi hành', 'Đang chạy', 'Hoàn thành'];
 
-        $result = $this->scheduleModel->create(
-            $tour_id,
-            $guide_id,
-            $start_date,
-            $end_date,
-            $vehicle,
-            $hotel,
-            $status
-        );
+public function store()
+{
+    $tour_id = $_POST['tour_id'];
+    $guide_id = $_POST['guide_id'] ?: null;
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $vehicle = $_POST['vehicle'];
+    $hotel = $_POST['hotel'];
+    
+    $status = $_POST['status'];
 
-        if ($result) {
-            $_SESSION['success'] = "Thêm lịch thành công!";
-        } else {
-            $_SESSION['error'] = "Thêm lịch thất bại!";
-        }
+    $allowed_status = ['Chưa khởi hành', 'Đang chạy', 'Hoàn thành']; 
+    
+    if (!in_array($status, $allowed_status)) {
 
-        header("Location: index.php?act=schedule-list");
-        exit;
+        $status = 'Chưa khởi hành'; 
+        
     }
+    // ------------------------------------------------------------------------
+
+    $result = $this->scheduleModel->create(
+        $tour_id,
+        $guide_id,
+        $start_date,
+        $end_date,
+        $vehicle,
+        $hotel,
+        $status 
+    );
+
+    
+    if ($result) {
+        $_SESSION['success'] = "Thêm lịch thành công!";
+    } else {
+        $_SESSION['error'] = "Thêm lịch thất bại!";
+    }
+
+    header("Location: index.php?act=schedule-list");
+    exit;
+}
 
 
     public function edit()
@@ -71,37 +86,55 @@ class ScheduleController
         require_once './views/admin/schedule/edit.php';
     }
 
-    public function update()
-    {
-        $id = $_POST['schedule_id'];
-        $tour_id = $_POST['tour_id'];
-        $guide_id = $_POST['guide_id'] ?: null;
-        $start_date = $_POST['start_date'];
-        $end_date = $_POST['end_date'];
-        $vehicle = $_POST['vehicle'];
-        $hotel = $_POST['hotel'];
-        $status = $_POST['status'];
+    // File: C:\laragon\www\project_dulich\controllers\ScheduleController.php
 
-        $result = $this->scheduleModel->update(
-            $id,
-            $tour_id,
-            $guide_id,
-            $start_date,
-            $end_date,
-            $vehicle,
-            $hotel,
-            $status
-        );
+public function update()
+{
+    $id = $_POST['schedule_id'];
+    $tour_id = $_POST['tour_id'];
+    $guide_id = $_POST['guide_id'] ?: null;
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $vehicle = $_POST['vehicle'];
+    $hotel = $_POST['hotel'];
+    
+    $status = $_POST['status'];
 
-        if ($result) {
-            $_SESSION['success'] = "Cập nhật lịch thành công!";
+
+    $allowed_status = ['Chưa khởi hành', 'Đang chạy', 'Hoàn thành'];
+    
+    // Nếu giá trị không hợp lệ (như 'Active', 'Inactive'), ta ép về trạng thái hợp lệ
+    if (!in_array($status, $allowed_status)) {
+
+        if ($status === 'Active' || $status === 'Inactive') {
+             $status = 'Đang chạy'; 
         } else {
-            $_SESSION['error'] = "Cập nhật thất bại!";
+     
+            $status = 'Chưa khởi hành';
         }
-
-        header("Location: index.php?act=schedule-list");
-        exit;
     }
+    // ------------------------------------
+
+    $result = $this->scheduleModel->update(
+        $id,
+        $tour_id,
+        $guide_id,
+        $start_date,
+        $end_date,
+        $vehicle,
+        $hotel,
+        $status 
+    );
+
+    if ($result) {
+        $_SESSION['success'] = "Cập nhật lịch thành công!";
+    } else {
+        $_SESSION['error'] = "Cập nhật thất bại!";
+    }
+
+    header("Location: index.php?act=schedule-list");
+    exit;
+}
 
 
     public function delete()

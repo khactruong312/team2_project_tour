@@ -139,19 +139,10 @@
                 <i class="fas fa-clipboard-list me-2"></i> Quản lý Tour
             </a>
         </li>
+        
         <li class="nav-item">
             <a class="nav-link" href="#">
-                <i class="fas fa-users me-2"></i> Quản lý Khách hàng
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-file-invoice me-2"></i> Đơn hàng
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-chart-bar me-2"></i> Thống kê
+                <i class="fas fa-chart-bar me-2"></i> Thống kê tour
             </a>
         </li>
         <li class="nav-item">
@@ -159,11 +150,7 @@
                 <i class="fas fa-cog me-2"></i> Cài đặt Chung
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-info-circle me-2"></i> Về Chúng Tôi (S/a)
-            </a>
-        </li>
+
     </ul>
 </div>
 

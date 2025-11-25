@@ -74,7 +74,9 @@ match ($act) {
     */
     'tour-booking'  => $booking->list(),
     'booking-create' => $booking->create(),
-    // 'booking-store'  => $booking->bookingStore(),
+    'booking-store'  => $booking->store(),
+    'booking-view'   => $booking->view(),
+    'booking-status' => $booking->changeStatus(),
 
     
 /* =============================

@@ -97,7 +97,7 @@ class BookingController
         $booking = $this->bookingModel->find($id );     // ❗ bạn yêu cầu phải có find()
         $customers = $this->bookingModel->customers($id); // ❗ và customers()
 
-        require_once './views/admin/Booking/booking_view.php';
+        require_once './views/admin/Booking/detail.php';
     }
 
     // ⭐ Cập nhật trạng thái booking
@@ -108,14 +108,14 @@ class BookingController
 
         if (!$id || !$status) {
             $_SESSION['error'] = "Thiếu tham số!";
-            header("Location: index.php?act=booking-list");
+            header("Location: index.php?act=tour-booking");
             exit;
         }
 
         $this->bookingModel->updateStatus($id, $status);
 
         $_SESSION['success'] = "Cập nhật trạng thái thành công!";
-        header("Location: index.php?act=booking-list");
+        header("Location: index.php?act=tour-booking");
     }
 
     // ⭐ Xóa booking + khách liên quan

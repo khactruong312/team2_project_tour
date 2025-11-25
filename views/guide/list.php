@@ -122,7 +122,7 @@
 <body>
 
 <div class="sidebar">
-    <h3 class="text-center mb-4">HDV Tour</h3>
+    <h3 class="text-center mb-4">Guide</h3>
     <ul class="nav flex-column">
         <li class="nav-item">
             <a class="nav-link" href="?act=guide-home">
@@ -139,19 +139,10 @@
                 <i class="fas fa-clipboard-list me-2"></i> Quản lý Tour
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link" href="#">
-                <i class="fas fa-users me-2"></i> Quản lý Khách hàng
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-file-invoice me-2"></i> Đơn hàng
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-chart-bar me-2"></i> Thống kê
+                <i class="fas fa-chart-bar me-2"></i> Thống kê tour
             </a>
         </li>
         <li class="nav-item">
@@ -159,11 +150,7 @@
                 <i class="fas fa-cog me-2"></i> Cài đặt Chung
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-info-circle me-2"></i> Về Chúng Tôi (S/a)
-            </a>
-        </li>
+
     </ul>
 </div>
 
@@ -188,7 +175,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
-                        <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" href="?act=logout">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -211,9 +198,9 @@
 
                 
 
-                <a href="index.php?act=tour-create" class="btn btn-primary mb-3">
+                <!-- <a href="index.php?act=tour-create" class="btn btn-primary mb-3">
                     <i class="fas fa-plus"></i> Thêm Tour
-                </a>
+                </a> -->
 
                 <table class="table table-bordered table-striped">
                     <thead class="table-dark">

@@ -108,7 +108,7 @@
 
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom border-secondary">
-                <i class="fas fa-plane-departure text-info"></i> Quản Lý Tour
+                <i class="fas fa-plane-departure text-info"></i> Quản Lý
             </div>
             <div class="list-group list-group-flush">
                 <a href="index.php?act=admin-home" class="list-group-item list-group-item-action ">
@@ -118,10 +118,13 @@
                     <i class="fas fa-list me-2"></i> Danh sách tour
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-road me-2"></i> Quản lý Tour
+                    <i class="fas fa-road me-2"></i> Quản lý Booking
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Đơn hàng

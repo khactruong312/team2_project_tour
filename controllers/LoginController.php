@@ -5,13 +5,16 @@ require_once './models/UserModel.php';
 // Bạn cần đảm bảo session_start() được gọi ở đâu đó trước khi sử dụng $_SESSION
 // Nếu chưa, hãy thêm session_start() vào đầu file index.php hoặc nơi khởi tạo ứng dụng.
 
-class LoginController {
-// session_start();
-    public function showLogin() {
+class LoginController
+{
+    // session_start();
+    public function showLogin()
+    {
         include './views/login/login.php';
     }
 
-    public function login() {
+    public function login()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
@@ -43,17 +46,18 @@ class LoginController {
         }
     }
 
-   
 
-    public function logout() {
+
+    public function logout()
+    {
         // Đảm bảo session_start() được gọi nếu nó chưa được gọi ở nơi khác
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         if (!isset($_SESSION['admin'])) {
-    header("Location: index.php?act=login");
-    exit;
-}
+            header("Location: index.php?act=login");
+            exit;
+        }
 
         session_unset();
         session_destroy();

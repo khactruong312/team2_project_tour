@@ -103,9 +103,9 @@
                     
                      <i class="fas fa-road me-2"></i> Quản lý Tour
                 </a>
-                
+
                 <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
-                    <i class="fas fa-road me-2"></i> Quản lý Booking
+                    <i class="bi bi-bootstrap"></i> Quản lý Booking
 
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">

@@ -100,11 +100,15 @@
                 <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action active">
                      <i class="fas fa-road me-2"></i> Quản lý Tour
                 </a>
+                
                 <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
                     <i class="bi bi-bootstrap-fill"></i> Quản lý Booking
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Đơn hàng

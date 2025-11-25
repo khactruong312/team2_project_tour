@@ -71,4 +71,6 @@ class TourModel
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([$id]);
     }
+    
 }
+

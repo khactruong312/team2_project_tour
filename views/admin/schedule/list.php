@@ -91,14 +91,17 @@
                 <i class="fas fa-plane-departure text-info"></i> Quản Lý Tour
             </div>
             <div class="list-group list-group-flush">
-                <a href="?act=admin-home" class="list-group-item list-group-item-action ">
+                <a href="index.php?act=admin-home" class="list-group-item list-group-item-action ">
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
                 <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
                     <i class="fas fa-list me-2"></i> Danh sách tour
                 </a>
                 <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action active">
-                    <i class="fas fa-road me-2"></i> Quản lý Tour
+                     <i class="fas fa-road me-2"></i> Quản lý Tour
+                </a>
+                <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
+                    <i class="bi bi-bootstrap-fill"></i> Quản lý Booking
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
@@ -192,17 +195,25 @@
 
                                 <td>
                                     <?php
-                                    $status = $sch['status'];
+                                    $status = $sch['status'] ?? '';
+                                    $badge = 'bg-secondary';
+                                    $label = $status;
 
-                                    if ($status == 'Hoàn thành') {
-                                        $badge = "bg-success";
-                                    } elseif ($status == 'Đang chạy') {
-                                        $badge = "bg-primary";
-                                    } else {
-                                        $badge = "bg-warning text-dark";
+                                    if ($status === 'Active') {
+                                        $badge = 'bg-primary';
+                                        $label = 'Đang chạy';
+                                    } elseif ($status === 'Inactive') {
+                                        $badge = 'bg-danger';
+                                        $label = 'Dừng';
+                                    } elseif ($status === 'Hoàn thành' || $status === 'Completed') {
+                                        $badge = 'bg-success';
+                                        $label = 'Hoàn thành';
+                                    } elseif ($status === '') {
+                                        $badge = 'bg-warning text-dark';
+                                        $label = 'Chưa xác định';
                                     }
 
-                                    echo "<span class='badge $badge px-3 py-2'>$status</span>";
+                                    echo "<span class='badge $badge px-3 py-2'>$label</span>";
                                     ?>
                                 </td>
 

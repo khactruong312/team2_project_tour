@@ -94,13 +94,20 @@
                 <a href="index.php?act=admin-home" class="list-group-item list-group-item-action ">
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
-                <a href="#" class="list-group-item list-group-item-action ">
+                <a href="index.php?act=tour-list" class="list-group-item list-group-item-action active">
                     <i class="fas fa-list me-2"></i> Danh sách tour
                 </a>
                 <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action">
+<<<<<<< HEAD
 
                 <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
                     <i class="fas fa-road me-2"></i> Quản lý Tour
+=======
+                     <i class="fas fa-road me-2"></i> Quản lý Tour
+                </a>
+                <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
+                    <i class="fas fa-road me-2"></i> Quản lý Booking
+>>>>>>> a72566f49b4889f67b1d285938e2732a7337342d
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng

@@ -117,14 +117,11 @@
                 <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
                     <i class="fas fa-list me-2"></i> Danh sách tour
                 </a>
-<<<<<<< HEAD
-                <a href="#" class="list-group-item list-group-item-action">
-=======
+             
                 <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action">
                      <i class="fas fa-road me-2"></i> Quản lý Tour
                 </a>
                 <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action active">
->>>>>>> a72566f49b4889f67b1d285938e2732a7337342d
                     <i class="fas fa-road me-2"></i> Quản lý Booking
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">

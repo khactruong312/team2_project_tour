@@ -1,23 +1,24 @@
 <?php
 
-// session_start();
-
 require_once './commons/env.php';
 require_once './commons/function.php';
 
 // Controllers
 require_once './controllers/LoginController.php';
 require_once './controllers/TourController.php';
+require_once './controllers/ScheduleController.php';
 
 // Models
 require_once './models/UserModel.php';
 require_once './models/TourModel.php';
+require_once './models/ScheduleModel.php';
 
 // ROUTE
 $act = $_GET['act'] ?? '/';
 
 $login    = new LoginController;
-$admin     = new TourController;
+$admin    = new TourController;
+$schedule = new ScheduleController;
 
 match ($act) {
 
@@ -30,18 +31,12 @@ match ($act) {
     'logout'    => $login->logout(),
 
     /* =============================
-     *  TRANG ADMIN SAU LOGIN
+     *  TRANG ADMIN
      * ============================= */
     'admin-home' => $admin->adminHome(),
 
     /* =============================
-     *  TRANG HƯỚNG DẪN VIÊN
-     * ============================= */
-
-    // 'guide-home' => $admin->guideHome(),
-
-    /* =============================
-     *  CRUD TOUR (CHỈ ADMIN)
+     *  CRUD TOUR
      * ============================= */
     'tour-list'     => $admin->list(),
     'tour-create'   => $admin->create(),
@@ -51,7 +46,17 @@ match ($act) {
     'tour-delete'   => $admin->delete(),
 
     /* =============================
-     * MẶC ĐỊNH
+     *  CRUD LỊCH KHỞI HÀNH TOUR
+     * ============================= */
+    'schedule-list'     => $schedule->index(),
+    'schedule-create'   => $schedule->create(),
+    // 'schedule-store'    => $schedule->store(),
+    'schedule-edit'     => $schedule->edit(),
+    'schedule-update'   => $schedule->update(),
+    'schedule-delete'   => $schedule->delete(),
+
+    /* =============================
+     * DEFAULT
      * ============================= */
     default => $login->showLogin(),
 };

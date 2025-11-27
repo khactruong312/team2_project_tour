@@ -1,3 +1,4 @@
+
 <?php
 // views/admin/booking_view.php
 // expects $booking and $customers
@@ -8,7 +9,7 @@
     <div class="card shadow">
         <div class="card-body">
             <dl class="row">
-                <dt class="col-sm-3">Mã booking</dt><dd class="col-sm-9"><?= htmlspecialchars($booking['booking_code']) ?></dd>
+                <dt class="col-sm-3">Mã booking</dt><dd class="col-sm-9"><?= htmlspecialchars($booking['booking_code']??'mã lỗi') ?></dd>
                 <dt class="col-sm-3">Tour</dt><dd class="col-sm-9"><?= htmlspecialchars($booking['tour_name']) ?></dd>
                 <dt class="col-sm-3">Tổng tiền</dt><dd class="col-sm-9"><?= number_format($booking['total_amount']) ?> đ</dd>
                 <dt class="col-sm-3">Trạng thái</dt><dd class="col-sm-9"><?= htmlspecialchars($booking['status']) ?></dd>
@@ -22,7 +23,7 @@
                 <?php endforeach; ?>
             </ul>
 
-            <a href="index.php?act=booking-list" class="btn btn-secondary">Trở về</a>
+            <a href="index.php?act=tour-booking" class="btn btn-secondary">Trở về</a>
         </div>
     </div>
 </div>

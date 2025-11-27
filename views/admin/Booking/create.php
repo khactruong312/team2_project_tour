@@ -36,11 +36,10 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
+                            <<select name="schedule_id" id="schedule-select" class="form-select" required>
+    <option value="">-- Vui lòng chọn tour trước --</option>
+</select>
 
-                <div class="mb-3">
-                    <label class="form-label">Ngày khởi hành (dự kiến)</label>
-                    <input type="date" name="date" class="form-control" />
-                </div>
 
                 <div class="mb-3">
                     <label class="form-label">Danh sách khách</label>
@@ -102,6 +101,40 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains('remove-customer-btn')) {
         event.target.closest('.customer-row').remove();
     }
+});
+document.querySelector("select[name='tour_id']").addEventListener("change", function() {
+    const tourID = this.value;
+    const scheduleSelect = document.getElementById("schedule-select");
+
+    scheduleSelect.innerHTML = '<option>Đang tải...</option>';
+
+    if (!tourID) {
+        scheduleSelect.innerHTML = '<option value="">-- Vui lòng chọn tour trước --</option>';
+        return;
+    }
+
+    fetch(`index.php?act=get-schedule-by-tour&id=${tourID}`)
+        .then(res => res.json())
+        .then(list => {
+            scheduleSelect.innerHTML = '<option value="">-- Chọn lịch --</option>';
+
+            if (list.length === 0) {
+                scheduleSelect.innerHTML = '<option value="">Không có lịch cho tour này</option>';
+                return;
+            }
+
+            list.forEach(item => {
+                scheduleSelect.innerHTML += `
+                    <option value="${item.schedule_id}">
+                        ${item.start_date} → ${item.end_date}
+                    </option>
+                `;
+            });
+        })
+        .catch(error => {
+            console.error(error);
+            scheduleSelect.innerHTML = '<option>Lỗi tải lịch</option>';
+        });
 });
 </script>
 </body>

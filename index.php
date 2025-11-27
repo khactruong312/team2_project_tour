@@ -75,6 +75,8 @@ match ($act) {
     'schedule-edit'     => $schedule->edit(),
     'schedule-update'   => $schedule->update(),
     'schedule-delete'   => $schedule->delete(),
+    /* API lấy lịch theo tour */
+'get-schedule-by-tour' => $schedule->getScheduleByTour(),
 
     /* =============================
      * DEFAULT

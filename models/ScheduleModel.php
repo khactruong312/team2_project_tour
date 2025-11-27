@@ -58,6 +58,28 @@ class ScheduleModel
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([$id]);
     }
+
+    
+public function getByTour($tour_id)
+{
+    $sql = "SELECT schedule_id, start_date, end_date 
+            FROM tour_schedule 
+            WHERE tour_id = ? 
+            ORDER BY start_date ASC";
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([$tour_id]);
+    return $stmt->fetchAll();
+}
+public function getOne($schedule_id)
+{
+    $sql = "SELECT * FROM tour_schedule WHERE schedule_id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([$schedule_id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
 }
 
 ?>

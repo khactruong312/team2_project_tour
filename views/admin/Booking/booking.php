@@ -176,61 +176,10 @@
             </nav>
             <div class="container-fluid p-4">
 
-    <h1 class="mt-4 mb-4 text-secondary">
-        <i class="fas fa-route me-2"></i> Quản Lý Tour
-    </h1>
+   
 
     <!-- THỐNG KÊ -->
-    <div class="row mb-4">
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card bg-primary text-white shadow">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <i class="fas fa-suitcase-rolling fa-2x"></i>
-                        </div>
-                        <div class="col">
-                            <div class="text-uppercase fw-bold">Tour đang chạy</div>
-                            <div class="h5 mb-0">1 Tour</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card bg-warning text-dark shadow">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <i class="fas fa-clock fa-2x"></i>
-                        </div>
-                        <div class="col">
-                            <div class="text-uppercase fw-bold">Tour sắp khởi hành</div>
-                            <div class="h5 mb-0">2 Tour</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card bg-success text-white shadow">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <i class="fas fa-check-circle fa-2x"></i>
-                        </div>
-                        <div class="col">
-                            <div class="text-uppercase fw-bold">Đã hoàn thành</div>
-                            <div class="h5 mb-0">12 Tour</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    
 
 
     <div class="container-fluid p-4">
@@ -263,6 +212,9 @@
                         <th>Tour</th>
                         <th>Khách</th>
                         <th>Ngày tạo</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày kết thúc</th>
+
                         <th>Tổng tiền</th>
                         <th>Trạng thái</th>
                         <th style="width: 170px;">Thao tác</th>
@@ -290,6 +242,8 @@
                         </td>
 
                         <td><?= date('d/m/Y H:i', strtotime($b['created_at'])) ?></td>
+                        <td><?= date('d/m/Y ', strtotime($b['start_date'])) ?></td>
+                        <td><?= date('d/m/Y ', strtotime($b['end_date']??'lỗi')) ?></td>
 
                         <td><?= number_format($b['total_amount'], 0, ',', '.') ?> đ</td>
 

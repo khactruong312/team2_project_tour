@@ -30,6 +30,24 @@ class BookingController
     // ⭐ Lưu booking
     public function store()
     {
+        $schedule_id = $_POST['schedule_id'] ?? null;
+
+if (!$schedule_id) {
+    $_SESSION['error'] = "Vui lòng chọn lịch khởi hành!";
+    header("Location: index.php?act=booking-create");
+    exit;
+}
+$scheduleModel = new ScheduleModel();
+$schedule = $scheduleModel->getOne($schedule_id);
+
+if (!$schedule) {
+    $_SESSION['error'] = "Lịch khởi hành không tồn tại!";
+    header("Location: index.php?act=booking-create");
+    exit;
+}
+
+$start_date = $schedule['start_date'];
+$end_date = $schedule['end_date'];
         $tour_id = $_POST['tour_id'];
         $payment_method = $_POST['payment_method'] ?? "Tiền mặt";
         $status = "Booked";
@@ -65,12 +83,14 @@ class BookingController
         }
 
         $result = $this->bookingModel->createBooking(
-            $tour_id,
-            $total_amount,
-            $status,
-            $created_by,
-            $customers
-        );
+    $tour_id,
+    $total_amount,
+    $status,
+    $created_by,
+    $customers,
+    $start_date,
+    $end_date
+);
 
         if (isset($result['error'])) {
             $_SESSION['error'] = $result['error'];

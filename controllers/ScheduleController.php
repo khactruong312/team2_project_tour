@@ -148,6 +148,25 @@ public function update()
         exit;
     }
 
+    
+    public function getScheduleByTour()
+{
+    $tour_id = $_GET['id'] ?? 0;
+
+    $model = new ScheduleModel();
+    $data  = $model->getByTour($tour_id);
+
+    header("Content-Type: application/json");
+    echo json_encode($data);
+    exit;
 }
+
+
+
+
+
+}
+
+
 
 ?>

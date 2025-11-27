@@ -18,6 +18,10 @@ class BookingModel extends Database
                 b.total_amount,
                 b.status,
                 b.created_at,
+                b.start_date,
+                b.end_date,
+
+
                 t.name AS tour_name
             FROM bookings b
             LEFT JOIN tours t ON b.tour_id = t.tour_id
@@ -65,18 +69,18 @@ class BookingModel extends Database
     }
 
     // ⭐ Tạo booking + thêm khách
-    public function createBooking($tour_id, $total_amount, $status, $created_by, $customers)
+    public function createBooking($tour_id, $total_amount, $status, $created_by, $customers, $start_date, $end_date)
     {
         try {
             $this->conn->beginTransaction();
 
             // ➤ Tạo booking
             $sql = "
-                INSERT INTO bookings (tour_id, total_amount, status, created_by)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO bookings (tour_id, total_amount, status, created_by, start_date, end_date)
+                VALUES (?, ?, ?, ?, ?, ?)
             ";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([$tour_id, $total_amount, $status, $created_by]);
+            $stmt->execute([$tour_id, $total_amount, $status, $created_by, $start_date, $end_date]);
 
             $booking_id = $this->conn->lastInsertId();
 

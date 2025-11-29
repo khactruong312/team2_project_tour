@@ -9,6 +9,7 @@ require_once './controllers/TourController.php';
 require_once './controllers/ScheduleController.php';
 require_once './controllers/GuideController.php';
 require_once './controllers/BookingController.php';
+require_once './controllers/ExpenseController.php';
 
 // Models
 require_once './models/UserModel.php';
@@ -16,6 +17,7 @@ require_once './models/TourModel.php';
 require_once './models/ScheduleModel.php';
 require_once './models/GuideModel.php';
 require_once './models/BookingModel.php';
+require_once './models/ExpenseModel.php';
 
 $act = $_GET['act'] ?? '/';
 
@@ -25,6 +27,7 @@ $admin     = new TourController;
 $schedule  = new ScheduleController;
 $guide     = new GuideController;
 $booking   = new BookingController;
+$expense = new ExpenseController();
 
 match ($act) {
 
@@ -77,6 +80,16 @@ match ($act) {
     'schedule-delete'   => $schedule->delete(),
     /* API lấy lịch theo tour */
 'get-schedule-by-tour' => $schedule->getScheduleByTour(),
+
+
+    //chi phí
+     'expense-list'   => $expense->index(),
+     'expense-create' => $expense->create(),
+     'expense-store'  => $expense->store(),
+     'expense-edit'   => $expense->edit(),
+    'expense-update' => $expense->update(),
+
+    'expense-delete' => $expense->delete(),
 
     /* =============================
      * DEFAULT

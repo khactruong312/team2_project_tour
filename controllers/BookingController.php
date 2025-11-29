@@ -1,6 +1,7 @@
 
 <?php
 
+
 class BookingController
 {
     private $bookingModel;

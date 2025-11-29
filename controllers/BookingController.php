@@ -114,8 +114,8 @@ $end_date = $schedule['end_date'];
             exit;
         }
 
-        $booking = $this->bookingModel->find($id );     // ❗ bạn yêu cầu phải có find()
-        $customers = $this->bookingModel->customers($id); // ❗ và customers()
+        $booking = $this->bookingModel->find($id);    
+        $customers = $this->bookingModel->customers($id);
 
         require_once './views/admin/Booking/detail.php';
     }

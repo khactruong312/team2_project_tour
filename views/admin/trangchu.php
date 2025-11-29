@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="icon" type="image/png" href="./uploads/imgproduct/snapedit_1763494732485.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
@@ -123,7 +124,7 @@
                 </a>
 
                 <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
-                    <i class="bi bi-bootstrap"></i> Quản lý Booking
+                    <i class="bi bi-bootstrap me-2"></i> Quản lý Booking
                 </a>
 
                 <a href="#" class="list-group-item list-group-item-action">

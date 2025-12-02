@@ -57,6 +57,7 @@ $end_date = $schedule['end_date'];
         $cust_name  = $_POST['cust_name'] ?? [];
         $cust_phone = $_POST['cust_phone'] ?? [];
         $cust_email = $_POST['cust_email'] ?? [];
+        $cust_address = $_POST['cust_address'] ?? [];
 
         if (empty($tour_id) || empty($cust_name)) {
             $_SESSION['error'] = "Vui lòng chọn tour và nhập thông tin khách hàng";
@@ -79,6 +80,8 @@ $end_date = $schedule['end_date'];
                 'full_name' => $cust_name[$i],
                 'phone' => $cust_phone[$i],
                 'email' => $cust_email[$i],
+                'address' => $cust_address[$i],
+
                 'note' => null
             ];
         }

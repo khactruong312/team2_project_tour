@@ -40,34 +40,28 @@ class CustomerModel {
         }
     }
 
-    /* ============================
-    Lấy danh sách tour đã đặt theo customer_id
-   ============================ */
-public function getToursByCustomerId($customer_id) {
-    try {
-        $sql = "
-            SELECT 
+    public function getCustomerBookings($customer_id)
+{
+    $sql = "SELECT 
                 b.booking_id,
-                t.tour_id,
-                t.tour_name,
-                t.price,
-                b.booking_date,
-                b.status
-            FROM bookings b
-            JOIN tours t ON b.tour_id = t.tour_id
-            WHERE b.customer_id = ?
-            ORDER BY b.booking_id DESC
-        ";
+                b.booking_code,
+                b.total_amount,
+                b.status AS booking_status,
+                b.start_date,
+                b.end_date,
+                t.name AS tour_name,
+                t.price AS tour_price,
+                t.image AS tour_image
+            FROM booking_customers bc
+            LEFT JOIN bookings b ON bc.booking_id = b.booking_id
+            LEFT JOIN tours t ON b.tour_id = t.tour_id
+            WHERE bc.customer_id = :customer_id";
 
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$customer_id]);
-        return $stmt->fetchAll();
-
-    } catch (Exception $e) {
-        error_log('CustomerModel->getToursByCustomerId: ' . $e->getMessage());
-        return [];
-    }
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute(['customer_id' => $customer_id]);
+    return $stmt->fetchAll();
 }
+
 
 
     /* ============================

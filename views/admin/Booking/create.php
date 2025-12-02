@@ -212,10 +212,7 @@
                                 <option value="">-- Vui lòng chọn tour trước --</option>
                             </select>
 
-                    <div>
-                        <p class="my-3">Booking Code</p>
-                        <input type="text" name="" class="form-control my-3" placeholder="Gồm cả chữ và số" required>
-                    </div>
+                    
 
 
                 <div class="mb-3">
@@ -223,8 +220,13 @@
                     <div id="customers-wrapper">
                         <div class="row g-2 mb-2 customer-row">
                             <div class="col"><input name="cust_name[]" class="form-control" placeholder="Họ tên" required></div>
-                            <div class="col-3"><input name="cust_phone[]" class="form-control" placeholder="Điện thoại"></div>
-                            <div class="col-4"><input name="cust_email[]" class="form-control" placeholder="Email"></div>
+                            <div class="col-3"><input name="cust_phone[]" class="form-control" placeholder="Điện thoại" ></div>
+                            <div class="col-4"><input name="cust_email[]" class="form-control" placeholder="Email" ></div>
+                            <br>
+                            <div class="col-5"><input name="cust_address[]" class="form-control" placeholder="Địa chỉ"></div>
+
+                            
+
                             <div class="col-auto">
                                 <button type="button" class="btn btn-sm btn-outline-danger remove-customer-btn">Xóa</button>
                             </div>

@@ -111,7 +111,7 @@
                     <i class="bi bi-bootstrap me-2"></i> Quản lý Booking
 
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="index.php?act=customer-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">

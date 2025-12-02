@@ -10,6 +10,7 @@ require_once './controllers/ScheduleController.php';
 require_once './controllers/GuideController.php';
 require_once './controllers/BookingController.php';
 require_once './controllers/ExpenseController.php';
+require_once './controllers/CustomerController.php';
 
 // Models
 require_once './models/UserModel.php';
@@ -18,6 +19,7 @@ require_once './models/ScheduleModel.php';
 require_once './models/GuideModel.php';
 require_once './models/BookingModel.php';
 require_once './models/ExpenseModel.php';
+require_once './models/CustomerModel.php';
 
 $act = $_GET['act'] ?? '/';
 
@@ -27,6 +29,7 @@ $admin     = new TourController;
 $schedule  = new ScheduleController;
 $guide     = new GuideController;
 $booking   = new BookingController;
+$customer = new CustomerController;
 $expense = new ExpenseController();
 
 match ($act) {
@@ -81,6 +84,16 @@ match ($act) {
     /* API lấy lịch theo tour */
 'get-schedule-by-tour' => $schedule->getScheduleByTour(),
 
+/* =============================
+     * CRUD KHÁCH HÀNG (CUSTOMER)
+     * ============================= */
+    'customer-list'   => $customer->list(),
+    'customer-create' => $customer->create(),
+    'customer-store'  => $customer->store(),
+    'customer-detail' => $customer->detail(),
+    'customer-edit'   => $customer->edit(),
+    'customer-update' => $customer->update(),
+    'customer-delete' => $customer->delete(),
 
     //chi phí
      'expense-list'   => $expense->index(),

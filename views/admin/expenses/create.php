@@ -95,7 +95,7 @@
                 <a href="index.php?act=admin-home" class="list-group-item list-group-item-action ">
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
-                <a href="index.php?act=tour-list" class="list-group-item list-group-item-action active">
+                <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
                     <i class="fas fa-list me-2"></i> Danh sách tour
                 </a>
 
@@ -117,7 +117,7 @@
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
+                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action active">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">

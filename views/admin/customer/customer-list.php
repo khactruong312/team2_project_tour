@@ -182,7 +182,6 @@
                             <thead class="bg-primary text-white">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tour đã đặt</th>
                                     <th>Tên khách hàng</th>
                                     <th>Email</th>
                                     <th>Số điện thoại</th>
@@ -200,10 +199,6 @@
                                         <tr>
                                             <td><?= $i++; ?></td>
 
-                                            <td class="fw-semibold">
-                                                <?= htmlspecialchars($c['tour_name'] ?? 'N/A') ?>
-                                            </td>
-
                                             <td class="fw-semibold"><?= htmlspecialchars($c['full_name']) ?></td>
 
                                             <td><?= htmlspecialchars($c['email']) ?></td>
@@ -212,7 +207,7 @@
 
                                             <td><?= htmlspecialchars($c['address']) ?></td>
 
-                                            <td><?= htmlspecialchars($c['created_at']) ?></td>
+                                            <td><?= htmlspecialchars($c['created_at'] ?? 'n/a') ?></td>
 
                                             <td>
                                                 <?php if ($c['status'] == 1): ?>

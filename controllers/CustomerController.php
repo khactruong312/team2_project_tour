@@ -49,14 +49,20 @@ class CustomerController
     /* ============================
        Chi tiết khách hàng 
        ============================ */
-   public function detail() {
-    $id = $_GET['id'] ?? null;
+    public function detail()
+    {
+        $id = $_GET['id'] ?? null;
 
-    $customer = $this->model->getCustomerById($id);
-    $tours = $this->model->getToursByCustomerId($id);
+        if (!$id) {
+            header("Location: index.php?act=customer-list");
+            exit;
+        }
 
-    include './views/admin/customer/customer-detail.php';
-}
+        $customer = $this->model->getCustomerById($id);
+        $bookings = $this->model->getCustomerBookings($id);
+
+        include './views/admin/customer/customer-detail.php';
+    }
 
 
     /* ============================

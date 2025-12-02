@@ -242,32 +242,67 @@ $current_act = $_GET['act'] ?? 'customer-detail';
                                     </div>
 
                                     <div class="card-body p-0">
-                                        <?php if (empty($tours)): ?>
+
+                                        <?php if (empty($bookings)): ?>
                                             <p class="p-3 text-muted">Khách hàng này chưa đặt tour nào.</p>
+
                                         <?php else: ?>
+
                                             <table class="table table-bordered mb-0">
                                                 <thead class="table-light">
                                                     <tr>
                                                         <th>Mã Booking</th>
-                                                        <th>Tên Tour</th>
+                                                        <th>Tour</th>
                                                         <th>Giá</th>
-                                                        <th>Ngày đặt</th>
+                                                        <th>Ngày bắt đầu</th>
+                                                        <th>Ngày kết thúc</th>
                                                         <th>Trạng thái</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php foreach ($tours as $t): ?>
+                                                    <?php foreach ($bookings as $b): ?>
                                                         <tr>
-                                                            <td><?= $t['booking_id'] ?></td>
-                                                            <td><?= htmlspecialchars($t['tour_name']) ?></td>
-                                                            <td><?= number_format($t['price']) ?> VNĐ</td>
-                                                            <td><?= $t['booking_date'] ?></td>
+                                                            <!-- Mã booking -->
+                                                            <td><?= htmlspecialchars($b['booking_code'] ?? 'N/A') ?></td>
+
+                                                            <!-- Tên tour + ảnh -->
                                                             <td>
-                                                                <?php if ($t['status'] == 1): ?>
-                                                                    <span class="badge bg-success">Đã xác nhận</span>
+                                                                <strong><?= htmlspecialchars($b['tour_name'] ?? 'Không có dữ liệu') ?></strong><br>
+
+                                                                <?php if (!empty($b['tour_image'])): ?>
+                                                                    <img src="./uploads/imgproduct/<?= htmlspecialchars($b['tour_image']) ?>" width="80">
                                                                 <?php else: ?>
-                                                                    <span class="badge bg-warning">Chờ xử lý</span>
+                                                                    <span class="text-muted">Không có ảnh</span>
                                                                 <?php endif; ?>
+                                                            </td>
+
+                                                            <!-- Giá -->
+                                                            <td>
+                                                                <?php
+                                                                $price = $b['tour_price'] ?? 0;
+                                                                echo number_format((float)$price) . " VNĐ";
+                                                                ?>
+                                                            </td>
+
+                                                            <!-- Ngày bắt đầu -->
+                                                            <td><?= $b['start_date'] ?? 'N/A' ?></td>
+
+                                                            <!-- Ngày kết thúc -->
+                                                            <td><?= $b['end_date'] ?? 'N/A' ?></td>
+
+                                                            <!-- Trạng thái -->
+                                                            <td>
+                                                                <?php
+                                                                $status = $b['booking_status'] ?? 'Booked';
+
+                                                                if ($status === 'Paid') {
+                                                                    echo '<span class="badge bg-success">Đã thanh toán</span>';
+                                                                } elseif ($status === 'Cancelled') {
+                                                                    echo '<span class="badge bg-danger">Đã hủy</span>';
+                                                                } else {
+                                                                    echo '<span class="badge bg-warning text-dark">Đã đặt</span>';
+                                                                }
+                                                                ?>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -276,13 +311,8 @@ $current_act = $_GET['act'] ?? 'customer-detail';
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <a href="index.php?act=customer-delete&id=<?= $customer['customer_id'] ?? '' ?>"
-                                    onclick="return confirm('Bạn chắc chắn muốn xóa khách hàng này?')"
-                                    class="btn btn-danger me-2">
-                                    <i class="fas fa-trash-alt me-1"></i> Xóa Khách Hàng
-                                </a>
 
-                                <a href="index.php?act=customer-list" class="btn btn-secondary">
+                                <a href="index.php?act=customer-list" class="btn btn-secondary mt-3">
                                     <i class="fas fa-arrow-left me-1"></i> Quay lại Danh sách
                                 </a>
                             </div>
@@ -290,7 +320,6 @@ $current_act = $_GET['act'] ?? 'customer-detail';
                     </div>
 
                 <?php endif; ?>
-
             </div>
         </div>
     </div>

@@ -212,7 +212,7 @@
 
                                             <td><?= htmlspecialchars($c['address']) ?></td>
 
-                                            <td><?= htmlspecialchars($c['created_at']) ?></td>
+                                            <td><?= $c['created_at'] ? htmlspecialchars($c['created_at']) : 'N/A' ?></td>
 
                                             <td>
                                                 <?php if ($c['status'] == 1): ?>

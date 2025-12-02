@@ -212,10 +212,11 @@
                                 <option value="">-- Vui lòng chọn tour trước --</option>
                             </select>
 
-                    <div>
+                    <!-- <div>
                         <p class="my-3">Booking Code</p>
                         <input type="text" name="" class="form-control my-3" placeholder="Gồm cả chữ và số" required>
-                    </div>
+                    </div> -->
+                    
 
 
                 <div class="mb-3">

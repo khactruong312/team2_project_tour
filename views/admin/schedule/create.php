@@ -115,7 +115,7 @@
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
+                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
@@ -204,14 +204,28 @@
 
                     <!-- Phương tiện -->
                     <div class="mb-3">
-                        <label class="form-label">Phương tiện:</label>
-                        <input type="text" name="vehicle" class="form-control" placeholder="VD: Xe giường nằm" required>
+                        <label for="vehicle_id">Chọn Xe:</label>
+                        <select name="vehicle_id" id="vehicle_id" required>
+                            <option value="">-- Chọn xe --</option>
+                            <?php foreach ($vehicles as $vehicle): ?>
+                                <option value="<?php echo htmlspecialchars($vehicle['id']); ?>">
+                                    <?php echo htmlspecialchars($vehicle['vehicle_type']) . ' (' . $vehicle['capacity'] . ' chỗ)'; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
                     <!-- Hotel -->
                     <div class="mb-3">
-                        <label class="form-label">Khách sạn:</label>
-                        <input type="text" name="hotel" class="form-control" placeholder="VD: 4 sao" required>
+                        <label for="hotel_id">Chọn Khách Sạn:</label>
+                        <select name="hotel_id" id="hotel_id" required>
+                            <option value="">-- Chọn khách sạn --</option>
+                            <?php foreach ($hotels as $hotel): ?>
+                                <option value="<?php echo htmlspecialchars($hotel['id']); ?>">
+                                    <?php echo htmlspecialchars($hotel['name']) . ' - ' . htmlspecialchars($hotel['address']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
                     <!-- Status -->
@@ -233,11 +247,11 @@
 
     <script>
         // Toggle Sidebar
-        document.getElementById("menu-toggle").onclick = function () {
+        document.getElementById("menu-toggle").onclick = function() {
             document.getElementById("wrapper").classList.toggle("toggled");
         };
 
-        setTimeout(function () {
+        setTimeout(function() {
             const alert = document.querySelector('.auto-hide');
             if (alert) {
                 alert.style.transition = 'opacity 0.5s';
@@ -246,7 +260,6 @@
                 setTimeout(() => alert.remove(), 500);
             }
         }, 2000);
-
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="..."

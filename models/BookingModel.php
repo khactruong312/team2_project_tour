@@ -87,8 +87,8 @@ class BookingModel extends Database
             // ➤ Thêm từng khách hàng
             $sql_customer = "
                 INSERT INTO booking_customers
-                (booking_id, full_name, phone, email, note)
-                VALUES (?, ?, ?, ?, ?)
+                (booking_id, full_name, phone, email,address, note)
+                VALUES (?, ?, ?, ?, ?, ?)
             ";
             $stmt_customer = $this->conn->prepare($sql_customer);
 
@@ -98,6 +98,7 @@ class BookingModel extends Database
                     $c['full_name'],
                     $c['phone'],
                     $c['email'],
+                    $c['address'],
                     $c['note'] ?? null
                 ]);
             }

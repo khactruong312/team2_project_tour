@@ -79,6 +79,25 @@ public function getOne($schedule_id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+public function getAvailableVehicles()
+    {
+        $sql = "SELECT id, vehicle_type, capacity 
+                FROM vehicles 
+                WHERE status = 'Chưa khởi hành'"; // Lọc theo trạng thái sẵn sàng
+
+        return $this->conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Hàm MỚI: Lấy danh sách khách sạn đang ở trạng thái 'Còn phòng'
+    public function getAvailableHotels()
+    {
+        $sql = "SELECT id, name, address 
+                FROM hotel 
+                WHERE status = 'Còn phòng'"; // Lọc theo trạng thái sẵn sàng
+
+        return $this->conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 }
 

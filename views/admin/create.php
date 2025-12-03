@@ -150,8 +150,8 @@
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-clipboard-list me-2"></i> Đơn hàng
+                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-chart-line me-2"></i> Thống kê

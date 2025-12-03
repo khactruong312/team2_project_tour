@@ -257,7 +257,7 @@
                             <span class="<?= $cls ?> p-2"><?= $b['status'] ?></span>
                         </td>
 
-                        <td>
+                        <td class="w-25">
                             <a href="index.php?act=booking-view&id=<?= $b['booking_id'] ?>" 
                                class="btn btn-info btn-sm mb-1">
                                 <i class="fas fa-eye"></i> Xem
@@ -267,11 +267,19 @@
                                class="btn btn-success btn-sm mb-1">
                                 Đã thanh toán
                             </a>
-
+                            
                             <a href="index.php?act=booking-status&id=<?= $b['booking_id'] ?>&status=Cancelled" 
-                               class="btn btn-danger btn-sm"
+                               class="btn btn-dark btn-sm "
                                onclick="return confirm('Hủy booking?')">
                                 Hủy
+                            </a>
+                               
+                            <a 
+                                href="index.php?act=booking-delete&id=<?= $b['booking_id'] ?>"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('Bạn có chắc chắn muốn xoá booking này?')"
+                            >
+                                <i class="fa fa-trash"></i>
                             </a>
                         </td>
                     </tr>

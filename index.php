@@ -64,7 +64,9 @@ match ($act) {
     'booking-create' => $booking->create(),
     'booking-store'  => $booking->store(),
     'booking-view'   => $booking->view(),
+    'booking-delete' => $booking->delete(),
     'booking-status' => $booking->changeStatus(),
+
 
     /* =============================
      * TRANG HƯỚNG DẪN VIÊN
@@ -82,7 +84,7 @@ match ($act) {
     'schedule-update'   => $schedule->update(),
     'schedule-delete'   => $schedule->delete(),
     /* API lấy lịch theo tour */
-'get-schedule-by-tour' => $schedule->getScheduleByTour(),
+    'get-schedule-by-tour' => $schedule->getScheduleByTour(),
 
 /* =============================
      * CRUD KHÁCH HÀNG (CUSTOMER)

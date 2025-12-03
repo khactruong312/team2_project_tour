@@ -149,13 +149,13 @@ $end_date = $schedule['end_date'];
 
         if (!$id) {
             $_SESSION['error'] = "Không tìm thấy booking!";
-            header("Location: index.php?act=booking-list");
+            header("Location: index.php?act=tour-booking");
             exit;
         }
 
         $this->bookingModel->delete($id);
 
         $_SESSION['success'] = "Xóa booking thành công!";
-        header("Location: index.php?act=booking-list");
+        header("Location: index.php?act=tour-booking");
     }
 }

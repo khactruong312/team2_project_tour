@@ -242,8 +242,8 @@
                         </td>
 
                         <td><?= date('d/m/Y H:i', strtotime($b['created_at'])) ?></td>
-                        <td><?= date('d/m/Y ', strtotime($b['start_date'])) ?></td>
-                        <td><?= date('d/m/Y ', strtotime($b['end_date']??'lỗi')) ?></td>
+                        <td><?= date('d/m/Y ', strtotime($b['start_date']))??'N/A' ?></td>
+                        <td><?= date('d/m/Y ', strtotime($b['end_date']??'N/A')) ?></td>
 
                         <td><?= number_format($b['total_amount'], 0, ',', '.') ?> đ</td>
 

@@ -76,6 +76,7 @@ public function store()
 
     
     if ($result) {
+        
         $_SESSION['success'] = "Thêm lịch thành công!";
     } else {
         $_SESSION['error'] = "Thêm lịch thất bại!";

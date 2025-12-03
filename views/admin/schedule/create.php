@@ -205,7 +205,7 @@
                     <!-- Phương tiện -->
                     <div class="mb-3">
                         <label for="vehicle_id">Chọn Xe:</label>
-                        <select name="vehicle_id" id="vehicle_id" required>
+                        <select name="vehicle_id" id="vehicle_id" class="form-control" required>
                             <option value="">-- Chọn xe --</option>
                             <?php foreach ($vehicles as $vehicle): ?>
                                 <option value="<?php echo htmlspecialchars($vehicle['id']); ?>">
@@ -218,7 +218,7 @@
                     <!-- Hotel -->
                     <div class="mb-3">
                         <label for="hotel_id">Chọn Khách Sạn:</label>
-                        <select name="hotel_id" id="hotel_id" required>
+                        <select name="hotel_id" id="hotel_id" class="form-control" required>
                             <option value="">-- Chọn khách sạn --</option>
                             <?php foreach ($hotels as $hotel): ?>
                                 <option value="<?php echo htmlspecialchars($hotel['id']); ?>">

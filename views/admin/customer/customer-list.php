@@ -210,7 +210,7 @@
 
                                             <td><?= $c['created_at'] ? htmlspecialchars($c['created_at']) : 'N/A' ?></td>
 
-                                            <td><?= htmlspecialchars($c['created_at'] ?? 'n/a') ?></td>
+                                            
 
 
                                             <td>

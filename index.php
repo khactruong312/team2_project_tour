@@ -12,6 +12,7 @@ require_once './controllers/BookingController.php';
 require_once './controllers/ExpenseController.php';
 require_once './controllers/CustomerController.php';
 
+
 // Models
 require_once './models/UserModel.php';
 require_once './models/TourModel.php';
@@ -20,6 +21,7 @@ require_once './models/GuideModel.php';
 require_once './models/BookingModel.php';
 require_once './models/ExpenseModel.php';
 require_once './models/CustomerModel.php';
+
 
 $act = $_GET['act'] ?? '/';
 
@@ -31,6 +33,8 @@ $guide     = new GuideController;
 $booking   = new BookingController;
 $customer = new CustomerController;
 $expense = new ExpenseController();
+
+
 
 match ($act) {
 
@@ -73,6 +77,10 @@ match ($act) {
      * ============================= */
     'guide-home' => $guide->guideHome(),
     'guide-list' => $guide->list(),
+
+
+
+
 
     /* =============================
      * CRUD LỊCH KHỞI HÀNH

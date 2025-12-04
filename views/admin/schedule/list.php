@@ -195,8 +195,8 @@
                                 <td><?= $sch['start_date'] ?></td>
                                 <td><?= $sch['end_date'] ?></td>
 
-                                <td><?= $sch['vehicle_id'] ?></td>
-                                <td><?= $sch['hotel_id'] ?></td>
+                                <td><?= $sch['vehicle'] ?></td>
+                                <td><?= $sch['hotel'] ?></td>
 
                                 <td>
                                     <?php

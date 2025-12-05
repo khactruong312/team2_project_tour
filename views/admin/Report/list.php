@@ -1,34 +1,43 @@
-
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<?php
+// views/admin/Report/list.php
+?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>Báo cáo & Thống kê</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="icon" type="image/png" href="./uploads/imgproduct/snapedit_1763494732485.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-<style>
-    body {
+
+    <style>
+        body {
             background-color: #f8f9fa;
+            /* Nền nhẹ nhàng */
         }
 
-        .sidebar-heading {
-            padding: 0.875rem 1.25rem 20px;
-            font-size: 1.2rem;
-            color: #f8f9fa;
-        }
-
+        /* Chiều rộng sidebar cố định và nền tối */
         #sidebar-wrapper {
             min-height: 100vh;
             margin-left: -15rem;
+            /* Ẩn sidebar ban đầu */
             transition: margin .25s ease-out;
             background-color: #343a40;
+            /* Màu nền tối */
             color: #ffffff;
             position: fixed;
             z-index: 1030;
+            /* Đặt trên nội dung */
         }
 
+        /* Hiển thị sidebar khi menu active */
         #page-content-wrapper {
             width: 100%;
+            padding-left: 0;
             transition: padding-left .25s ease-out;
         }
 
@@ -38,6 +47,13 @@
 
         #wrapper.toggled #page-content-wrapper {
             padding-left: 15rem;
+        }
+
+        /* Liên kết trong sidebar */
+        .sidebar-heading {
+            padding: 0.875rem 1.25rem;
+            font-size: 1.2rem;
+            color: #f8f9fa;
         }
 
         .list-group-item {
@@ -50,8 +66,21 @@
         .list-group-item:hover,
         .list-group-item.active {
             background-color: #495057;
+            /* Hover */
             color: #ffffff;
         }
+        .chart-container {
+    height: 400px; 
+    position: relative;
+}
+
+.chart-container canvas {
+    height: 100% !important; 
+    width: 100% !important;
+}
+    .shadow{
+        height: 100%;
+    }
 
         @media (min-width: 768px) {
             #sidebar-wrapper {
@@ -70,18 +99,12 @@
                 padding-left: 0;
             }
         }
-    .page-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .table thead {
-        background: #0d6efd;
-        color: white;
-    }
-</style>
+    </style>
+</head>
 
- <div class="d-flex" id="wrapper">
+<body>
+
+    <div class="d-flex" id="wrapper">
 
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom border-secondary">
@@ -110,10 +133,10 @@
                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
-                <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
+                <a href="index.php?act=report-list" class="list-group-item list-group-item-action active">
                     <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
-                <a href="#" class="list-group-item list-group-item-action active">
+                <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
                 </a>
                 
@@ -149,53 +172,30 @@
                     </ul>
                 </div>
             </nav>
+<body>
+<div class="container p-4">
+    <h2 class="text-body mb-4">Báo cáo & Thống kê</h2>
 
-<div class="container mt-4">
-
-    <div class="page-header mb-3">
-        <h2 class="fw-bold">Danh sách tài khoản</h2>
-        <a href="index.php?act=user-create" class="btn btn-primary">+ Thêm tài khoản</a>
-    </div>
-
-    <div class="card shadow-sm">
-        <div class="card-body p-0">
-            <table class="table table-hover mb-0">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Tài khoản</th>
-                        <th>Họ tên</th>
-                        <th>Quyền</th>
-                        <th>Ngày tạo</th>
-                        <th class="text-center" style="width: 180px">Hành động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($users as $u): ?>
-                    <tr>
-                        <td><?= $u['id'] ?></td>
-                        <td><?= $u['username'] ?></td>
-                        <td><?= $u['fullname'] ?></td>
-                        <td>
-                            <span class="badge bg-<?= $u['role']=='admin'?'danger':'secondary' ?>">
-                                <?= $u['role'] ?>
-                            </span>
-                        </td>
-                        <td><?= date('d/m/Y', strtotime($u['created_at'])) ?></td>
-                        <td class="text-center">
-                            <a href="index.php?act=user-detail&id=<?= $u['id'] ?>" class="btn btn-sm btn-info">Xem</a>
-                            <a href="index.php?act=user-edit&id=<?= $u['id'] ?>" class="btn btn-sm btn-warning">Sửa</a>
-                            <a onclick="return confirm('Bạn có chắc chắn xóa người dùng này ?')" 
-                                href="index.php?act=user-delete&id=<?= $u['id'] ?>" 
-                                class="btn btn-sm btn-danger">
-                                Xóa
-                            </a>
-                        </td>
-                    </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+    <div class="card mb-3">
+        <div class="card-body">
+            <a href="index.php?act=report-tour" class="btn btn-primary me-2">
+                <i class="fas fa-chart-bar me-1"></i> Doanh thu theo Tour
+            </a>
+            <a href="index.php?act=report-time" class="btn btn-info me-2">
+                <i class="fas fa-calendar-alt me-1"></i> Doanh thu theo Tháng (theo Năm)
+            </a>
+            <a href="index.php?act=report-guide" class="btn btn-success">
+                <i class="fas fa-user-tie me-1"></i> Hiệu suất Hướng dẫn viên
+            </a>
         </div>
     </div>
 
+    <div class="card">
+        <div class="card-header text-danger fw-bolder fs-4">Chú ý</div>
+        <div class="card-body fs-5">
+            <p>Chọn loại báo cáo phía trên. Mỗi báo cáo cho phép lọc theo khoảng ngày hoặc năm.</p>
+        </div>
+    </div>
 </div>
+</body>
+</html>

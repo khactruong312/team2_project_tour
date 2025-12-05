@@ -134,8 +134,8 @@
                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-chart-line me-2"></i> Thống kê
+                <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
                 <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
@@ -176,7 +176,7 @@
 
 
             <!-- CONTENT MAIN -->
-             
+
             <div class="container-fluid">
                 <h2 class="mt-4 mb-4 text-secondary">Cập Nhật Nhân Sự</h2>
 

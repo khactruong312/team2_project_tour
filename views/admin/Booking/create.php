@@ -128,7 +128,7 @@
                 <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action active">
                     <i class="bi bi-bootstrap me-2"></i> Quản lý Booking
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="index.php?act=customer-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
                 </a>
                 <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
@@ -137,8 +137,8 @@
                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-chart-line me-2"></i> Thống kê
+                <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
                 <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
@@ -261,6 +261,7 @@ document.getElementById('add-customer').addEventListener('click', function(){
         <div class="col"><input name="cust_name[]" class="form-control" placeholder="Họ tên" required></div>
         <div class="col-3"><input name="cust_phone[]" class="form-control" placeholder="Điện thoại"></div>
         <div class="col-4"><input name="cust_email[]" class="form-control" placeholder="Email"></div>
+        <div class="col-5"><input name="cust_address[]" class="form-control" placeholder="Địa chỉ"></div>
         <div class="col-auto">
             <button type="button" class="btn btn-sm btn-outline-danger remove-customer-btn"><i class="fas fa-times"></i> Xóa</button>
         </div>

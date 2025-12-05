@@ -13,6 +13,7 @@ require_once './controllers/ExpenseController.php';
 require_once './controllers/CustomerController.php';
 require_once './controllers/SettingController.php';
 require_once './controllers/EmployeeController.php';
+require_once './controllers/ReportController.php';
 
 
 // Models
@@ -25,6 +26,7 @@ require_once './models/ExpenseModel.php';
 require_once './models/CustomerModel.php';
 require_once './models/SettingModel.php';
 require_once './models/EmployeeModel.php';
+require_once './models/ReportModel.php';
 
 
 $act = $_GET['act'] ?? '/';
@@ -39,6 +41,7 @@ $customer = new CustomerController;
 $expense = new ExpenseController();
 $setting   = new SettingController;
 $employees = new EmployeeController();
+$report    = new ReportController();
 
 
 
@@ -96,6 +99,14 @@ match ($act) {
     'employees-store' =>$employees->store(),
     'employees-update'=>$employees->update(),
     'employees-delete' =>$employees->delete(),
+
+    /* =============================
+     * BÁO CÁO THỐNG KÊ
+     * ============================= */
+    'report-list' => $report->index(),
+     'report-tour'  => $report->tourReport(),
+    'report-time'  => $report->timeReport(),
+    'report-guide' => $report->guideReport(),
 
     /* =============================
      * TRANG HƯỚNG DẪN VIÊN

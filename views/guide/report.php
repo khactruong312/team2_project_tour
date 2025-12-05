@@ -1,15 +1,19 @@
+<?php 
+// Giả định biến $scheduleDetail đã được định nghĩa trong GuideController
+// Cấu trúc code này chứa toàn bộ HTML, CSS, Sidebar, Navbar
+?>
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Của Tôi</title>
+    <title>Báo Cáo Tour - Guide</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        /* CSS tùy chỉnh cơ bản */
+        /* CSS tùy chỉnh cơ bản (Đã copy từ list.php) */
         :root {
             --sidebar-width: 250px;
             --main-bg: #f8f9fa;
@@ -34,14 +38,12 @@
 
         .sidebar h3 {
             font-size: 1.5rem;
-            /* Tiêu đề Sidebar */
         }
 
         .sidebar .nav-link {
             color: #adb5bd;
             padding: 15px 20px;
             font-size: 1.1rem;
-            /* Tăng cỡ chữ link Sidebar */
         }
 
         .sidebar .nav-link.active,
@@ -81,21 +83,18 @@
 
         .stat-card h4 {
             font-size: 1.1rem;
-            /* Tiêu đề thẻ thống kê (TỔNG SỐ TOUR) */
             font-weight: 500;
             margin-bottom: 5px !important;
         }
 
         .stat-card h2 {
             font-size: 3rem;
-            /* Số liệu lớn (500 Triệu, 245) */
             font-weight: 700;
             line-height: 1.1;
         }
 
         .stat-card p {
             font-size: 0.9rem;
-            /* Mô tả nhỏ hơn */
         }
 
 
@@ -128,7 +127,6 @@
 
         .chart-widget h5 {
             font-size: 1.25rem;
-            /* Tiêu đề Biểu đồ */
         }
 
         /* Điều chỉnh cỡ chữ cho phần quản lý tour đang hoạt động */
@@ -149,7 +147,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?act=guide-list">
+                <a class="nav-link active" href="?act=guide-list">
                     <i class="fas fa-list-alt me-2"></i> Tour Của Tôi
                 </a>
             </li>
@@ -203,155 +201,80 @@
     </nav>
 
     <div class="main-content">
-        <h1 class="mb-4">Tour Của Tôi</h1>
+        <h1 class="mb-4">
+            <i class="fas fa-file-alt me-2"></i> Báo Cáo Hoàn Thành Tour
+        </h1>
+        <p class="lead">Gửi báo cáo cho lịch trình **<?= htmlspecialchars($scheduleDetail['tour_name'] ?? 'Tên Tour') ?>** (ID: #<?= $scheduleDetail['schedule_id'] ?? 'ID' ?>)</p>
+        <hr>
 
-
-
-        <div class="row">
-
-
-
-        </div>
-        <!-- MAIN CONTENT -->
         <div class="container-fluid p-4">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    Form Báo Cáo
+                </div>
+                <div class="card-body">
+                    <form action="index.php?act=guide-submit-report" method="POST">
+                        <input type="hidden" name="schedule_id" value="<?= $scheduleDetail['schedule_id'] ?? '' ?>">
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="pax_count" class="form-label">Số lượng khách thực tế *</label>
+                                    <input type="number" class="form-control" id="pax_count" name="pax_count" required min="1">
+                                    <small class="form-text text-muted">Tổng số khách đã tham gia tour.</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="extra_expenses" class="form-label">Chi phí phát sinh (VND)</label>
+                                    <input type="number" class="form-control" id="extra_expenses" name="extra_expenses" value="0" min="0">
+                                    <small class="form-text text-muted">Tổng chi phí phát sinh ngoài dự kiến.</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tour_rating" class="form-label">Đánh giá chung về Tour (1-5)</label>
+                                    <select class="form-select" id="tour_rating" name="tour_rating" required>
+                                        <option value="" selected>Chọn mức đánh giá</option>
+                                        <option value="5">5 - Xuất sắc</option>
+                                        <option value="4">4 - Tốt</option>
+                                        <option value="3">3 - Trung bình</option>
+                                        <option value="2">2 - Kém</option>
+                                        <option value="1">1 - Rất kém</option>
+                                    </select>
+                                </div>
+                            </div>
 
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="incidents" class="form-label">Sự cố/Vấn đề phát sinh (Nếu có)</label>
+                                    <textarea class="form-control" id="incidents" name="incidents" rows="4" placeholder="Mô tả các vấn đề không lường trước được..."></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="guide_notes" class="form-label">Ghi chú & Đề xuất của Hướng dẫn viên</label>
+                                    <textarea class="form-control" id="guide_notes" name="guide_notes" rows="4" required placeholder="Tóm tắt ngắn gọn về tour và đề xuất cải tiến..."></textarea>
+                                </div>
+                            </div>
+                        </div>
 
-            <!-- <a href="index.php?act=tour-create" class="btn btn-primary mb-3">
-                    <i class="fas fa-plus"></i> Thêm Tour
-                </a> -->
-
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Tên tour</th>
-                        <th>Ảnh tour</th>
-
-                        <th>Hướng Dẫn Viên</th>
-
-
-                        <th>Trạng thái</th>
-                        <th>Thời gian</th>
-
-                        <th style="width: 200px;">Thao tác</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?php if (!empty($guides)): ?>
-                        <?php foreach ($guides as $t): ?>
-
-                            <?php
-                            // Lấy thông tin tour
-                            $tourId     = $t['tour_id'];
-                            $tourName   = $t['name'];
-                            $tourImage  = $t['image'] ?? 'default.jpg';
-
-                            // Lấy thông tin hướng dẫn viên
-                            $guideName  = $t['guide_name'] ?? 'Chưa phân công';
-
-                            // Trạng thái lịch trình (schedule)
-                            $status     = $t['schedule_status'] ?? 'Chưa khởi hành';
-
-                            // Ngày bắt đầu tour
-                            $startDate  = !empty($t['start_date']) ? date('d/m/Y', strtotime($t['start_date'])) : 'N/A';
-
-                            // ID dùng cho thao tác
-                            $scheduleId = $t['schedule_id'];
-                            ?>
-
-                            <tr>
-                                <td><?= $tourId ?></td>
-
-                                <td><?= $tourName ?></td>
-
-                                <td>
-                                    <img src="./uploads/imgproduct/<?= $tourImage ?>"
-                                        alt="<?= $tourName ?>"
-                                        style="max-width: 180px; height: auto;">
-                                </td>
-
-                                <td><?= $guideName ?></td>
-
-                                <td>
-                                    <?php
-                                    $badgeClass = "bg-secondary";
-
-                                    switch ($status) {
-                                        case 'Đang chạy':
-                                            $badgeClass = "bg-danger";
-                                            break;
-                                        case 'Hoàn thành':
-                                            $badgeClass = "bg-success";
-                                            break;
-                                        case 'Chưa khởi hành':
-                                            $badgeClass = "bg-warning text-dark";
-                                            break;
-                                    }
-
-                                    echo "<span class='badge $badgeClass px-3 py-2'>$status</span>";
-                                    ?>
-                                </td>
-
-                                <td><?= $startDate ?></td>
-
-                                <td class="align-middle">
-                                    
-                                    <?php if ($scheduleId): ?>
-                                        <a href="index.php?act=guide-progress&id=<?= $scheduleId ?>"
-                                           class="btn btn-primary btn-sm mb-1 w-100" title="Xem chi tiết và cập nhật tiến trình">
-                                            <i class="fas fa-eye me-1"></i> Chi Tiết / Tiến Trình
-                                        </a>
-
-                                        <a href="index.php?act=guide-report&id=<?= $scheduleId ?>"
-                                           class="btn btn-success btn-sm w-100" title="Hoàn thành và báo cáo">
-                                            <i class="fas fa-file-alt me-1"></i> Báo Cáo
-                                        </a>
-                                    <?php else: ?>
-                                        <span class="text-danger fw-bold">Không có lịch trình</span>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-
-                        <?php endforeach; ?>
-                    <?php else: ?>
-
-                        <tr>
-                            <td colspan="7" class="text-center text-danger fw-bold py-3">
-                                <i class="fas fa-exclamation-triangle me-2"></i>
-                                Không có tour nào được phân công cho bạn.
-                            </td>
-                        </tr>
-
-                    <?php endif; ?>
-                </tbody>
-
-            </table>
-
+                        <hr>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i> Gửi Báo Cáo Hoàn Thành
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
+        </div>
     </div>
 
     <script>
-        // Toggle Sidebar
+        // Toggle Sidebar (cần thêm element có id="menu-toggle" nếu muốn dùng)
+        /*
         document.getElementById("menu-toggle").onclick = function() {
-            document.getElementById("wrapper").classList.toggle("toggled");
+             document.getElementById("wrapper").classList.toggle("toggled");
         };
-
-        setTimeout(function() {
-            const alert = document.querySelector('.auto-hide');
-            if (alert) {
-                alert.style.transition = 'opacity 0.5s';
-                alert.style.opacity = '0';
-
-                setTimeout(() => alert.remove(), 500);
-            }
-        }, 2000);
+        */
     </script>
 
-
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

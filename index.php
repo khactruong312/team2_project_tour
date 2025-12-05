@@ -21,7 +21,8 @@ require_once './models/BookingModel.php';
 require_once './models/ExpenseModel.php';
 require_once './models/CustomerModel.php';
 
-$act = $_GET['act'] ?? '/';
+// ============= FIX QUAN TRỌNG =============
+$act = $_GET['act'] ?? 'login';
 
 // Khởi tạo controller
 $login     = new LoginController;
@@ -29,15 +30,14 @@ $admin     = new TourController;
 $schedule  = new ScheduleController;
 $guide     = new GuideController;
 $booking   = new BookingController;
-$customer = new CustomerController;
-$expense = new ExpenseController();
+$customer  = new CustomerController;
+$expense   = new ExpenseController();
 
 match ($act) {
 
     /* =============================
      * LOGIN / LOGOUT
      * ============================= */
-    '/'         => $login->showLogin(),
     'login'     => $login->showLogin(),
     'do-login'  => $login->login(),
     'logout'    => $login->logout(),
@@ -60,7 +60,7 @@ match ($act) {
     /* =============================
      * QUẢN LÝ BOOKING
      * ============================= */
-    'tour-booking'  => $booking->list(),
+    'tour-booking'   => $booking->list(),
     'booking-create' => $booking->create(),
     'booking-store'  => $booking->store(),
     'booking-view'   => $booking->view(),
@@ -71,21 +71,23 @@ match ($act) {
      * ============================= */
     'guide-home' => $guide->guideHome(),
     'guide-list' => $guide->list(),
+    'guide-progress' => $guide->progress(),
+    'guide-report'   => $guide->report(),
 
     /* =============================
      * CRUD LỊCH KHỞI HÀNH
      * ============================= */
     'schedule-list'     => $schedule->index(),
     'schedule-create'   => $schedule->create(),
-    'schedule-store' => $schedule->store(),
+    'schedule-store'    => $schedule->store(),
     'schedule-edit'     => $schedule->edit(),
     'schedule-update'   => $schedule->update(),
     'schedule-delete'   => $schedule->delete(),
-    /* API lấy lịch theo tour */
-'get-schedule-by-tour' => $schedule->getScheduleByTour(),
 
-/* =============================
-     * CRUD KHÁCH HÀNG (CUSTOMER)
+    'get-schedule-by-tour' => $schedule->getScheduleByTour(),
+
+    /* =============================
+     * CRUD KHÁCH HÀNG
      * ============================= */
     'customer-list'   => $customer->list(),
     'customer-create' => $customer->create(),
@@ -95,17 +97,19 @@ match ($act) {
     'customer-update' => $customer->update(),
     'customer-delete' => $customer->delete(),
 
-    //chi phí
-     'expense-list'   => $expense->index(),
-     'expense-create' => $expense->create(),
-     'expense-store'  => $expense->store(),
-     'expense-edit'   => $expense->edit(),
+    /* =============================
+     * CHI PHÍ TOUR
+     * ============================= */
+    'expense-list'   => $expense->index(),
+    'expense-create' => $expense->create(),
+    'expense-store'  => $expense->store(),
+    'expense-edit'   => $expense->edit(),
     'expense-update' => $expense->update(),
-
     'expense-delete' => $expense->delete(),
 
+
     /* =============================
-     * DEFAULT
+     * DEFAULT – QUAY VỀ LOGIN
      * ============================= */
     default => $login->showLogin(),
 };

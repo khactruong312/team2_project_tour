@@ -193,11 +193,9 @@
                                 <td><?=date('d/m/Y ', strtotime( $sch['start_date']))?></td>
                         
 
-<<<<<<< HEAD
-=======
+
                                 <td><?= date('d/m/Y ', strtotime( $sch['end_date'])) ?></td>
 
->>>>>>> 482e5db06f7ecd6da3cfc9305922e2f9f5d0796b
                                 <td><?= $sch['vehicle_id'] ?></td>
                                 <td><?= $sch['hotel_id'] ?></td>
 

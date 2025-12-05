@@ -127,6 +127,7 @@
                     <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
                 </a>
                 
+            </div>
         </div>
 
         <!-- Page Content -->
@@ -162,9 +163,9 @@
                 </div>
             </nav>
 
-            <h2 class="mt-4">Sửa Chi Phí</h2>
+            <h2 class="mt-4">Sửa Chi Phí Tour</h2>
 
-            <form action="index.php?act=expense-update" method="POST">
+             <form action="index.php?act=expense-update" method="POST">
 
                 <input type="hidden" name="expense_id" value="<?= $expense['expense_id'] ?>">
 

@@ -1,27 +1,17 @@
-<?php if (isset($_SESSION['success'])): ?>
-    <div class="alert alert-success auto-hide">
-        <?= $_SESSION['success']; ?>
-    </div>
-    <?php unset($_SESSION['success']); ?>
-<?php endif; ?>
-<!DOCTYPE html>
-<html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Quản Trị Tour</title>
-    <link rel="icon" type="image/png" href="./uploads/imgproduct/snapedit_1763494732485.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/png" href="./uploads/imgproduct/snapedit_1763494732485.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        body {
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+<style>
+    body {
             background-color: #f8f9fa;
         }
 
         .sidebar-heading {
-            padding: 0.875rem 1.25rem;
+            padding: 0.875rem 1.25rem 20px;
             font-size: 1.2rem;
             color: #f8f9fa;
         }
@@ -79,12 +69,27 @@
                 padding-left: 0;
             }
         }
-    </style>
-</head>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .table thead {
+        background: #0d6efd;
+        color: white;
+    }
+    .detail-box {
+        max-width: 600px;
+        margin: auto;
+    }
+    .detail-title {
+        font-weight: bold;
+        width: 160px;
+    }
+</style>
 
-<body>
 
-  <div class="d-flex" id="wrapper">
+<div class="d-flex" id="wrapper">
 
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom border-secondary">
@@ -110,13 +115,13 @@
                 <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-                <a href="#" class="list-group-item list-group-item-action active">
+                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
                 <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
-                <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
+                <a href="index.php?act=user-list" class="list-group-item list-group-item-action active">
                     <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
                 </a>
                 
@@ -153,78 +158,43 @@
                 </div>
             </nav>
 
-            <!-- MAIN CONTENT -->
-            <h2 class="mt-4 text-secondary">Danh Sách Chi Phí Tour</h2>
+<h1 class="my-3 ms-4">Sửa Tài Khoản</h1>
+    <div class="card shadow-sm">
+        
+        <div class="card-body">
 
-            <a href="index.php?act=expense-create" class="btn btn-primary mb-3">
-                <i class="fas fa-plus"></i> Thêm Chi Phí
-            </a>
+            <form method="post">
 
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Tour</th>
-                        <th>Loại chi phí</th>
-                        <th>Số tiền</th>
-                        <th>Ngày</th>
-                        <th>Ghi chú</th>
-                        <th>Tạo lúc</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Username</label>
+                    <input name="username" class="form-control" value="<?= $user['username'] ?>" required>
+                </div>
 
-                <tbody>
-                    <?php foreach ($expenses as $e): ?>
-                        <tr>
-                            <td><?= $e['expense_id'] ?></td>
-                            <td><?= $e['tour_name'] ?></td>
-                            <td><?= $e['type'] ?></td>
-                            <td><?= number_format($e['amount']) ?>đ</td>
-                            <td><?= $e['date'] ?></td>
-                            <td><?= $e['note'] ?></td>
-                            <td><?= $e['created_at'] ?></td>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Mật khẩu mới</label>
+                    <input name="password" type="password" class="form-control" placeholder="Để trống nếu không đổi">
+                </div>
 
-                            <td>
-                                <a href="index.php?act=expense-edit&id=<?= $e['expense_id'] ?>"
-                                    class="btn btn-warning btn-sm">
-                                    Sửa
-                                </a>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Họ tên</label>
+                    <input name="fullname" class="form-control" value="<?= $user['fullname'] ?>">
+                </div>
 
-                                <a onclick="return confirm('Xóa?')"
-                                    href="index.php?act=expense-delete&id=<?= $e['expense_id'] ?>"
-                                    class="btn btn-danger btn-sm">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Quyền</label>
+                    <select name="role" class="form-select">
+                        <option value="admin" <?= $user['role']=='admin'?'selected':'' ?>>Admin</option>
+                        <option value="guide" <?= $user['role']=='guide'?'selected':'' ?>>Guide</option>
+                    </select>
+                </div>
+
+                <div class="mt-4 d-flex gap-2">
+                    <button class="btn btn-warning">Lưu thay đổi</button>
+                    <a href="index.php?act=user-list" class="btn btn-secondary">Hủy</a>
+                </div>
+
+            </form>
 
         </div>
     </div>
-
-    <script>
-        // Toggle Sidebar
-        document.getElementById("menu-toggle").onclick = function () {
-            document.getElementById("wrapper").classList.toggle("toggled");
-        };
-
-        setTimeout(function () {
-            const alert = document.querySelector('.auto-hide');
-            if (alert) {
-                alert.style.transition = 'opacity 0.5s';
-                alert.style.opacity = '0';
-
-                setTimeout(() => alert.remove(), 500);
-            }
-        }, 2000);
-
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="..."
-        crossorigin="anonymous"></script>
-</body>
-
-</html
+</div>

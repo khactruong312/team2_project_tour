@@ -152,7 +152,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">
-                <i class="fas fa-cog me-2"></i> Cài đặt Chung
+                <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
             </a>
         </li>
 

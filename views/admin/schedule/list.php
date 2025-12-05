@@ -108,21 +108,19 @@
                 <a href="index.php?act=customer-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
                  <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-chart-line me-2"></i> Thống kê
+                <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Cài đặt Chung
+                <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-info-circle me-2"></i> Về Chúng Tôi (Sửa)
-                </a>
+                
             </div>
         </div>
 
@@ -192,9 +190,14 @@
 
                                 <td><?= $sch['guide_name'] ?? '<span class="text-muted">Chưa phân công</span>' ?></td>
 
-                                <td><?= $sch['start_date'] ?></td>
-                                <td><?= $sch['end_date'] ?></td>
+                                <td><?=date('d/m/Y ', strtotime( $sch['start_date']))?></td>
+                        
 
+<<<<<<< HEAD
+=======
+                                <td><?= date('d/m/Y ', strtotime( $sch['end_date'])) ?></td>
+
+>>>>>>> 482e5db06f7ecd6da3cfc9305922e2f9f5d0796b
                                 <td><?= $sch['vehicle_id'] ?></td>
                                 <td><?= $sch['hotel_id'] ?></td>
 

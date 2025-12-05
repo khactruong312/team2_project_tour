@@ -1,9 +1,3 @@
-<?php if (isset($_SESSION['success'])): ?>
-    <div class="alert alert-success auto-hide">
-        <?= $_SESSION['success']; ?>
-    </div>
-    <?php unset($_SESSION['success']); ?>
-<?php endif; ?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -11,33 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Quản Trị Tour</title>
-    <link rel="icon" type="image/png" href="./uploads/imgproduct/snapedit_1763494732485.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/png" href="./uploads/imgproduct/snapedit_1763494732485.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
     <style>
         body {
             background-color: #f8f9fa;
+            /* Nền nhẹ nhàng */
         }
 
-        .sidebar-heading {
-            padding: 0.875rem 1.25rem;
-            font-size: 1.2rem;
-            color: #f8f9fa;
-        }
-
+        /* Chiều rộng sidebar cố định và nền tối */
         #sidebar-wrapper {
             min-height: 100vh;
             margin-left: -15rem;
+            /* Ẩn sidebar ban đầu */
             transition: margin .25s ease-out;
             background-color: #343a40;
+            /* Màu nền tối */
             color: #ffffff;
             position: fixed;
             z-index: 1030;
+            /* Đặt trên nội dung */
         }
 
+        /* Hiển thị sidebar khi menu active */
         #page-content-wrapper {
             width: 100%;
+            padding-left: 0;
             transition: padding-left .25s ease-out;
         }
 
@@ -47,6 +46,13 @@
 
         #wrapper.toggled #page-content-wrapper {
             padding-left: 15rem;
+        }
+
+        /* Liên kết trong sidebar */
+        .sidebar-heading {
+            padding: 0.875rem 1.25rem;
+            font-size: 1.2rem;
+            color: #f8f9fa;
         }
 
         .list-group-item {
@@ -59,7 +65,22 @@
         .list-group-item:hover,
         .list-group-item.active {
             background-color: #495057;
+            /* Hover */
             color: #ffffff;
+        }
+
+        .chart-container {
+            height: 400px;
+            position: relative;
+        }
+
+        .chart-container canvas {
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        .shadow {
+            height: 100%;
         }
 
         @media (min-width: 768px) {
@@ -84,7 +105,7 @@
 
 <body>
 
-  <div class="d-flex" id="wrapper">
+     <div class="d-flex" id="wrapper">
 
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom border-secondary">
@@ -107,10 +128,10 @@
                 <a href="index.php?act=customer-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
                 </a>
-                <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
+                <a href="index.php?act=employees-list" class="list-group-item list-group-item-action active">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-                <a href="#" class="list-group-item list-group-item-action active">
+                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
                 <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
@@ -153,78 +174,61 @@
                 </div>
             </nav>
 
-            <!-- MAIN CONTENT -->
-            <h2 class="mt-4 text-secondary">Danh Sách Chi Phí Tour</h2>
 
-            <a href="index.php?act=expense-create" class="btn btn-primary mb-3">
-                <i class="fas fa-plus"></i> Thêm Chi Phí
-            </a>
+            <!-- CONTENT MAIN -->
 
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Tour</th>
-                        <th>Loại chi phí</th>
-                        <th>Số tiền</th>
-                        <th>Ngày</th>
-                        <th>Ghi chú</th>
-                        <th>Tạo lúc</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
+            <div class="container-fluid">
+                <h2 class="mt-4 mb-4 text-secondary">Cập Nhật Nhân Sự</h2>
 
-                <tbody>
-                    <?php foreach ($expenses as $e): ?>
-                        <tr>
-                            <td><?= $e['expense_id'] ?></td>
-                            <td><?= $e['tour_name'] ?></td>
-                            <td><?= $e['type'] ?></td>
-                            <td><?= number_format($e['amount']) ?>đ</td>
-                            <td><?= $e['date'] ?></td>
-                            <td><?= $e['note'] ?></td>
-                            <td><?= $e['created_at'] ?></td>
+                <div class="card shadow mb-4">
+                    <div class="card-header bg-white fw-bold p-3">
+                        <i class="fas fa-user-edit me-2"></i> Thông tin nhân viên
+                    </div>
+                    <div class="card-body">
+                        <?php if (isset($employee) && is_array($employee)): ?>
+                            <form action="index.php?act=employees-update" method="post">
+    <input type="hidden" name="id" value="<?= $employee['guide_id'] ?>">
 
-                            <td>
-                                <a href="index.php?act=expense-edit&id=<?= $e['expense_id'] ?>"
-                                    class="btn btn-warning btn-sm">
-                                    Sửa
-                                </a>
-
-                                <a onclick="return confirm('Xóa?')"
-                                    href="index.php?act=expense-delete&id=<?= $e['expense_id'] ?>"
-                                    class="btn btn-danger btn-sm">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-
-        </div>
+    <div class="mb-3">
+        <label class="form-label">Tên nhân sự</label>
+        <input type="text" class="form-control" name="full_name"
+               value="<?= htmlspecialchars($employee['full_name']) ?>" required>
     </div>
 
-    <script>
-        // Toggle Sidebar
-        document.getElementById("menu-toggle").onclick = function () {
-            document.getElementById("wrapper").classList.toggle("toggled");
-        };
+    <div class="mb-3">
+        <label class="form-label">Điện thoại</label>
+        <input type="text" class="form-control" name="phone"
+               value="<?= htmlspecialchars($employee['phone']) ?>" required>
+    </div>
 
-        setTimeout(function () {
-            const alert = document.querySelector('.auto-hide');
-            if (alert) {
-                alert.style.transition = 'opacity 0.5s';
-                alert.style.opacity = '0';
+    <div class="mb-3">
+        <label class="form-label">Trạng thái</label>
+        <select class="form-select" name="status">
+            <option value="Active" <?= $employee['status'] === "Active" ? "selected" : "" ?>>Đang làm</option>
+            <option value="Inactive" <?= $employee['status'] === "Inactive" ? "selected" : "" ?>>Đã nghỉ</option>
+        </select>
+    </div>
 
-                setTimeout(() => alert.remove(), 500);
-            }
-        }, 2000);
+    <div class="d-flex justify-content-end">
+        <a href="index.php?act=employees-list" class="btn btn-secondary me-2">Hủy</a>
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </div>
+</form>
 
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="..."
-        crossorigin="anonymous"></script>
+                        <?php else: ?>
+                            <div class="alert alert-danger">
+                                Không tìm thấy thông tin nhân viên. Vui lòng quay lại danh sách.
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
-</html
+</html>
+
+<script>
+    console.log(<?php echo json_encode($listEmployees); ?>);
+</script>

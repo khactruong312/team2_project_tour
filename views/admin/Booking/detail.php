@@ -95,7 +95,7 @@
                 <a href="index.php?act=customer-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
@@ -104,12 +104,10 @@
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-chart-line me-2"></i> Thống kê
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Cài đặt Chung
+                <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-info-circle me-2"></i> Về Chúng Tôi (Sửa)
-                </a>
+                
             </div>
         </div>
   <div id="page-content-wrapper" class="mt-5">

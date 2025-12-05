@@ -11,6 +11,8 @@ require_once './controllers/GuideController.php';
 require_once './controllers/BookingController.php';
 require_once './controllers/ExpenseController.php';
 require_once './controllers/CustomerController.php';
+require_once './controllers/SettingController.php';
+require_once './controllers/EmployeeController.php';
 
 // Models
 require_once './models/UserModel.php';
@@ -20,6 +22,8 @@ require_once './models/GuideModel.php';
 require_once './models/BookingModel.php';
 require_once './models/ExpenseModel.php';
 require_once './models/CustomerModel.php';
+require_once './models/SettingModel.php';
+require_once './models/EmployeeModel.php';
 
 $act = $_GET['act'] ?? '/';
 
@@ -31,6 +35,8 @@ $guide     = new GuideController;
 $booking   = new BookingController;
 $customer = new CustomerController;
 $expense = new ExpenseController();
+$setting   = new SettingController;
+$employees = new EmployeeController();
 
 match ($act) {
 
@@ -67,6 +73,25 @@ match ($act) {
     'booking-delete' => $booking->delete(),
     'booking-status' => $booking->changeStatus(),
 
+     /* =============================
+     * QUẢN LÝ Người Dùng
+     * ============================= */
+
+    'user-list'   => $setting->listUsers(),
+    'user-detail' => $setting->viewUser(),
+    'user-edit'   => $setting->editUser(),
+    'user-delete' => $setting->deleteUser(),
+    'user-create' => $setting->createUser(),
+
+    /* =============================
+     * QUẢN LÝ NHÂN SỰ
+     * ============================= */
+    'employees-list' => $employees->index(),
+    'employees-create' => $employees->create(),
+    'employees-edit' => $employees->edit(),
+    'employees-store' =>$employees->store(),
+    'employees-update'=>$employees->update(),
+    'employees-delete' =>$employees->delete(),
 
     /* =============================
      * TRANG HƯỚNG DẪN VIÊN

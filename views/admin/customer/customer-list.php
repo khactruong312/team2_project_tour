@@ -85,7 +85,6 @@
 
     <div class="d-flex" id="wrapper">
 
-        <!-- Sidebar -->
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom border-secondary">
                 <i class="fas fa-plane-departure text-info"></i> Quản Lý
@@ -97,16 +96,17 @@
                 <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
                     <i class="fas fa-list me-2"></i> Danh sách tour
                 </a>
+
                 <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-road me-2"></i> Quản lý Tour
                 </a>
-                <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
+                <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action ">
                     <i class="bi bi-bootstrap me-2"></i> Quản lý Booking
                 </a>
                 <a href="index.php?act=customer-list" class="list-group-item list-group-item-action active">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
@@ -115,46 +115,43 @@
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-chart-line me-2"></i> Thống kê
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Cài đặt Chung
+                <a href="#" class="list-group-item list-group-item-action ">
+                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-info-circle me-2"></i> Về Chúng Tôi (Sửa)
-                </a>
+
             </div>
         </div>
-
-        <!-- Page Content -->
         <div id="page-content-wrapper">
 
-            <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
                 <button class="btn btn-outline-secondary ms-3" id="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
 
                 <div class="collapse navbar-collapse me-3">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
                             <a class="nav-link" href="#"><i class="fas fa-bell me-1"></i> Thông báo <span
                                     class="badge bg-danger">4</span></a>
                         </li>
-
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user-circle me-1"></i> Admin Name
                             </a>
-                            <div class="dropdown-menu dropdown-menu-end">
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Hồ sơ</a>
                                 <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="index.php?act=tour-login"><i class="fas fa-sign-out-alt me-1"></i>
-                                    Đăng xuất</a>
+                                <a class="dropdown-item text-danger" href="index.php?act=tour-logout">
+                                    <i class="fas fa-sign-out-alt me-1"></i> Đăng xuất
+                                </a>
                             </div>
                         </li>
                     </ul>
                 </div>
             </nav>
+
 
             <!-- MAIN CONTENT -->
             <div class="container-fluid p-4">
@@ -209,7 +206,7 @@
                                             <td><?= htmlspecialchars($c['address']) ?></td>
 
 
-                                            <td><?= $c['created_at'] ? htmlspecialchars($c['created_at']) : 'N/A' ?></td>
+                                            <td><?= $c['created_at'] ? htmlspecialchars(date('d/m/Y', strtotime($c['created_at']))) : 'N/A' ?></td>
 
 
 

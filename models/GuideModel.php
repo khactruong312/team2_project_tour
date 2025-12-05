@@ -20,4 +20,13 @@ class GuideModel {
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
+    
+    // Lấy danh sách hướng dẫn viên đang hoạt động
+
+    public function getActiveGuides() {
+    $sql = "SELECT * FROM guides WHERE status = 'Active'";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }

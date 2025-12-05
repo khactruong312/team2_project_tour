@@ -22,15 +22,18 @@ class ScheduleController
         require_once "./views/admin/schedule/list.php";
     }
 
-    public function create()
-    {
-        $tours = $this->tourModel->getAll();
-        $guides = $this->guideModel->getAll();
-        $vehicles = $this->scheduleModel->getAvailableVehicles();
-        $hotels   = $this->scheduleModel->getAvailableHotels();
+   public function create()
+{
+    $tours = $this->tourModel->getAll();
 
-        require_once './views/admin/schedule/create.php';
-    }
+    // CHỈ LẤY GUIDE CÓ STATUS ACTIVE
+    $guides = $this->guideModel->getActiveGuides();
+
+    $vehicles = $this->scheduleModel->getAvailableVehicles();
+    $hotels   = $this->scheduleModel->getAvailableHotels();
+
+    require_once './views/admin/schedule/create.php';
+}
 
     // Cần khai báo biến $allowed_status ở đầu lớp ScheduleController hoặc sử dụng hằng số.
 // Ví dụ: private $allowed_status = ['Chưa khởi hành', 'Đang chạy', 'Hoàn thành'];
@@ -87,19 +90,22 @@ public function store()
 }
 
 
-    public function edit()
-    {
-        $id = $_GET['id'];
+   public function edit()
+{
+    $id = $_GET['id'];
 
-        $schedule = $this->scheduleModel->getById($id);
-        $tours = $this->tourModel->getAll();
-        $guides = $this->guideModel->getAll();
+    $schedule = $this->scheduleModel->getById($id);
+    $tours = $this->tourModel->getAll();
 
-        $vehicles = $this->scheduleModel->getAvailableVehicles();
-        $hotels   = $this->scheduleModel->getAvailableHotels();
+    // CHỈ LẤY GUIDE ACTIVE
+    $guides = $this->guideModel->getActiveGuides();
 
-        require_once './views/admin/schedule/edit.php';
-    }
+    $vehicles = $this->scheduleModel->getAvailableVehicles();
+    $hotels   = $this->scheduleModel->getAvailableHotels();
+
+    require_once './views/admin/schedule/edit.php';
+}
+
 
     // File: C:\laragon\www\project_dulich\controllers\ScheduleController.php
 

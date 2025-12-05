@@ -139,6 +139,11 @@
                 <i class="fas fa-clipboard-list me-2"></i> Quản lý Tour
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="index.php?act=checkpoint-list">
+                <i class="fas fa-clipboard-list me-2"></i> check in
+            </a>
+        </li>
         
         <li class="nav-item">
             <a class="nav-link" href="#">

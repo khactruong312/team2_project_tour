@@ -195,8 +195,8 @@
 
                                 <td><?= date('d/m/Y ', strtotime( $sch['end_date'])) ?></td>
 
-                                <td><?= $sch['vehicle_id'] ?></td>
-                                <td><?= $sch['hotel_id'] ?></td>
+                                <td><?= $sch['vehicle'] ?></td>
+                                <td><?= $sch['hotel'] ?></td>
 
                                 <td>
                                     <?php

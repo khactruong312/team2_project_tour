@@ -25,7 +25,7 @@ class GuideController {
         $guide = $this->guideModel->getByUserId($user_id);
 
         if (!$guide) {
-            die("❌ Không tìm thấy hướng dẫn viên cho user_id = $user_id");
+            die(" Không tìm thấy hướng dẫn viên cho user_id = $user_id");
         }
 
         $guideId = $guide['guide_id'];

@@ -22,7 +22,7 @@ class GuideModel {
         return $stmt->fetch();
     }
 
-    // 🔥 Thêm mới — Lấy hướng dẫn viên theo user_id (dùng khi login)
+    // Thêm mới — Lấy hướng dẫn viên theo user_id (dùng khi login)
     public function getByUserId($user_id) {
         $sql = "SELECT * FROM guides WHERE user_id = :user_id LIMIT 1";
         $stmt = $this->conn->prepare($sql);
@@ -85,6 +85,15 @@ class GuideModel {
     $stmt = $this->conn->prepare($sql);
     $stmt->execute(['schedule_id' => $scheduleId]);
     
+
+    
+    // Lấy danh sách hướng dẫn viên đang hoạt động
+    }
+    public function getActiveGuides() {
+    $sql = "SELECT * FROM guides WHERE status = 'Active'";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 }

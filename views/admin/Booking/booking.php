@@ -127,21 +127,19 @@
                 <a href="index.php?act=customer-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-clipboard-list me-2"></i> Đơn hàng
+                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-chart-line me-2"></i> Thống kê
+                <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Cài đặt Chung
+                <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-info-circle me-2"></i> Về Chúng Tôi (Sửa)
-                </a>
+                
             </div>
         </div>
         <div id="page-content-wrapper">
@@ -242,8 +240,8 @@
                         </td>
 
                         <td><?= date('d/m/Y H:i', strtotime($b['created_at'])) ?></td>
-                        <td><?= date('d/m/Y ', strtotime($b['start_date'])) ?></td>
-                        <td><?= date('d/m/Y ', strtotime($b['end_date']??'lỗi')) ?></td>
+                        <td><?= date('d/m/Y ', strtotime($b['start_date']))??'N/A' ?></td>
+                        <td><?= date('d/m/Y ', strtotime($b['end_date']??'N/A')) ?></td>
 
                         <td><?= number_format($b['total_amount'], 0, ',', '.') ?> đ</td>
 
@@ -257,7 +255,7 @@
                             <span class="<?= $cls ?> p-2"><?= $b['status'] ?></span>
                         </td>
 
-                        <td>
+                        <td class="w-25">
                             <a href="index.php?act=booking-view&id=<?= $b['booking_id'] ?>" 
                                class="btn btn-info btn-sm mb-1">
                                 <i class="fas fa-eye"></i> Xem
@@ -267,11 +265,19 @@
                                class="btn btn-success btn-sm mb-1">
                                 Đã thanh toán
                             </a>
-
+                            
                             <a href="index.php?act=booking-status&id=<?= $b['booking_id'] ?>&status=Cancelled" 
-                               class="btn btn-danger btn-sm"
+                               class="btn btn-dark btn-sm "
                                onclick="return confirm('Hủy booking?')">
                                 Hủy
+                            </a>
+                               
+                            <a 
+                                href="index.php?act=booking-delete&id=<?= $b['booking_id'] ?>"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('Bạn có chắc chắn muốn xoá booking này?')"
+                            >
+                                <i class="fa fa-trash"></i>
                             </a>
                         </td>
                     </tr>

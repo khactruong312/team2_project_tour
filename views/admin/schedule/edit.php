@@ -112,21 +112,19 @@
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
+                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-chart-line me-2"></i> Thống kê
+                <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Cài đặt Chung
+                <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-info-circle me-2"></i> Về Chúng Tôi (Sửa)
-                </a>
+
             </div>
         </div>
 
@@ -189,8 +187,9 @@
                         <select name="guide_id" class="form-select">
                             <option value="">-- Không gán --</option>
                             <?php foreach ($guides as $g): ?>
-                                <option value="<?= $g['guide_id'] ?>" <?= $g['guide_id'] == $schedule['guide_id'] ? 'selected' : '' ?>>
-                                    <?= $g['full_name'] ?>
+                                <option value="<?= $g['guide_id'] ?>"><?= $g['full_name'] ?></option>
+
+
                                 </option>
                             <?php endforeach; ?>
                         </select>
@@ -214,15 +213,48 @@
                     <!-- Vehicle -->
                     <div class="mb-3">
                         <label class="form-label">Phương tiện:</label>
-                        <input type="text" name="vehicle" value="<?= $schedule['vehicle'] ?>" class="form-control">
+                        <select name="vehicle_id" class="form-select" required>
+                            <option value="">-- Chọn xe --</option>
+                            <?php
+                            // 1. Lấy tên/mô tả xe cũ đang được lưu trong CSDL
+                            $old_vehicle_name = $schedule['vehicle_id'];
+                            ?>
+                            <?php foreach ($vehicles as $vehicle):
+                                // 2. Tạo chuỗi tên đầy đủ của xe hiện tại để so sánh
+                                // (Phải khớp với chuỗi được tạo bởi hàm getVehicleNameById() trong Controller)
+                                $current_vehicle_name = htmlspecialchars($vehicle['vehicle_type']) . ' (' . htmlspecialchars($vehicle['capacity']) . ' chỗ)';
+
+                                // 3. Kiểm tra và chọn nếu tên xe khớp với tên xe cũ
+                                $isSelected = ($current_vehicle_name == $old_vehicle_name) ? 'selected' : '';
+                            ?>
+                                <option value="<?= htmlspecialchars($vehicle['id']) ?>" <?= $isSelected ?>>
+                                    <?= $current_vehicle_name ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
                     <!-- Hotel -->
                     <div class="mb-3">
                         <label class="form-label">Khách sạn:</label>
-                        <input type="text" name="hotel" value="<?= $schedule['hotel'] ?>" class="form-control">
-                    </div>
+                        <select name="hotel_id" class="form-select" required>
+                            <option value="">-- Chọn khách sạn --</option>
+                            <?php
+                            // 1. Lấy tên khách sạn cũ đang được lưu trong CSDL
+                            $old_hotel_name = $schedule['hotel_id'];
+                            ?>
+                            <?php foreach ($hotels as $hotel):
+                                $current_hotel_name = htmlspecialchars($hotel['name']);
 
+                                // 2. Kiểm tra và chọn nếu tên khách sạn khớp với tên khách sạn cũ
+                                $isSelected = ($current_hotel_name == $old_hotel_name) ? 'selected' : '';
+                            ?>
+                                <option value="<?= htmlspecialchars($hotel['id']) ?>" <?= $isSelected ?>>
+                                    <?= $current_hotel_name . ' - ' . htmlspecialchars($hotel['address']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <!-- Status -->
                     <div class="mb-3">
                         <label class="form-label">Trạng thái:</label>
@@ -252,11 +284,11 @@
 
     <script>
         // Toggle Sidebar
-        document.getElementById("menu-toggle").onclick = function () {
+        document.getElementById("menu-toggle").onclick = function() {
             document.getElementById("wrapper").classList.toggle("toggled");
         };
 
-        setTimeout(function () {
+        setTimeout(function() {
             const alert = document.querySelector('.auto-hide');
             if (alert) {
                 alert.style.transition = 'opacity 0.5s';
@@ -265,7 +297,6 @@
                 setTimeout(() => alert.remove(), 500);
             }
         }, 2000);
-
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="..."

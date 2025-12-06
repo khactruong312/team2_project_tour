@@ -112,21 +112,19 @@
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
+               <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-chart-line me-2"></i> Thống kê
+                <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Cài đặt Chung
+                <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-info-circle me-2"></i> Về Chúng Tôi (Sửa)
-                </a>
+                
             </div>
         </div>
 
@@ -185,8 +183,9 @@
                         <select name="guide_id" class="form-select">
                             <option value="">-- Không gán --</option>
                             <?php foreach ($guides as $g): ?>
-                                <option value="<?= $g['guide_id'] ?>"><?= $g['full_name'] ?></option>
-                            <?php endforeach; ?>
+<option value="<?= $g['guide_id'] ?>"><?= $g['full_name'] ?></option>
+<?php endforeach; ?>
+
                         </select>
                     </div>
 
@@ -205,7 +204,7 @@
                     <!-- Phương tiện -->
                     <div class="mb-3">
                         <label for="vehicle_id">Chọn Xe:</label>
-                        <select name="vehicle_id" id="vehicle_id" required>
+                        <select name="vehicle_id" id="vehicle_id" class="form-control" required>
                             <option value="">-- Chọn xe --</option>
                             <?php foreach ($vehicles as $vehicle): ?>
                                 <option value="<?php echo htmlspecialchars($vehicle['id']); ?>">
@@ -218,7 +217,7 @@
                     <!-- Hotel -->
                     <div class="mb-3">
                         <label for="hotel_id">Chọn Khách Sạn:</label>
-                        <select name="hotel_id" id="hotel_id" required>
+                        <select name="hotel_id" id="hotel_id" class="form-control" required>
                             <option value="">-- Chọn khách sạn --</option>
                             <?php foreach ($hotels as $hotel): ?>
                                 <option value="<?php echo htmlspecialchars($hotel['id']); ?>">

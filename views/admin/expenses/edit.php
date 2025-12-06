@@ -114,21 +114,19 @@
                 <a href="#" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Khách hàng
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action active">
                     <i class="fas fa-clipboard-list me-2"></i> Chi phí
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-chart-line me-2"></i> Thống kê
+                <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Cài đặt Chung
+                <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <i class="fas fa-info-circle me-2"></i> Về Chúng Tôi (Sửa)
-                </a>
+                
             </div>
         </div>
 
@@ -165,9 +163,9 @@
                 </div>
             </nav>
 
-            <h2 class="mt-4">Sửa Chi Phí</h2>
+            <h2 class="mt-4">Sửa Chi Phí Tour</h2>
 
-            <form action="index.php?act=expense-update" method="POST">
+             <form action="index.php?act=expense-update" method="POST">
 
                 <input type="hidden" name="expense_id" value="<?= $expense['expense_id'] ?>">
 

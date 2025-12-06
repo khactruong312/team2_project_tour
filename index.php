@@ -11,6 +11,10 @@ require_once './controllers/GuideController.php';
 require_once './controllers/BookingController.php';
 require_once './controllers/ExpenseController.php';
 require_once './controllers/CustomerController.php';
+require_once './controllers/SettingController.php';
+require_once './controllers/EmployeeController.php';
+require_once './controllers/ReportController.php';
+
 
 // Models
 require_once './models/UserModel.php';
@@ -20,6 +24,10 @@ require_once './models/GuideModel.php';
 require_once './models/BookingModel.php';
 require_once './models/ExpenseModel.php';
 require_once './models/CustomerModel.php';
+require_once './models/SettingModel.php';
+require_once './models/EmployeeModel.php';
+require_once './models/ReportModel.php';
+
 
 // ============= FIX QUAN TRỌNG =============
 $act = $_GET['act'] ?? 'login';
@@ -30,8 +38,18 @@ $admin     = new TourController;
 $schedule  = new ScheduleController;
 $guide     = new GuideController;
 $booking   = new BookingController;
+
 $customer  = new CustomerController;
 $expense   = new ExpenseController();
+
+$customer = new CustomerController;
+$expense = new ExpenseController();
+$setting   = new SettingController;
+$employees = new EmployeeController();
+$report    = new ReportController();
+
+
+
 
 match ($act) {
 
@@ -64,7 +82,36 @@ match ($act) {
     'booking-create' => $booking->create(),
     'booking-store'  => $booking->store(),
     'booking-view'   => $booking->view(),
+    'booking-delete' => $booking->delete(),
     'booking-status' => $booking->changeStatus(),
+
+     /* =============================
+     * QUẢN LÝ Người Dùng
+     * ============================= */
+
+    'user-list'   => $setting->listUsers(),
+    'user-detail' => $setting->viewUser(),
+    'user-edit'   => $setting->editUser(),
+    'user-delete' => $setting->deleteUser(),
+    'user-create' => $setting->createUser(),
+
+    /* =============================
+     * QUẢN LÝ NHÂN SỰ
+     * ============================= */
+    'employees-list' => $employees->index(),
+    'employees-create' => $employees->create(),
+    'employees-edit' => $employees->edit(),
+    'employees-store' =>$employees->store(),
+    'employees-update'=>$employees->update(),
+    'employees-delete' =>$employees->delete(),
+
+    /* =============================
+     * BÁO CÁO THỐNG KÊ
+     * ============================= */
+    'report-list' => $report->index(),
+     'report-tour'  => $report->tourReport(),
+    'report-time'  => $report->timeReport(),
+    'report-guide' => $report->guideReport(),
 
     /* =============================
      * TRANG HƯỚNG DẪN VIÊN
@@ -73,6 +120,10 @@ match ($act) {
     'guide-list' => $guide->list(),
     'guide-progress' => $guide->progress(),
     'guide-report'   => $guide->report(),
+
+
+
+
 
     /* =============================
      * CRUD LỊCH KHỞI HÀNH
@@ -83,6 +134,10 @@ match ($act) {
     'schedule-edit'     => $schedule->edit(),
     'schedule-update'   => $schedule->update(),
     'schedule-delete'   => $schedule->delete(),
+
+    /* API lấy lịch theo tour */
+    'get-schedule-by-tour' => $schedule->getScheduleByTour(),
+
 
     'get-schedule-by-tour' => $schedule->getScheduleByTour(),
 

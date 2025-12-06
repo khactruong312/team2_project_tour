@@ -5,15 +5,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">    
 </head>
+<style>
+      body {
+            background-color: #f8f9fa;
+        }
+
+        .sidebar-heading {
+            padding: 0.875rem 1.25rem;
+            font-size: 1.2rem;
+            color: #f8f9fa;
+        }
+
+        #sidebar-wrapper {
+            min-height: 100vh;
+            margin-left: -15rem;
+            transition: margin .25s ease-out;
+            background-color: #343a40;
+            color: #ffffff;
+            position: fixed;
+            z-index: 1030;
+        }
+
+        #page-content-wrapper {
+            width: 100%;
+            transition: padding-left .25s ease-out;
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            margin-left: 0;
+        }
+
+        #wrapper.toggled #page-content-wrapper {
+            padding-left: 15rem;
+        }
+
+        .list-group-item {
+            background-color: transparent;
+            color: #adb5bd;
+            border: none;
+            padding: 1rem 1.25rem;
+        }
+
+        .list-group-item:hover,
+        .list-group-item.active {
+            background-color: #495057;
+            color: #ffffff;
+        }
+
+        @media (min-width: 768px) {
+            #sidebar-wrapper {
+                margin-left: 0;
+            }
+
+            #page-content-wrapper {
+                padding-left: 15rem;
+            }
+
+            #wrapper.toggled #sidebar-wrapper {
+                margin-left: -15rem;
+            }
+
+            #wrapper.toggled #page-content-wrapper {
+                padding-left: 0;
+            }
+        }
+</style>
 
 <body>
+    <div class="d-flex" id="wrapper">
+    <div class="bg-dark border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom border-secondary">
+                <i class="fas fa-plane-departure text-info"></i> Quản Lý
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="index.php?act=admin-home" class="list-group-item list-group-item-action ">
+                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
+                <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
+                    <i class="fas fa-list me-2"></i> Danh sách tour
+                </a>
+                <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-road me-2"></i> Quản lý Tour
+                </a>
+                <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action">
+                    <i class="bi bi-bootstrap me-2"></i> Quản lý Booking
+                </a>
+                <a href="index.php?act=customer-list" class="list-group-item list-group-item-action active">
+                    <i class="fas fa-users me-2"></i> Quản lý Khách hàng
+                </a>
+                <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
+                </a>
+                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-clipboard-list me-2"></i> Chi phí
+                </a>
+                <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
+                </a>
+                <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
+                </a>
+                
+            </div>
+        </div>
     <div class="container-fluid px-4">
 
-        <h1 class="mt-4 text-secondary">
-            <i class="fas fa-user-edit me-2"></i> Sửa Khách Hàng
-        </h1>
+        
 
         <?php if (!isset($customer) || empty($customer)): ?>
             <div class="alert alert-danger mt-3">
@@ -90,6 +192,8 @@
                 </form>
             </div>
         </div>
+        </div>
+
     </div>
 </body>
 </html>

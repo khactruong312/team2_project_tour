@@ -13,7 +13,7 @@ class SettingController {
 
     // ⭐ Danh sách user
     public function listUsers() {
-        requireRole('admin');
+        // requireRole('admin');
 
         $users = $this->userModel->getAll();
 
@@ -22,7 +22,7 @@ class SettingController {
 
     // ⭐ Form tạo user
     public function createUser() {
-        requireRole('admin');
+        // requireRole('admin');
 
         $errors = [];
 
@@ -59,7 +59,7 @@ class SettingController {
 
     // ⭐ Form sửa user
     public function editUser() {
-        requireRole('admin');
+        // requireRole('admin');
 
         $id = $_GET['id'] ?? null;
         if (!$id) {
@@ -105,7 +105,7 @@ class SettingController {
 
     // ⭐ Xóa user
     public function deleteUser() {
-        requireRole('admin');
+        // requireRole('admin');
 
         $id = $_GET['id'] ?? null;
         if (!$id) {
@@ -120,7 +120,7 @@ class SettingController {
     }
     // ⭐ Xem chi tiết user
     public function viewUser() {
-        requireRole('admin');
+        // requireRole('admin');
 
         $id = $_GET['id'] ?? null;
         if (!$id) {

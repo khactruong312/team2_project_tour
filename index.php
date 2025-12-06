@@ -44,7 +44,7 @@ $expense   = new ExpenseController();
 
 $customer = new CustomerController;
 $expense = new ExpenseController();
-$setting   = new SettingController;
+$setting   = new SettingController();
 $employees = new EmployeeController();
 $report    = new ReportController();
 

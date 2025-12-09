@@ -140,7 +140,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.php?act=checkpoint-list">
+            <a class="nav-link" href="index.php?act=list-all">
                 <i class="fas fa-clipboard-list me-2"></i> check in
             </a>
         </li>

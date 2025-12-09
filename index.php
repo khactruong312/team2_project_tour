@@ -14,6 +14,7 @@ require_once './controllers/CustomerController.php';
 require_once './controllers/SettingController.php';
 require_once './controllers/EmployeeController.php';
 require_once './controllers/ReportController.php';
+require_once './controllers/CheckpointController.php';
 
 
 // Models
@@ -27,6 +28,7 @@ require_once './models/CustomerModel.php';
 require_once './models/SettingModel.php';
 require_once './models/EmployeeModel.php';
 require_once './models/ReportModel.php';
+require_once './models/CheckpointModel.php';
 
 
 // ============= FIX QUAN TRỌNG =============
@@ -40,13 +42,15 @@ $guide     = new GuideController;
 $booking   = new BookingController;
 
 $customer  = new CustomerController;
-$expense   = new ExpenseController();
+
 
 $customer = new CustomerController;
-$expense = new ExpenseController();
+
 $setting   = new SettingController();
 $employees = new EmployeeController();
 $report    = new ReportController();
+
+$checkpoint = new CheckpointController();
 
 
 
@@ -137,11 +141,11 @@ match ($act) {
     'schedule-update'   => $schedule->update(),
     'schedule-delete'   => $schedule->delete(),
 
-    /* API lấy lịch theo tour */
-    'get-schedule-by-tour' => $schedule->getScheduleByTour(),
+'checkpoint-list'  => $checkpoint->list(), 
+'list-all'=>$checkpoint->listAll(),
+'checkpoint-checkin'  => $checkpoint->checkIn(),
+'checkpoint-checkout' => $checkpoint->checkOut(),
 
-
-    'get-schedule-by-tour' => $schedule->getScheduleByTour(),
 
     /* =============================
      * CRUD KHÁCH HÀNG
@@ -157,12 +161,12 @@ match ($act) {
     /* =============================
      * CHI PHÍ TOUR
      * ============================= */
-    'expense-list'   => $expense->index(),
-    'expense-create' => $expense->create(),
-    'expense-store'  => $expense->store(),
-    'expense-edit'   => $expense->edit(),
-    'expense-update' => $expense->update(),
-    'expense-delete' => $expense->delete(),
+    // 'expense-list'   => $expense->index(),
+    // 'expense-create' => $expense->create(),
+    // 'expense-store'  => $expense->store(),
+    // 'expense-edit'   => $expense->edit(),
+    // 'expense-update' => $expense->update(),
+    // 'expense-delete' => $expense->delete(),
 
 
     /* =============================

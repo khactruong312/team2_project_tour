@@ -123,6 +123,10 @@ public function updateHotelStatusByName($hotel_name, $status)
     return $stmt->execute([$status, $hotel_name]);
 }
 
+public function getLastInsertedId() {
+    return $this->conn->lastInsertId();
+}
+
 }
 
 ?>

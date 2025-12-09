@@ -128,6 +128,7 @@
                     <i class="fas fa-users me-2"></i> Quản Lý Khách Hàng
                 </a>
                 <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
+
                     <i class="fas fa-users me-2"></i> Quản Lý Nhân Sự
                 </a>
                 <a href="index.php?act=report-list" class="list-group-item list-group-item-action">

@@ -77,6 +77,24 @@ public function store()
         $status 
     );
 
+    if ($result) {
+
+    // Lấy ID lịch mới tạo
+    $newScheduleId = $this->scheduleModel->getLastInsertedId();
+
+    // Lấy danh sách điểm đến của tour
+    $destinations = $this->tourModel->getDestinationsByTour($tour_id);
+
+    require_once "./models/CheckpointModel.php";
+    $checkpointModel = new CheckpointModel();
+
+    // Tạo checkpoint tự động
+    foreach ($destinations as $d) {
+        $checkpointModel->createCheckpoint($newScheduleId, $d['destination_id']);
+    }
+
+}
+
     
     if ($result) {
         

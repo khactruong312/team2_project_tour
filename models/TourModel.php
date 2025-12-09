@@ -71,6 +71,19 @@ class TourModel
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([$id]);
     }
+
+   public function getDestinationsByTour($tour_id)
+{
+    $sql = "SELECT destination_id 
+            FROM tour_destinations 
+            WHERE tour_id = ?
+            ORDER BY destination_id ASC";
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([$tour_id]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
     
 }
 

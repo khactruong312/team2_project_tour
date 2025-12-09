@@ -117,14 +117,11 @@
                 <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-clipboard-list me-2"></i> Chi phí
-                </a>
                 <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
                 <a href="index.php?act=user-list" class="list-group-item list-group-item-action ">
-                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
+                    <i class="fas fa-cog me-2"></i> Quản Lí Tài Khoản
                 </a>
                 
             </div>
@@ -216,12 +213,7 @@
                                     <a class="btn btn-sm btn-warning"
                                         href="index.php?act=tour-edit&id=<?= $tour['tour_id'] ?>">
                                         <i class="fas fa-edit"></i> Sửa
-                                    </a>
-
-                                    <a onclick="return confirm('Bạn chắc chắn muốn xóa?')" class="btn btn-sm btn-danger"
-                                        href="index.php?act=tour-delete&id=<?= $tour['tour_id'] ?>">
-                                        <i class="fas fa-trash"></i> Xóa
-                                    </a>
+                                    </a>   
                                 </td>
                             </tr>
                         <?php endforeach; ?>

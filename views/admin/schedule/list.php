@@ -89,7 +89,7 @@
         <!-- Sidebar -->
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom border-secondary">
-                <i class="fas fa-plane-departure text-info"></i> Quản Lý Tour
+                <i class="fas fa-plane-departure text-info"></i> Quản Lý
             </div>
             <div class="list-group list-group-flush">
                 <a href="index.php?act=admin-home" class="list-group-item list-group-item-action ">
@@ -111,14 +111,11 @@
                 <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-                 <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-clipboard-list me-2"></i> Chi phí
-                </a>
                 <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
                 <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
+                    <i class="fas fa-cog me-2"></i> Quản Lí Tài Khoản
                 </a>
                 
             </div>
@@ -227,12 +224,6 @@
                                     <a href="index.php?act=schedule-edit&id=<?= $sch['schedule_id'] ?>"
                                         class="btn btn-sm btn-warning">
                                         <i class="fas fa-edit"></i> Sửa
-                                    </a>
-
-                                    <a onclick="return confirm('Bạn chắc chắn muốn xóa lịch này?')"
-                                        href="index.php?act=schedule-delete&id=<?= $sch['schedule_id'] ?>"
-                                        class="btn btn-sm btn-danger">
-                                        <i class="fas fa-trash"></i> Xóa
                                     </a>
                                 </td>
                             </tr>

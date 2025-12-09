@@ -116,31 +116,28 @@
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
                 <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
-                    <i class="fas fa-list me-2"></i> Danh sách tour
+                    <i class="fas fa-list me-2"></i> Danh Sách Tour
                 </a>
-             
+
                 <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action">
-                     <i class="fas fa-road me-2"></i> Quản lý Tour
+                    <i class="fas fa-road me-2"></i> Quản Lý Tour
                 </a>
                 <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action ">
-                    <i class="bi bi-bootstrap me-2"></i> Quản lý Booking
+                    <i class="bi bi-bootstrap me-2"></i> Quản Lý Booking
                 </a>
                 <a href="index.php?act=customer-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-users me-2"></i> Quản lý Khách hàng
+                    <i class="fas fa-users me-2"></i> Quản Lý Khách Hàng
                 </a>
                 <a href="index.php?act=employees-list" class="list-group-item list-group-item-action active">
-                    <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
-                </a>
-                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-clipboard-list me-2"></i> Chi phí
+                    <i class="fas fa-users me-2"></i> Quản Lý Nhân Sự
                 </a>
                 <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
+                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống Kê
                 </a>
                 <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
+                    <i class="fas fa-cog me-2"></i> Quản Lí Tài Khoản
                 </a>
-                
+
             </div>
         </div>
         <div id="page-content-wrapper">
@@ -167,7 +164,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger" href="index.php?act=tour-logout">
                                     <i class="fas fa-sign-out-alt me-1"></i> Đăng xuất
-                                                                                        </a>
+                                </a>
                             </div>
                         </li>
                     </ul>
@@ -196,56 +193,50 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Tên</th>
-                                        
+
                                         <th>Điện thoại</th>
-                                        
+
                                         <th>Trạng thái</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-<?php 
-if (!empty($listEmployees)) {
-    foreach ($listEmployees as $employee) {
-?>
-    <tr>
-        <td><?= htmlspecialchars($employee['guide_id']) ?></td>
+                                    <?php
+                                    if (!empty($listEmployees)) {
+                                        foreach ($listEmployees as $employee) {
+                                    ?>
+                                            <tr>
+                                                <td><?= htmlspecialchars($employee['guide_id']) ?></td>
 
-        <td><?= htmlspecialchars($employee['full_name']) ?></td>
+                                                <td><?= htmlspecialchars($employee['full_name']) ?></td>
 
-        <td><?= htmlspecialchars($employee['phone']) ?></td>
+                                                <td><?= htmlspecialchars($employee['phone']) ?></td>
 
-        <td>
-            <?php
-                $status = $employee['status'];
-                $badgeClass = ($status === "Active") ? "bg-success" : "bg-danger";
-                $text = ($status === "Active") ? "Đang làm" : "Đã nghỉ";
-            ?>
-            <span class="badge <?= $badgeClass ?>"><?= $text ?></span>
-        </td>
+                                                <td>
+                                                    <?php
+                                                    $status = $employee['status'];
+                                                    $badgeClass = ($status === "Active") ? "bg-success" : "bg-danger";
+                                                    $text = ($status === "Active") ? "Đang làm" : "Đã nghỉ";
+                                                    ?>
+                                                    <span class="badge <?= $badgeClass ?>"><?= $text ?></span>
+                                                </td>
 
-        <td class="text-center">
-            <a href="index.php?act=employees-edit&id=<?= $employee['guide_id'] ?>" 
-               class="btn btn-warning btn-sm me-1">
-                <i class="fas fa-edit"></i>
-            </a>
-
-            <a href="index.php?act=employees-delete&id=<?= $employee['guide_id'] ?>" 
-               onclick="return confirm('Bạn chắc chắn muốn xóa?')" 
-               class="btn btn-danger btn-sm">
-                <i class="fas fa-trash"></i>
-            </a>
-        </td>
-    </tr>
-<?php 
-    }
-} else {
-?>
-    <tr>
-        <td colspan="5" class="text-center text-muted">Không có dữ liệu</td>
-    </tr>
-<?php } ?>
-</tbody>
+                                                <td class="text-center">
+                                                    <a href="index.php?act=employees-edit&id=<?= $employee['guide_id'] ?>"
+                                                        class="btn btn-warning btn-sm me-1">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted">Không có dữ liệu</td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>

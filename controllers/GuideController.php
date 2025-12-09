@@ -92,4 +92,37 @@ class GuideController {
 
         require_once './views/guide/report.php';
     }
+    
+    public function submitReport() {
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        die("Invalid request");
+    }
+
+    $scheduleId = $_POST['schedule_id'];
+    $guideId = $_SESSION['guide_id'];
+    $pax = $_POST['pax_count'];
+    $extra = $_POST['extra_expenses'];
+    $issues = $_POST['issues'];
+    $notes = $_POST['guide_notes'];
+    $rating = $_POST['rating'];
+
+    $result = $this->guideModel->saveReport([
+        'schedule_id' => $scheduleId,
+        'guide_id' => $guideId,
+        'pax_count' => $pax,
+        'extra_expenses' => $extra,
+        'issues' => $issues,
+        'guide_notes' => $notes,
+        'rating' => $rating
+    ]);
+
+    if ($result) {
+        $_SESSION['success'] = "Báo cáo đã được gửi!";
+    } else {
+        $_SESSION['error'] = "Lỗi khi lưu báo cáo!";
+    }
+
+    header("Location: index.php?act=guide-tours");
+    exit();
+}
 }

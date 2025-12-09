@@ -121,6 +121,8 @@ match ($act) {
     'guide-progress' => $guide->progress(),
     'guide-report'   => $guide->report(),
 
+    'guide-submit-report' => $guide->submitReport(),
+
 
 
 

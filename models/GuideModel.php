@@ -96,4 +96,22 @@ class GuideModel {
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+    public function saveReport($data) {
+    $sql = "INSERT INTO tour_reports 
+        (schedule_id, guide_id, pax_count, extra_expenses, issues, guide_notes, rating)
+        VALUES 
+        (:schedule_id, :guide_id, :pax_count, :extra_expenses, :issues, :guide_notes, :rating)";
+
+    $stmt = $this->conn->prepare($sql);
+    return $stmt->execute([
+        ':schedule_id' => $data['schedule_id'],
+        ':guide_id' => $data['guide_id'],
+        ':pax_count' => $data['pax_count'],
+        ':extra_expenses' => $data['extra_expenses'],
+        ':issues' => $data['issues'],
+        ':guide_notes' => $data['guide_notes'],
+        ':rating' => $data['rating']
+    ]);
+}
+
 }

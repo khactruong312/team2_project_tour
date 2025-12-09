@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Giả định biến $scheduleDetail đã được định nghĩa trong GuideController
 // Cấu trúc code này chứa toàn bộ HTML, CSS, Sidebar, Navbar
 ?>
@@ -218,19 +218,25 @@
 
                         <div class="row">
                             <div class="col-md-6">
+
+                                <!-- Số lượng khách -->
                                 <div class="mb-3">
                                     <label for="pax_count" class="form-label">Số lượng khách thực tế *</label>
                                     <input type="number" class="form-control" id="pax_count" name="pax_count" required min="1">
                                     <small class="form-text text-muted">Tổng số khách đã tham gia tour.</small>
                                 </div>
+
+                                <!-- Chi phí phát sinh -->
                                 <div class="mb-3">
                                     <label for="extra_expenses" class="form-label">Chi phí phát sinh (VND)</label>
                                     <input type="number" class="form-control" id="extra_expenses" name="extra_expenses" value="0" min="0">
                                     <small class="form-text text-muted">Tổng chi phí phát sinh ngoài dự kiến.</small>
                                 </div>
+
+                                <!-- Đánh giá tour -->
                                 <div class="mb-3">
-                                    <label for="tour_rating" class="form-label">Đánh giá chung về Tour (1-5)</label>
-                                    <select class="form-select" id="tour_rating" name="tour_rating" required>
+                                    <label for="rating" class="form-label">Đánh giá chung về Tour (1-5)</label>
+                                    <select class="form-select" id="rating" name="rating" required>
                                         <option value="" selected>Chọn mức đánh giá</option>
                                         <option value="5">5 - Xuất sắc</option>
                                         <option value="4">4 - Tốt</option>
@@ -239,21 +245,28 @@
                                         <option value="1">1 - Rất kém</option>
                                     </select>
                                 </div>
+
                             </div>
 
                             <div class="col-md-6">
+
+                                <!-- Sự cố -->
                                 <div class="mb-3">
-                                    <label for="incidents" class="form-label">Sự cố/Vấn đề phát sinh (Nếu có)</label>
-                                    <textarea class="form-control" id="incidents" name="incidents" rows="4" placeholder="Mô tả các vấn đề không lường trước được..."></textarea>
+                                    <label for="issues" class="form-label">Sự cố/Vấn đề phát sinh (Nếu có)</label>
+                                    <textarea class="form-control" id="issues" name="issues" rows="4" placeholder="Mô tả các vấn đề không lường trước..."></textarea>
                                 </div>
+
+                                <!-- Ghi chú -->
                                 <div class="mb-3">
                                     <label for="guide_notes" class="form-label">Ghi chú & Đề xuất của Hướng dẫn viên</label>
-                                    <textarea class="form-control" id="guide_notes" name="guide_notes" rows="4" required placeholder="Tóm tắt ngắn gọn về tour và đề xuất cải tiến..."></textarea>
+                                    <textarea class="form-control" id="guide_notes" name="guide_notes" rows="4" required placeholder="Tóm tắt ngắn gọn về tour..."></textarea>
                                 </div>
+
                             </div>
                         </div>
 
                         <hr>
+
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-success btn-lg">
                                 <i class="fas fa-paper-plane me-2"></i> Gửi Báo Cáo Hoàn Thành
@@ -263,7 +276,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
 
     <script>

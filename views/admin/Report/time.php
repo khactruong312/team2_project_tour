@@ -130,9 +130,7 @@
                 <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-clipboard-list me-2"></i> Chi phí
-                </a>
+           
                 <a href="index.php?act=report-list" class="list-group-item list-group-item-action active">
                     <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>

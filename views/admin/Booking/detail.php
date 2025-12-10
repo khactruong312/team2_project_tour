@@ -138,19 +138,49 @@
             </dl>
 
             <h5 class="mt-4">Danh sách khách</h5>
-            <hr>
+<hr>
 
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="table-secondary">
+            <tr>
+                <th>Họ tên</th>
+                <th>Điện thoại</th>
+                <th>Email</th>
+                <th>Loại</th>
+                <th>Giá</th>
+            </tr>
+        </thead>
+        <tbody>
             <?php foreach ($customers as $c): ?>
-                <div class="customer-item">
-                    <strong><?= htmlspecialchars($c['full_name']) ?></strong><br>
-                    <i class="bi bi-telephone"></i> <?= htmlspecialchars($c['phone']) ?> —
-                    <i class="bi bi-envelope"></i> <?= htmlspecialchars($c['email']) ?>
-                </div>
-            <?php endforeach; ?>
+                <tr>
+                    <td><?= htmlspecialchars($c['full_name']) ?></td>
+                    <td><?= htmlspecialchars($c['phone']) ?></td>
+                    <td><?= htmlspecialchars($c['email']) ?></td>
 
-            <a href="index.php?act=tour-booking" class="btn btn-secondary mt-3">
-                <i class="bi bi-arrow-left"></i> Trở về
-            </a>
+                    <!-- HIỂN THỊ NGƯỜI LỚN / TRẺ EM -->
+                    <td>
+                        <?php if ($c['type'] === 'adult'): ?>
+                            <span class="badge bg-primary">Người lớn</span>
+                        <?php else: ?>
+                            <span class="badge bg-success">Trẻ em</span>
+                        <?php endif; ?>
+                    </td>
+
+                    <!-- HIỂN THỊ GIÁ -->
+                    <td class="text-danger fw-semibold">
+                        <?= number_format($c['price']) ?> đ
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<a href="index.php?act=tour-booking" class="btn btn-secondary mt-3">
+    <i class="bi bi-arrow-left"></i> Trở về
+</a>
+
         </div>
     </div>
 

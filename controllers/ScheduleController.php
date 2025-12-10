@@ -194,45 +194,58 @@ public function update()
     }
 
     
-    public function getScheduleByTour()
-{
-    $tour_id = $_GET['id'] ?? 0;
+   public function getScheduleByTour()
+    {
+        // 1. Lấy tour ID
+        $tour_id = $_GET['id'] ?? 0;
 
-    $model = new ScheduleModel();
-    $data  = $model->getByTour($tour_id);
+        // 2. Tạo Model (Có thể dùng $this->scheduleModel nếu đã khởi tạo)
+        // Nếu bạn muốn dùng $this->scheduleModel đã có trong constructor:
+        // $data  = $this->scheduleModel->getByTour($tour_id);
+        // HOẶC giữ nguyên như code của bạn:
+        $model = new ScheduleModel();
+        $data  = $model->getByTour($tour_id);
 
-    header("Content-Type: application/json");
-    echo json_encode($data);
-    exit;
-}
 
-// private function getVehicleNameById($id) 
-//     {
-//         // Truy vấn CSDL để lấy vehicle_type và capacity
-//         $sql = "SELECT vehicle_type, capacity FROM vehicles WHERE id = ?";
-//         $stmt = $this->scheduleModel->conn->prepare($sql);
-//         $stmt->execute([$id]);
-//         $vehicle = $stmt->fetch(PDO::FETCH_ASSOC);
+        // 3. Đặt header cho JSON
+        header("Content-Type: application/json");
         
-//         if ($vehicle) {
-//             return $vehicle['vehicle_type'] . ' (' . $vehicle['capacity'] . ' chỗ)';
-//         }
-//         return null; 
-//     }
+        // 4. In dữ liệu JSON
+        echo json_encode($data);
+        
+        // 5. RẤT QUAN TRỌNG: DỪNG VIỆC THỰC THI
+        // Điều này ngăn chặn bất kỳ mã HTML nào (như layout, footer, hoặc mã lỗi) 
+        // bị in ra sau JSON.
+        exit; 
+    }
+
+private function getVehicleNameById($id) 
+    {
+        // Truy vấn CSDL để lấy vehicle_type và capacity
+        $sql = "SELECT vehicle_type, capacity FROM vehicles WHERE id = ?";
+        $stmt = $this->scheduleModel->conn->prepare($sql);
+        $stmt->execute([$id]);
+        $vehicle = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($vehicle) {
+            return $vehicle['vehicle_type'] . ' (' . $vehicle['capacity'] . ' chỗ)';
+        }
+        return null; 
+    }
     
-    // private function getHotelNameById($id) 
-    // {
-    //     // Truy vấn CSDL để lấy name
-    //     $sql = "SELECT name FROM hotel WHERE id = ?";
-    //     $stmt = $this->scheduleModel->conn->prepare($sql);
-    //     $stmt->execute([$id]);
-    //     $hotel = $stmt->fetch(PDO::FETCH_ASSOC);
+    private function getHotelNameById($id) 
+    {
+        // Truy vấn CSDL để lấy name
+        $sql = "SELECT name FROM hotel WHERE id = ?";
+        $stmt = $this->scheduleModel->conn->prepare($sql);
+        $stmt->execute([$id]);
+        $hotel = $stmt->fetch(PDO::FETCH_ASSOC);
         
-    //     if ($hotel) {
-    //         return $hotel['name'];
-    //     }
-    //     return null;
-    // }
+        if ($hotel) {
+            return $hotel['name'];
+        }
+        return null;
+    }
 
 
 

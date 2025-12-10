@@ -140,11 +140,11 @@ match ($act) {
     'schedule-edit'     => $schedule->edit(),
     'schedule-update'   => $schedule->update(),
     'schedule-delete'   => $schedule->delete(),
-
-'checkpoint-list'  => $checkpoint->list(), 
-'list-all'=>$checkpoint->listAll(),
-'checkpoint-checkin'  => $checkpoint->checkIn(),
-'checkpoint-checkout' => $checkpoint->checkOut(),
+    'get-schedule-by-tour' => $schedule->getScheduleByTour(),
+    'checkpoint-list'  => $checkpoint->list(), 
+    'list-all'=>$checkpoint->listAll(),
+    'checkpoint-checkin'  => $checkpoint->checkIn(),
+    'checkpoint-checkout' => $checkpoint->checkOut(),
 
 
     /* =============================

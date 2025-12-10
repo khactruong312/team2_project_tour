@@ -134,7 +134,9 @@
                 <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
                 </a>
-
+                <a href="index.php?act=expense-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-clipboard-list me-2"></i> Chi phí
+                </a>
                 <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
                 </a>
@@ -212,24 +214,37 @@
 
 
                 <div class="mb-3">
-                    <label class="form-label">Danh sách khách</label>
-                    <div id="customers-wrapper">
-                        <div class="row g-2 mb-2 customer-row">
-                            <div class="col"><input name="cust_name[]" class="form-control" placeholder="Họ tên" required></div>
-                            <div class="col-3"><input name="cust_phone[]" class="form-control" placeholder="Điện thoại" ></div>
-                            <div class="col-4"><input name="cust_email[]" class="form-control" placeholder="Email" ></div>
-                            <br>
-                            <div class="col-5"><input name="cust_address[]" class="form-control" placeholder="Địa chỉ"></div>
+    <label class="form-label">Danh sách khách</label>
 
-                            
+    <div id="customers-wrapper">
+        <div class="row g-2 mb-2 customer-row">
 
-                            <div class="col-auto">
-                                <button type="button" class="btn btn-sm btn-outline-danger remove-customer-btn">Xóa</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-outline-secondary mt-2" id="add-customer"><i class="fas fa-plus me-1"></i> Thêm khách</button>
-                </div>
+            <div class="col"><input name="cust_name[]" class="form-control" placeholder="Họ tên" required></div>
+
+            <div class="col-3"><input name="cust_phone[]" class="form-control" placeholder="Điện thoại"></div>
+
+            <div class="col-4"><input name="cust_email[]" class="form-control" placeholder="Email"></div>
+
+            <div class="col-5"><input name="cust_address[]" class="form-control" placeholder="Địa chỉ"></div>
+
+            <div class="col-3">
+                <select name="cust_type[]" class="form-select">
+                    <option value="adult">Người lớn</option>
+                    <option value="child">Trẻ em (miễn phí)</option>
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <button type="button" class="btn btn-sm btn-outline-danger remove-customer-btn">Xóa</button>
+            </div>
+
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-sm btn-outline-secondary mt-2" id="add-customer">
+        <i class="fas fa-plus me-1"></i> Thêm khách
+    </button>
+</div>
 
                 <div class="mb-3">
                     <label class="form-label">Phương thức thanh toán</label>
@@ -257,11 +272,24 @@ document.getElementById('add-customer').addEventListener('click', function(){
     
     node.innerHTML = `
         <div class="col"><input name="cust_name[]" class="form-control" placeholder="Họ tên" required></div>
+
         <div class="col-3"><input name="cust_phone[]" class="form-control" placeholder="Điện thoại"></div>
+
         <div class="col-4"><input name="cust_email[]" class="form-control" placeholder="Email"></div>
+
         <div class="col-5"><input name="cust_address[]" class="form-control" placeholder="Địa chỉ"></div>
+
+        <div class="col-3">
+            <select name="cust_type[]" class="form-select">
+                <option value="adult">Người lớn</option>
+                <option value="child">Trẻ em (miễn phí)</option>
+            </select>
+        </div>
+
         <div class="col-auto">
-            <button type="button" class="btn btn-sm btn-outline-danger remove-customer-btn"><i class="fas fa-times"></i> Xóa</button>
+            <button type="button" class="btn btn-sm btn-outline-danger remove-customer-btn">
+                <i class="fas fa-times"></i> Xóa
+            </button>
         </div>
     `;
     
@@ -270,6 +298,13 @@ document.getElementById('add-customer').addEventListener('click', function(){
     });
 
     wrapper.appendChild(node);
+});
+
+// Xóa hàng khách hàng
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('remove-customer-btn')) {
+        event.target.closest('.customer-row').remove();
+    }
 });
 
 // Xóa hàng khách hàng ban đầu (nếu có) và các hàng được thêm thủ công

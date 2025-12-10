@@ -270,13 +270,13 @@
                                 Hủy
                             </a>
                                
-                            <a 
+                            <!-- <a 
                                 href="index.php?act=booking-delete&id=<?= $b['booking_id'] ?>"
                                 class="btn btn-danger btn-sm"
                                 onclick="return confirm('Bạn có chắc chắn muốn xoá booking này?')"
                             >
                                 <i class="fa fa-trash"></i>
-                            </a>
+                            </a> -->
                         </td>
                     </tr>
                     <?php endforeach; ?>

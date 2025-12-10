@@ -22,13 +22,13 @@ class ScheduleModel
     }
 
     // Thêm lịch mới
-    public function create($tour_id, $guide_id, $start_date, $end_date, $vehicle_id, $hotel_id, $status)
+    public function create($tour_id, $guide_id, $start_date, $end_date, $vehicle, $hotel, $status)
     {
-        $sql = "INSERT INTO tour_schedule (tour_id, guide_id, start_date, end_date, vehicle_id, hotel_id, status)
+        $sql = "INSERT INTO tour_schedule (tour_id, guide_id, start_date, end_date, vehicle, hotel, status)
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($sql);
-        return $stmt->execute([$tour_id, $guide_id, $start_date, $end_date, $vehicle_id, $hotel_id, $status]);
+        return $stmt->execute([$tour_id, $guide_id, $start_date, $end_date, $vehicle, $hotel, $status]);
     }
 
     // Lấy chi tiết theo ID
@@ -41,14 +41,14 @@ class ScheduleModel
     }
 
     // Cập nhật lịch
-    public function update($id, $tour_id, $guide_id, $start_date, $end_date, $vehicle_id, $hotel_id, $status)
+    public function update($id, $tour_id, $guide_id, $start_date, $end_date, $vehicle, $hotel, $status)
     {
         $sql = "UPDATE tour_schedule 
-                SET tour_id=?, guide_id=?, start_date=?, end_date=?, vehicle_id=?, hotel_id=?, status=?
+                SET tour_id=?, guide_id=?, start_date=?, end_date=?, vehicle=?, hotel=?, status=?
                 WHERE schedule_id=?";
 
         $stmt = $this->conn->prepare($sql);
-        return $stmt->execute([$tour_id, $guide_id, $start_date, $end_date, $vehicle_id, $hotel_id, $status, $id]);
+        return $stmt->execute([$tour_id, $guide_id, $start_date, $end_date, $vehicle, $hotel, $status, $id]);
     }
 
     // Xoá lịch
@@ -79,49 +79,49 @@ public function getOne($schedule_id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-public function getAvailableVehicles()
-    {
-        $sql = "SELECT id, vehicle_type, capacity 
-                FROM vehicles 
-                WHERE status = 'Chưa khởi hành'"; // Lọc theo trạng thái sẵn sàng
+// public function getAvailableVehicles()
+//     {
+//         $sql = "SELECT id, vehicle_type, capacity 
+//                 FROM vehicles 
+//                 WHERE status = 'Chưa khởi hành'"; // Lọc theo trạng thái sẵn sàng
 
-        return $this->conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
+//         return $this->conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+//     }
 
-    // Hàm MỚI: Lấy danh sách khách sạn đang ở trạng thái 'Còn phòng'
-    public function getAvailableHotels()
-    {
-        $sql = "SELECT id, name, address 
-                FROM hotel 
-                WHERE status = 'Còn phòng'"; // Lọc theo trạng thái sẵn sàng
+//     // Hàm MỚI: Lấy danh sách khách sạn đang ở trạng thái 'Còn phòng'
+//     public function getAvailableHotels()
+//     {
+//         $sql = "SELECT id, name, address 
+//                 FROM hotel 
+//                 WHERE status = 'Còn phòng'"; // Lọc theo trạng thái sẵn sàng
 
-        return $this->conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
+//         return $this->conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+//     }
 
-    public function updateVehicleStatusByName($vehicle_name, $status)
-{
+//     public function updateVehicleStatusByName($vehicle_name, $status)
+// {
     
-    $sql = "UPDATE vehicles 
-            SET status = ? 
-            WHERE CONCAT(vehicle_type, ' (', capacity, ' chỗ)') = ?"; 
+//     $sql = "UPDATE vehicles 
+//             SET status = ? 
+//             WHERE CONCAT(vehicle_type, ' (', capacity, ' chỗ)') = ?"; 
 
-    $stmt = $this->conn->prepare($sql);
-    // Lưu ý: Chuỗi nối CONCAT() cần khớp chính xác với chuỗi tên xe bạn chọn (vd: "Hyundai (16 chỗ)")
-    return $stmt->execute([$status, $vehicle_name]); 
-}
-
-// Hàm MỚI: Cập nhật trạng thái khách sạn
-public function updateHotelStatusByName($hotel_name, $status)
-{
-    // Cột 'hotel' trong tour_schedule lưu tên khách sạn.
+//     $stmt = $this->conn->prepare($sql);
     
-    $sql = "UPDATE hotel 
-            SET status = ? 
-            WHERE name = ?"; 
+//     return $stmt->execute([$status, $vehicle_name]); 
+// }
 
-    $stmt = $this->conn->prepare($sql);
-    return $stmt->execute([$status, $hotel_name]);
-}
+
+// public function updateHotelStatusByName($hotel_name, $status)
+// {
+//     // Cột 'hotel' trong tour_schedule lưu tên khách sạn.
+    
+//     $sql = "UPDATE hotel 
+//             SET status = ? 
+//             WHERE name = ?"; 
+
+//     $stmt = $this->conn->prepare($sql);
+//     return $stmt->execute([$status, $hotel_name]);
+// }
 
 public function getLastInsertedId() {
     return $this->conn->lastInsertId();

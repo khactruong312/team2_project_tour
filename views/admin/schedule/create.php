@@ -200,29 +200,45 @@
 
                     <!-- Phương tiện -->
                     <div class="mb-3">
-                        <label for="vehicle_id">Chọn Xe:</label>
-                        <select name="vehicle_id" id="vehicle_id" class="form-control" required>
-                            <option value="">-- Chọn xe --</option>
-                            <?php foreach ($vehicles as $vehicle): ?>
-                                <option value="<?php echo htmlspecialchars($vehicle['id']); ?>">
-                                    <?php echo htmlspecialchars($vehicle['vehicle_type']) . ' (' . $vehicle['capacity'] . ' chỗ)'; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+    <label for="vehicle_name">Chọn Xe:</label>
+    <input type="text" 
+           name="vehicle" 
+           id="vehicle_name" 
+           class="form-control" 
+           list="vehicle_options" 
+           placeholder="Nhập hoặc chọn tên xe (Ví dụ: Xe 30 chỗ)"
+           required>
+
+    <datalist id="vehicle_options">
+        <?php foreach ($vehicles as $vehicle): 
+            // Tạo chuỗi Tên xe đầy đủ để làm giá trị gợi ý
+            $vehicle_name_full = htmlspecialchars($vehicle['vehicle_type']) . ' (' . $vehicle['capacity'] . ' chỗ)';
+        ?>
+            <option value="<?php echo $vehicle_name_full; ?>">
+        <?php endforeach; ?>
+    </datalist>
+</div>
 
                     <!-- Hotel -->
                     <div class="mb-3">
-                        <label for="hotel_id">Chọn Khách Sạn:</label>
-                        <select name="hotel_id" id="hotel_id" class="form-control" required>
-                            <option value="">-- Chọn khách sạn --</option>
-                            <?php foreach ($hotels as $hotel): ?>
-                                <option value="<?php echo htmlspecialchars($hotel['id']); ?>">
-                                    <?php echo htmlspecialchars($hotel['name']) . ' - ' . htmlspecialchars($hotel['address']); ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+    <label for="hotel_name">Chọn Khách Sạn:</label>
+    <input type="text" 
+           name="hotel" 
+           id="hotel_name" 
+           class="form-control" 
+           list="hotel_options" 
+           placeholder="Nhập hoặc chọn tên khách sạn (Ví dụ: Khách sạn 5 sao)"
+           required>
+
+    <datalist id="hotel_options">
+        <?php foreach ($hotels as $hotel): 
+            // Tạo chuỗi Tên khách sạn đầy đủ (Tên - Địa chỉ) để làm giá trị gợi ý
+            $hotel_name_full = htmlspecialchars($hotel['name']) . ' - ' . htmlspecialchars($hotel['address']);
+        ?>
+            <option value="<?php echo $hotel_name_full; ?>">
+        <?php endforeach; ?>
+    </datalist>
+</div>
 
                     <!-- Status -->
                     <div class="mb-3">

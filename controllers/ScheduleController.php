@@ -29,8 +29,8 @@ class ScheduleController
     // CHỈ LẤY GUIDE CÓ STATUS ACTIVE
     $guides = $this->guideModel->getActiveGuides();
 
-    $vehicles = $this->scheduleModel->getAvailableVehicles();
-    $hotels   = $this->scheduleModel->getAvailableHotels();
+    // $vehicles = $this->scheduleModel->getAvailableVehicles();
+    // $hotels   = $this->scheduleModel->getAvailableHotels();
 
     require_once './views/admin/schedule/create.php';
 }
@@ -45,16 +45,15 @@ public function store()
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
 
-        $vehicle_id = $_POST['vehicle_id']; 
-        $hotel_id   = $_POST['hotel_id'];
+        $vehicle = $_POST['vehicle']; 
+        $hotel  = $_POST['hotel'];
         
-        // Lấy thông tin chi tiết để lưu vào cột 'vehicle' và 'hotel' (tên/mô tả)
-        // Nếu bạn dùng dropdown, bạn có thể gửi thẳng tên lên, hoặc dùng cách này:
-        $selected_vehicle = $this->getVehicleNameById($vehicle_id);
-        $selected_hotel   = $this->getHotelNameById($hotel_id);
+    
+        // $selected_vehicle = $this->getVehicleNameById($vehicle);
+        // $selected_hotel   = $this->getHotelNameById($hotel);
         
-        $vehicle = $selected_vehicle;
-        $hotel   = $selected_hotel;
+        // $vehicle = $selected_vehicle;
+        // $hotel   = $selected_hotel;
     
     $status = $_POST['status'];
 
@@ -118,8 +117,8 @@ public function store()
     // CHỈ LẤY GUIDE ACTIVE
     $guides = $this->guideModel->getActiveGuides();
 
-    $vehicles = $this->scheduleModel->getAvailableVehicles();
-    $hotels   = $this->scheduleModel->getAvailableHotels();
+    // $vehicles = $this->scheduleModel->getAvailableVehicles();
+    // $hotels   = $this->scheduleModel->getAvailableHotels();
 
     require_once './views/admin/schedule/edit.php';
 }
@@ -207,33 +206,33 @@ public function update()
     exit;
 }
 
-private function getVehicleNameById($id) 
-    {
-        // Truy vấn CSDL để lấy vehicle_type và capacity
-        $sql = "SELECT vehicle_type, capacity FROM vehicles WHERE id = ?";
-        $stmt = $this->scheduleModel->conn->prepare($sql);
-        $stmt->execute([$id]);
-        $vehicle = $stmt->fetch(PDO::FETCH_ASSOC);
+// private function getVehicleNameById($id) 
+//     {
+//         // Truy vấn CSDL để lấy vehicle_type và capacity
+//         $sql = "SELECT vehicle_type, capacity FROM vehicles WHERE id = ?";
+//         $stmt = $this->scheduleModel->conn->prepare($sql);
+//         $stmt->execute([$id]);
+//         $vehicle = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        if ($vehicle) {
-            return $vehicle['vehicle_type'] . ' (' . $vehicle['capacity'] . ' chỗ)';
-        }
-        return null; 
-    }
+//         if ($vehicle) {
+//             return $vehicle['vehicle_type'] . ' (' . $vehicle['capacity'] . ' chỗ)';
+//         }
+//         return null; 
+//     }
     
-    private function getHotelNameById($id) 
-    {
-        // Truy vấn CSDL để lấy name
-        $sql = "SELECT name FROM hotel WHERE id = ?";
-        $stmt = $this->scheduleModel->conn->prepare($sql);
-        $stmt->execute([$id]);
-        $hotel = $stmt->fetch(PDO::FETCH_ASSOC);
+    // private function getHotelNameById($id) 
+    // {
+    //     // Truy vấn CSDL để lấy name
+    //     $sql = "SELECT name FROM hotel WHERE id = ?";
+    //     $stmt = $this->scheduleModel->conn->prepare($sql);
+    //     $stmt->execute([$id]);
+    //     $hotel = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        if ($hotel) {
-            return $hotel['name'];
-        }
-        return null;
-    }
+    //     if ($hotel) {
+    //         return $hotel['name'];
+    //     }
+    //     return null;
+    // }
 
 
 

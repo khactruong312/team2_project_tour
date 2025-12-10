@@ -135,7 +135,7 @@
                     <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống Kê
                 </a>
                 <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Quản Lí Tài Khoản
+                    <i class="fas fa-cog me-2"></i> Quản Lý Tài Khoản
                 </a>
                 
             </div>

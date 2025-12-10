@@ -116,26 +116,27 @@
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
                 <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
-                    <i class="fas fa-list me-2"></i> Danh sách tour
+                    <i class="fas fa-list me-2"></i> Danh Sách Tour
                 </a>
              
                 <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action">
-                     <i class="fas fa-road me-2"></i> Quản lý Tour
+                     <i class="fas fa-road me-2"></i> Quản Lý Tour
                 </a>
                 <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action ">
-                    <i class="bi bi-bootstrap me-2"></i> Quản lý Booking
+                    <i class="bi bi-bootstrap me-2"></i> Quản Lý Booking
                 </a>
                 <a href="index.php?act=customer-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-users me-2"></i> Quản lý Khách hàng
+                    <i class="fas fa-users me-2"></i> Quản Lý Khách Hàng
                 </a>
                 <a href="index.php?act=employees-list" class="list-group-item list-group-item-action active">
-                    <i class="fas fa-users me-2"></i> Quản lý Nhân Sự
+
+                    <i class="fas fa-users me-2"></i> Quản Lý Nhân Sự
                 </a>
                 <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống kê
+                    <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống Kê
                 </a>
                 <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-cog me-2"></i> Cài đặt hệ thống
+                    <i class="fas fa-cog me-2"></i> Quản Lý Tài Khoản
                 </a>
                 
             </div>

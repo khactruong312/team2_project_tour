@@ -17,28 +17,28 @@ class CustomerModel {
         (Đã sửa: Truy vấn booking_customers và đặt ALIAS)
        ============================ */
     public function getAllCustomers() {
-        try {
-            // Sửa truy vấn: Đặt ALIAS cho id (hoặc customer_id) thành 'customer_id' để khớp với View
-            $sql = "
-                SELECT 
-                    customer_id,      
-                    full_name, 
-                    email, 
-                    phone, 
-                    address, 
-                    status, 
-                    created_at 
-                FROM booking_customers 
-                ORDER BY customer_id DESC
-            ";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetchAll();
-        } catch (Exception $e) {
-            error_log("CustomerModel->getAllCustomers: " . $e->getMessage());
-            return [];
-        }
+    try {
+        $sql = "
+            SELECT 
+                customer_id,
+                full_name, 
+                email, 
+                phone, 
+                address, 
+                status, 
+                created_at,
+                customer_type
+            FROM booking_customers 
+            ORDER BY customer_id DESC
+        ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    } catch (Exception $e) {
+        error_log("CustomerModel->getAllCustomers: " . $e->getMessage());
+        return [];
     }
+}
 
     public function getCustomerBookings($customer_id)
 {

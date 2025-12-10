@@ -251,15 +251,15 @@ public function customerExistsInTour($tour_id, $full_name, $phone)
     return $result['total'] > 0;
 }
 
-public function addSingleCustomer($booking_id, $name, $phone, $email, $address, $type, $price)
+public function addSingleCustomer($booking_id, $name, $phone, $email, $address, $customer_type, $price)
 {
     $sql = "
         INSERT INTO booking_customers 
-        (booking_id, full_name, phone, email, address, type, price)
+        (booking_id, full_name, phone, email, address, customer_type, price)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ";
     $stmt = $this->conn->prepare($sql);
-    return $stmt->execute([$booking_id, $name, $phone, $email, $address, $type, $price]);
+    return $stmt->execute([$booking_id, $name, $phone, $email, $address, $customer_type, $price]);
 }
 
 

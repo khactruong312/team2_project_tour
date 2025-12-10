@@ -83,7 +83,7 @@
 
 <body>
 
-    <div class="d-flex" id="wrapper">
+     <div class="d-flex" id="wrapper">
 
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom border-secondary">
@@ -94,11 +94,11 @@
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
                 <a href="index.php?act=tour-list" class="list-group-item list-group-item-action ">
-                    <i class="fas fa-list me-2"></i> Danh Sách tour
+                    <i class="fas fa-list me-2"></i> Danh Sách Tour
                 </a>
-
+             
                 <a href="index.php?act=schedule-list" class="list-group-item list-group-item-action">
-                    <i class="fas fa-road me-2"></i> Quản Lý Tour
+                     <i class="fas fa-road me-2"></i> Quản Lý Tour
                 </a>
                 <a href="index.php?act=tour-booking" class="list-group-item list-group-item-action ">
                     <i class="bi bi-bootstrap me-2"></i> Quản Lý Booking
@@ -107,15 +107,16 @@
                     <i class="fas fa-users me-2"></i> Quản Lý Khách Hàng
                 </a>
                 <a href="index.php?act=employees-list" class="list-group-item list-group-item-action">
+
                     <i class="fas fa-users me-2"></i> Quản Lý Nhân Sự
                 </a>
                 <a href="index.php?act=report-list" class="list-group-item list-group-item-action">
                     <i class="fas fa-chart-line me-2"></i> Báo Cáo Thống Kê
                 </a>
-                <a href="index.php?act=user-list" class="list-group-item list-group-item-action ">
-                    <i class="fas fa-cog me-2"></i> Quản Lí Tài Khoản
+                <a href="index.php?act=user-list" class="list-group-item list-group-item-action">
+                    <i class="fas fa-cog me-2"></i> Quản Lý Tài Khoản
                 </a>
-
+                
             </div>
         </div>
         <div id="page-content-wrapper">
@@ -142,7 +143,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger" href="index.php?act=tour-logout">
                                     <i class="fas fa-sign-out-alt me-1"></i> Đăng xuất
-                                </a>
+                                                                                        </a>
                             </div>
                         </li>
                     </ul>
@@ -181,8 +182,9 @@
                                     <th>Email</th>
                                     <th>Số điện thoại</th>
                                     <th>Địa chỉ</th>
-                                    <th>Ngày tạo</th>
+                                    <!-- <th>Ngày tạo</th> -->
                                     <th>Trạng thái</th>
+                                    <th>Loại</th>
                                     <th class="text-center">Thao tác</th>
                                 </tr>
                             </thead>
@@ -203,7 +205,7 @@
                                             <td><?= htmlspecialchars($c['address']) ?></td>
 
 
-                                            <td><?= $c['created_at'] ? htmlspecialchars(date('d/m/Y', strtotime($c['created_at']))) : 'N/A' ?></td>
+                                            
 
 
 
@@ -215,6 +217,14 @@
                                                     <span class="badge bg-secondary">Inactive</span>
                                                 <?php endif; ?>
                                             </td>
+
+                                            <td>
+                        <?php if ($c['customer_type'] === 'adult'): ?>
+                            <span class="badge bg-primary">Người lớn</span>
+                        <?php else: ?>
+                            <span class="badge bg-success">Trẻ em</span>
+                        <?php endif; ?>
+                    </td>
 
                                             <td class="text-center">
                                                 <a href="index.php?act=customer-detail&id=<?= $c['customer_id'] ?>"

@@ -69,7 +69,7 @@ class BookingModel extends Database
     }
 
     // ⭐ Tạo booking + thêm khách
-   public function createBooking($tour_id, $total_amount, $status, $created_by, $customers, $start_date, $end_date)
+  public function createBooking($tour_id, $total_amount, $status, $created_by, $customers, $start_date, $end_date)
 {
     try {
         $this->conn->beginTransaction();
@@ -84,10 +84,10 @@ class BookingModel extends Database
 
         $booking_id = $this->conn->lastInsertId();
 
-        // Thêm khách
+        // Thêm khách — LƯU Ý: column là customer_type (không phải type)
         $sql_customer = "
             INSERT INTO booking_customers
-            (booking_id, full_name, phone, email, address, type, price, note)
+            (booking_id, full_name, phone, email, address, note, customer_type, price)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ";
         $stmt_customer = $this->conn->prepare($sql_customer);
@@ -95,13 +95,13 @@ class BookingModel extends Database
         foreach ($customers as $c) {
             $stmt_customer->execute([
                 $booking_id,
-                $c['full_name'],
-                $c['phone'],
-                $c['email'],
-                $c['address'],
-                $c['type'],
-                $c['price'],
-                $c['note'] ?? null
+                $c['full_name'] ?? null,
+                $c['phone'] ?? null,
+                $c['email'] ?? null,
+                $c['address'] ?? '',
+                $c['note'] ?? null,
+                $c['type'] ?? 'adult',   // input uses 'type' for customer role — map to customer_type
+                $c['price'] ?? 0
             ]);
         }
 
@@ -115,7 +115,9 @@ class BookingModel extends Database
 }
 
 
-    // ⭐ Cập nhật trạng thái (Booked / Paid / Cancelled / Processing)
+
+
+    // Cập nhật trạng thái (Booked / Paid / Cancelled / Processing)
     public function updateStatus($booking_id, $status)
     {
         $sql = "UPDATE bookings SET status = ? WHERE booking_id = ?";
@@ -124,7 +126,7 @@ class BookingModel extends Database
         return $stmt->execute([$status, $booking_id]);
     }
 
-    // ⭐ Xóa booking + khách liên quan
+    // Xóa booking + khách liên quan
     public function delete($booking_id)
     {
         try {
@@ -171,7 +173,7 @@ public function addCustomers(
 ) {
     $insert_sql = "
         INSERT INTO booking_customers
-        (booking_id, full_name, phone, email, address, type, price)
+        (booking_id, full_name, phone, email, address, customer_type, price)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ";
     $insert_stmt = $this->conn->prepare($insert_sql);
@@ -195,17 +197,15 @@ public function addCustomers(
             continue; 
         }
 
-        // ❗ Đây là lỗi khiến giá người lớn bị = 0
         $price = ($types[$i] == "child") ? 0 : $price_per_adult;
 
-        // thêm khách
         $insert_stmt->execute([
             $booking_id,
             $names[$i],
             $phones[$i],
             $emails[$i],
             $addresses[$i],
-            $types[$i],
+            $types[$i],   // maps to customer_type
             $price
         ]);
 
@@ -217,6 +217,7 @@ public function addCustomers(
         "duplicated" => $duplicated
     ];
 }
+
 
 
 public function updateTotalAmount($booking_id)
@@ -251,16 +252,18 @@ public function customerExistsInTour($tour_id, $full_name, $phone)
     return $result['total'] > 0;
 }
 
-public function addSingleCustomer($booking_id, $name, $phone, $email, $address, $customer_type, $price)
+public function addSingleCustomer($booking_id, $name, $phone, $email, $address, $customer_type, $price, $note = null)
 {
     $sql = "
         INSERT INTO booking_customers 
-        (booking_id, full_name, phone, email, address, customer_type, price)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        (booking_id, full_name, phone, email, address, note, customer_type, price)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ";
     $stmt = $this->conn->prepare($sql);
-    return $stmt->execute([$booking_id, $name, $phone, $email, $address, $customer_type, $price]);
+    return $stmt->execute([$booking_id, $name, $phone, $email, $address, $note, $customer_type, $price]);
 }
+
+
 
 
 

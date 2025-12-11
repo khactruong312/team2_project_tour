@@ -254,7 +254,7 @@ $current_act = $_GET['act'] ?? 'customer-detail';
                                                     <tr>
                                                         <th>Mã Booking</th>
                                                         <th>Tour</th>
-                                                        <th>Giá</th>
+                                                        
                                                         <th>Ngày bắt đầu</th>
                                                         <th>Ngày kết thúc</th>
                                                         <th>Trạng thái</th>
@@ -278,12 +278,7 @@ $current_act = $_GET['act'] ?? 'customer-detail';
                                                             </td>
 
                                                             <!-- Giá -->
-                                                            <td>
-                                                                <?php
-                                                                $price = $b['tour_price'] ?? 0;
-                                                                echo number_format((float)$price) . " VNĐ";
-                                                                ?>
-                                                            </td>
+                                                           
 
                                                             <!-- Ngày bắt đầu -->
                                                             <td><?= date('d/m/Y', strtotime($b['start_date'])) ?? 'N/A' ?></td>

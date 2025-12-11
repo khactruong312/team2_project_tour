@@ -174,8 +174,14 @@ class BookingController
             $end_date
         );
 
-        $_SESSION['success'] = "Tạo booking mới thành công!";
-        header("Location: index.php?act=tour-booking");
+       if (isset($result['error'])) {
+    $_SESSION['error'] = "Tạo booking thất bại: " . $result['error'];
+    header("Location: index.php?act=booking-create");
+    exit;
+}
+
+$_SESSION['success'] = "Tạo booking mới thành công!";
+header("Location: index.php?act=tour-booking");
         exit;
     }
 }

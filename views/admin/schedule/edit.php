@@ -200,52 +200,46 @@
                         </div>
                     </div>
 
-                    <!-- Vehicle -->
                     <div class="mb-3">
-                        <label class="form-label">Phương tiện:</label>
-                        <select name="vehicle_id" class="form-select" required>
-                            <option value="">-- Chọn xe --</option>
-                            <?php
-                            // 1. Lấy tên/mô tả xe cũ đang được lưu trong CSDL
-                            $old_vehicle_name = $schedule['vehicle_id'];
-                            ?>
-                            <?php foreach ($vehicles as $vehicle):
-                                // 2. Tạo chuỗi tên đầy đủ của xe hiện tại để so sánh
-                                // (Phải khớp với chuỗi được tạo bởi hàm getVehicleNameById() trong Controller)
-                                $current_vehicle_name = htmlspecialchars($vehicle['vehicle_type']) . ' (' . htmlspecialchars($vehicle['capacity']) . ' chỗ)';
+    <label for="hotel_name">Chọn Khách Sạn:</label>
 
-                                // 3. Kiểm tra và chọn nếu tên xe khớp với tên xe cũ
-                                $isSelected = ($current_vehicle_name == $old_vehicle_name) ? 'selected' : '';
-                            ?>
-                                <option value="<?= htmlspecialchars($vehicle['id']) ?>" <?= $isSelected ?>>
-                                    <?= $current_vehicle_name ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+    <input type="text" 
+           name="hotel" 
+           id="hotel_name" 
+           class="form-control" 
+           list="hotel_options" 
+           value="<?= htmlspecialchars($schedule['hotel']) ?>" 
+           required>
 
-                    <!-- Hotel -->
-                    <div class="mb-3">
-                        <label class="form-label">Khách sạn:</label>
-                        <select name="hotel_id" class="form-select" required>
-                            <option value="">-- Chọn khách sạn --</option>
-                            <?php
-                            // 1. Lấy tên khách sạn cũ đang được lưu trong CSDL
-                            $old_hotel_name = $schedule['hotel_id'];
-                            ?>
-                            <?php foreach ($hotels as $hotel):
-                                $current_hotel_name = htmlspecialchars($hotel['name']);
+    <datalist id="hotel_options">
+        <?php foreach ($hotels as $hotel): 
+            $hotel_name_full = htmlspecialchars($hotel['name']) . ' - ' . htmlspecialchars($hotel['address']);
+        ?>
+            <option value="<?= $hotel_name_full ?>">
+        <?php endforeach; ?>
+    </datalist>
+</div>
 
-                                // 2. Kiểm tra và chọn nếu tên khách sạn khớp với tên khách sạn cũ
-                                $isSelected = ($current_hotel_name == $old_hotel_name) ? 'selected' : '';
-                            ?>
-                                <option value="<?= htmlspecialchars($hotel['id']) ?>" <?= $isSelected ?>>
-                                    <?= $current_hotel_name . ' - ' . htmlspecialchars($hotel['address']) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <!-- Status -->
+
+<div class="mb-3">
+    <label for="vehicle_name">Chọn Xe:</label>
+    <input type="text" 
+           name="vehicle" 
+           id="vehicle_name" 
+           class="form-control" 
+           list="vehicle_options" 
+           placeholder="<?= htmlspecialchars($schedule['vehicle']) ?>"
+           required>
+
+    <datalist id="vehicle_options">
+        <?php foreach ($vehicles as $vehicle): 
+            // Tạo chuỗi Tên xe đầy đủ để làm giá trị gợi ý
+            $vehicle_name_full = htmlspecialchars($vehicle['vehicle_type']) . ' (' . $vehicle['capacity'] . ' chỗ)';
+        ?>
+            <option value="<?php echo $vehicle_name_full; ?>">
+        <?php endforeach; ?>
+    </datalist>
+</div>
                     <div class="mb-3">
                         <label class="form-label">Trạng thái:</label>
                         <select name="status" class="form-select">

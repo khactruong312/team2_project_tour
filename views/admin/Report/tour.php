@@ -215,7 +215,7 @@
     <div class="card mb-3">
         <div class="card-header">Biểu đồ doanh thu / chi phí</div>
         <div class="card-body">
-            <canvas id="chartTour" height="80"></canvas>
+            <canvas id="chartTour" height="200"></canvas>
         </div>
     </div>
 

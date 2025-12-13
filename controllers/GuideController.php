@@ -122,7 +122,7 @@ class GuideController {
         $_SESSION['error'] = "Lỗi khi lưu báo cáo!";
     }
 
-    header("Location: index.php?act=guide-tours");
+    header("Location: index.php?act=guide-list");
     exit();
 }
 }

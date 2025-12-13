@@ -72,7 +72,7 @@ class TourModel
         return $stmt->execute([$id]);
     }
 
-   public function getDestinationsByTour($tour_id)
+   public function getDestinationsByTour($tour_id): array
 {
     $sql = "SELECT destination_id 
             FROM tour_destinations 
